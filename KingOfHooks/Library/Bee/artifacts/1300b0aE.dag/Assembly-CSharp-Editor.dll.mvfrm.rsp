@@ -9,7 +9,12 @@ Library\Bee\artifacts\mvdfrm\Unity.Notifications.Android.ref.dll_D74EC3067BD7BB2
 Library\Bee\artifacts\mvdfrm\Unity.Notifications.ref.dll_C779BCBD8C9A81BA.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Notifications.iOS.ref.dll_77F0EA2A00993C29.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.PlasticSCM.Editor.ref.dll_A558B9E65539D7D0.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Postprocessing.Editor.ref.dll_D390A24D3B6D11EA.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Postprocessing.Runtime.ref.dll_D64FE1030D5C6CA1.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Profiling.Core.ref.dll_8367B79E0D98D3BB.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Recorder.Base.ref.dll_67DDE14987D48D53.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Recorder.Editor.ref.dll_23BC39DB9EAF4E8F.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Recorder.ref.dll_CC1C080121606342.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Rider.Editor.ref.dll_DA88E6A3E9EB6155.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Services.Core.Analytics.ref.dll_CBCA382B387CF7F9.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Services.Core.Environments.ref.dll_E7BB04DD211B7353.mvfrm
