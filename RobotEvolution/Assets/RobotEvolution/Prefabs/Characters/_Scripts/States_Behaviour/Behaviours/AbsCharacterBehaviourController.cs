@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(ObjMovement), typeof(Rigidbody))]
 public abstract class AbsCharacterBehaviourController : MonoBehaviour
 {
-    [field: SerializeField] public CharacterMovementDataSO CharacterMovementDataSO { get; private set; }
+    [field: SerializeField] public CharacterDataSO CharactertDataSO { get; private set; }
     [field: SerializeField] public AnimationCurve AnimaCurvePushEffect { get; private set; }
 
     [SerializeField] protected Transform _aimTransform; // TODO: delet SerializeField after debaging
@@ -23,14 +23,12 @@ public abstract class AbsCharacterBehaviourController : MonoBehaviour
         }
     }
     public Transform ThisCharacterTranshorm { get; private set; }
-    public ICharacter ICharacter { get; private set; }
 
     protected Dictionary<Type, AbsCharacterBaseBehaviour> _charactersBehaviourDicionary;
     private AbsCharacterBaseBehaviour _currentCharacterBehaviour;
 
     public virtual void Start()
     {
-        TryGetComponent(out ICharacter iCharacter); ICharacter = iCharacter;
         TryGetComponent(out ObjMovement objMovement); ObjMovement = objMovement;
         ThisCharacterTranshorm = transform;
 
@@ -49,7 +47,7 @@ public abstract class AbsCharacterBehaviourController : MonoBehaviour
     private void InitCommonBehaviours()
     {
         _charactersBehaviourDicionary[typeof(CharacterBehaviourIdle)] = new CharacterBehaviourIdle(this);
-        _charactersBehaviourDicionary[typeof(CharacterBehaviourPullUp)] = new CharacterBehaviourPullUp(this);
+        _charactersBehaviourDicionary[typeof(CharacterBehaviourBoost)] = new CharacterBehaviourBoost(this);
         _charactersBehaviourDicionary[typeof(CharacterBehaviourDeath)] = new CharacterBehaviourDeath(this);
     }
     public virtual void InitSpeñialBehaviours()
@@ -97,9 +95,9 @@ public abstract class AbsCharacterBehaviourController : MonoBehaviour
         AbsCharacterBaseBehaviour defoltState = GetBehaviourFromDictionary<BotBehaviourRun>();
         SetNewCharacterBehaviour(defoltState);
     }
-    public void SetBehaviourPoolUp()
+    public void SetBehaviourBoost()
     {
-        AbsCharacterBaseBehaviour characterBehaviourPullUp = GetBehaviourFromDictionary<CharacterBehaviourPullUp>();
+        AbsCharacterBaseBehaviour characterBehaviourPullUp = GetBehaviourFromDictionary<CharacterBehaviourBoost>();
         SetNewCharacterBehaviour(characterBehaviourPullUp);
     }
     public void SetBehaviourDeath()

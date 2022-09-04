@@ -27,8 +27,8 @@ public class BotBehaviourRun : AbsCharacterBaseBehaviour
 
     public override void SetSpeedCharacter()
     {
-        CurrentSpeedMovement = _characterMovementDataSO.DefoltSpeedMovement - (_iCharacter.Scale * _characterMovementDataSO.KoefDivideSpeedMotion);
-        CurrentSpeedRotation = _characterMovementDataSO.DefoltSpeedMovement - (_iCharacter.Scale * _characterMovementDataSO.KoefDivideSpeedMotion);
+        CurrentSpeedMovement = _characterDataSO.SpeedMovement;
+        CurrentSpeedRotation = _characterDataSO.SpeedMovement;
     }
 
     public override void Raning()

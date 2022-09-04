@@ -5,8 +5,7 @@ public abstract class AbsCharacterBaseBehaviour : IMovable
     protected ObjMovement _objMovement;
     protected Transform _aimTransform;
     protected Transform _thisCharacterTransform;
-    protected CharacterMovementDataSO _characterMovementDataSO;
-    protected ICharacter _iCharacter;
+    protected CharacterDataSO _characterDataSO;
     protected AnimationCurve _animaCurvePushEffect;
 
     public Vector3 CurrentdirectionView { get; protected set; }
@@ -20,8 +19,7 @@ public abstract class AbsCharacterBaseBehaviour : IMovable
         _objMovement = absCharacterBehaviourController.ObjMovement;
         _aimTransform = absCharacterBehaviourController.AimTransform;
         _thisCharacterTransform = absCharacterBehaviourController.ThisCharacterTranshorm;
-        _characterMovementDataSO = absCharacterBehaviourController.CharacterMovementDataSO;
-        _iCharacter = absCharacterBehaviourController.ICharacter;
+        _characterDataSO = absCharacterBehaviourController.CharactertDataSO;
         _animaCurvePushEffect = absCharacterBehaviourController.AnimaCurvePushEffect;
     }
 

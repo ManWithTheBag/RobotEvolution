@@ -3,18 +3,18 @@ using UnityEngine;
 [SelectionBase]
 public class AbsCharacter : MonoBehaviour, ICharacter
 {
-    [Min(1)][SerializeField] private float _scale;
+    [Min(0)][SerializeField] private int _score;
     [Min(0)] [SerializeField] private float _spawnPositionY;
-    public float Scale
+    public int Score
     {
-        get { return _scale; }
-        private set
+        get { return _score; }
+        set
         {
-            if (value < 1)
-                _scale = 1;
+            if (value < 0)
+                _score = 0;
 
             else
-                _scale = value;
+                _score = value;
         }
     }
 
@@ -60,10 +60,10 @@ public class AbsCharacter : MonoBehaviour, ICharacter
         transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
     }
 
-    private void Start()
-    {
-        GlobalEventManager.OnSearchNewAim.Invoke();
-    }
+    //private void Start()
+    //{
+    //    GlobalEventManager.OnSearchNewAim.Invoke();
+    //}
     //private void OnEnable()
     //{
     //    GlobalEventManager.OnSearchNewAim.Invoke();

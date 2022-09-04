@@ -4,7 +4,7 @@ using UnityEngine;
 public class ObjMovement : MonoBehaviour
 {
     [SerializeField] Transform _checkSpherePosition;
-    [Min((float)0.1)] [SerializeField] float _radiusCheckMapSphere = 0.1f;
+    [Min((float)0.1)] [SerializeField] float _radiusCheckMapSphere = 0.3f;
     [SerializeField] LayerMask _mapLayer;
 
     const float gravity = 9.81f;

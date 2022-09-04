@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be24b7b59922cb4785239058eaa1210, type: 3}
+  m_Name: _2_1_SpiderBotData
+  m_EditorClassIdentifier: 
+  <TypeModelStateCharacter>k__BackingField: 2
+  <PrefabCharacterModel>k__BackingField: {fileID: 5712096197079855515, guid: 610a8a878939f9f479e4ca43cbbf83a5,
+    type: 3}
+  _speedMovement: 8
+  _speedRotation: 4
+  _speedBoost: 14

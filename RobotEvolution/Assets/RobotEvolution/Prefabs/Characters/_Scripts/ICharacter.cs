@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ICharacter
 {
-    public float Scale { get; }
+    public int Score { get; set; }
     public string Nickname { get; set; }
     public int IndexPositionInLIderBoard { get; set; }
 
@@ -12,3 +12,5 @@ public interface ICharacter
     //public void AddScaleCharacter(float amount);
     //public void LossScaleCharacter(float amount);
 }
+
+
