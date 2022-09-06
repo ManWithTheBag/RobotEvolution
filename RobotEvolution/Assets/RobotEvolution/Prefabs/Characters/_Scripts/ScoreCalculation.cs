@@ -1,36 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using UnityEngine.UI;
 
 public class ScoreCalculation : MonoBehaviour
 {
+    public Button loss;
+    public Button Add;
+
     private int _oldScore;
     private ICharacter _iCaracter;
 
-    public event Action<int, int> ScoreChangedEvent; 
+    public event Action<int, int> OnScoreChangedEvent; 
     private void Start()
     {
+        loss.onClick.AddListener(LossScore);
+        Add.onClick.AddListener(AddScore);
         TryGetComponent(out ICharacter iCharacter); _iCaracter = iCharacter;
     }
 
-    public void AddScore(int valueAdd)
+    public void AddScore()
     {
         _oldScore = _iCaracter.Score;
-        _iCaracter.Score += valueAdd;
+        _iCaracter.Score += 10;
         ScoreISChanged(_oldScore, _iCaracter.Score);
     }
 
-    public void LossScore(int valueLoss)
+    public void LossScore()
     {
         _oldScore = _iCaracter.Score;
-        _iCaracter.Score -= valueLoss;
+        _iCaracter.Score -= 10;
         ScoreISChanged(_oldScore, _iCaracter.Score);
     }
 
     public void ScoreISChanged(int oldScoreValue, int newScoreValue)
     {
-        ScoreChangedEvent?.Invoke(oldScoreValue, newScoreValue);
+        OnScoreChangedEvent?.Invoke(oldScoreValue, newScoreValue);
     }
 }

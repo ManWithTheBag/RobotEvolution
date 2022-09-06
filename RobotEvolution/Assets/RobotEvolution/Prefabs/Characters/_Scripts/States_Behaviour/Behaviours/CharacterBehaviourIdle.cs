@@ -22,10 +22,6 @@ public class CharacterBehaviourIdle : AbsCharacterBaseBehaviour
         _objMovement.GetIsMovableCharacter(this);
     }
 
-    public override void SetSpeedCharacter()
-    {
-    }
-
     public override void Raning()
     {
     }

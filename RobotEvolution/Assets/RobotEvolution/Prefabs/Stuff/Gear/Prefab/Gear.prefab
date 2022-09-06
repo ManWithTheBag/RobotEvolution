@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0618da6b6adac28498785118607fff77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPositionY: 0.6
+  _spawnPositionY: 1.5

@@ -43,7 +43,7 @@ public class ObjMovement : MonoBehaviour
     {
         _directionView = iMovable.CurrentdirectionView.normalized;
         _directionMove = iMovable.CurrentdirectionMove.normalized;
-        _currentSpeedMovement = iMovable.CurrentSpeedMovement;
+        _currentSpeedMovement = iMovable.CurrentSpeedMove;
         _currentSpeedRotation = iMovable.CurrentSpeedRotation;
         //Debug.Log($"View = {_directionView};  Move ={_directionMove};  SpeedMove{_currentSpeedMovement};  SpeedRotation{_currentSpeedRotation}; IsMOvable ={_isMovableCharacter}");
     }

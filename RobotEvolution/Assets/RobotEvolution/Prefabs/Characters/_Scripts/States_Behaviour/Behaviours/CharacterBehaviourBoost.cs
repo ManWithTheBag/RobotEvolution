@@ -12,9 +12,6 @@ public class CharacterBehaviourBoost : AbsCharacterBaseBehaviour
 
     public override void Enter()
     {
-        GlobalEventManager.OnSwapScaleCharacters.AddListener(SetSpeedCharacter);
-        SetSpeedCharacter();
-
         IsMovableCharacter = true;
         SetIsMovableCharacter();
 
@@ -23,7 +20,6 @@ public class CharacterBehaviourBoost : AbsCharacterBaseBehaviour
 
     public override void Exit()
     {
-        GlobalEventManager.OnSwapScaleCharacters.RemoveListener(SetSpeedCharacter);
     }
 
     public override void SetIsMovableCharacter()
@@ -31,20 +27,9 @@ public class CharacterBehaviourBoost : AbsCharacterBaseBehaviour
         _objMovement.GetIsMovableCharacter(this);
     }
 
-    public override void SetSpeedCharacter()
-    {
-        CurrentSpeedMovement = _characterDataSO.SpeedBoost;
-        CurrentSpeedRotation = _characterDataSO.SpeedBoost;
-    }
-
     public override void Raning()
     {
-        if (_aimTransform != null)
-        {
-            CurrentdirectionView = _aimTransform.position - _thisCharacterTransform.position;
-            CurrentdirectionMove = _thisCharacterTransform.forward;
-            CurrentSpeedMovement *= _animaCurvePushEffect.Evaluate(_timeForAnimCurve += Time.deltaTime);
-        }
+        CurrentSpeedMove *= _animaCurvePushEffect.Evaluate(_timeForAnimCurve += Time.deltaTime);
 
         _objMovement.GetDirectionMoveAndSpeed(this);
     }

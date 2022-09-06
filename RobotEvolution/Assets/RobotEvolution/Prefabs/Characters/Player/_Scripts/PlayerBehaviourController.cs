@@ -5,10 +5,10 @@ public class PlayerBehaviourController : AbsCharacterBehaviourController
 {
     private InputJoystick _inputJoystick;
 
-    public override void Start()
+    public override void Awake()
     {
         TryGetComponent(out InputJoystick inputJoystick); _inputJoystick = inputJoystick;
-        base.Start();
+        base.Awake();
     }
 
     public override void InitSpeñialBehaviours()

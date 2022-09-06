@@ -4,7 +4,7 @@ public class MapsController : MonoBehaviour
 {
     [SerializeField] private MeshCollider _meshCollider;
 
-    public float _sqrSizeFiteMap { get; private set; }
+    public static float t_sqrSizeFiteMap { get; private set; }
 
     public void Start()
     {
@@ -13,6 +13,6 @@ public class MapsController : MonoBehaviour
 
     public void CheckSizeMap()
     {
-        _sqrSizeFiteMap = Vector3.SqrMagnitude(_meshCollider.bounds.center - _meshCollider.bounds.extents);
+        t_sqrSizeFiteMap = Vector3.SqrMagnitude(_meshCollider.bounds.center - _meshCollider.bounds.extents);
     }
 }

@@ -17,10 +17,6 @@ public class CharacterBehaviourDeath : AbsCharacterBaseBehaviour
     {
     }
 
-    public override void SetSpeedCharacter()
-    {
-    }
-
     public override void SetIsMovableCharacter()
     {
         _objMovement.GetIsMovableCharacter(this);

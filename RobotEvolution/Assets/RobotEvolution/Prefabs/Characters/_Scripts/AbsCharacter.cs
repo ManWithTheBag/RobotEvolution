@@ -59,13 +59,4 @@ public class AbsCharacter : MonoBehaviour, ICharacter
     {
         transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
     }
-
-    //private void Start()
-    //{
-    //    GlobalEventManager.OnSearchNewAim.Invoke();
-    //}
-    //private void OnEnable()
-    //{
-    //    GlobalEventManager.OnSearchNewAim.Invoke();
-    //}
 }

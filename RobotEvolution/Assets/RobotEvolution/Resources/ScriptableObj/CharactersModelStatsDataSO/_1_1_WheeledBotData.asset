@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be24b7b59922cb4785239058eaa1210, type: 3}
+  m_Script: {fileID: 11500000, guid: ae862ce8e40015f4a9e2e5e34b523e91, type: 3}
   m_Name: _1_1_WheeledBotData
   m_EditorClassIdentifier: 
   <TypeModelStateCharacter>k__BackingField: 1
   <PrefabCharacterModel>k__BackingField: {fileID: 3809226778880491671, guid: 2130eac9405281641b724c124f1ea81f,
     type: 3}
   _speedMovement: 12
-  _speedRotation: 8
+  _speedBodyRotation: 0
+  _speedHeadRotation: 0
   _speedBoost: 18

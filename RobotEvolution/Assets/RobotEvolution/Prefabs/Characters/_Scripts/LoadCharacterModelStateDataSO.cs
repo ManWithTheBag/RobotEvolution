@@ -3,28 +3,28 @@ using UnityEngine;
 
 public class LoadCharacterModelStateDataSO : MonoBehaviour
 {
-    public static Dictionary<CharacterModelStatsEnum, CharacterDataSO> _characterDataSODictionary = new();
+    public static Dictionary<CharacterModelStatsEnum, CharacterModelStatsDataSO> _characterDataSODictionary = new();
     private void Awake()
     {
         LoadCharacterStatsDataSO();
     }
     private void LoadCharacterStatsDataSO()
     {
-        UnityEngine.Object[] t = Resources.LoadAll("ScriptableObj/CharactersModelStatsDataSO", typeof(CharacterDataSO));
+        UnityEngine.Object[] t = Resources.LoadAll("ScriptableObj/CharactersModelStatsDataSO", typeof(CharacterModelStatsDataSO));
 
         foreach (var item in t)
         {
-            CharacterDataSO element = (CharacterDataSO)item;
+            CharacterModelStatsDataSO element = (CharacterModelStatsDataSO)item;
             _characterDataSODictionary.Add(element.TypeModelStateCharacter, element);
         }
     }
 
-    public static CharacterDataSO GetCharacterStateDataSo(CharacterModelStatsEnum typeModelState)
+    public static CharacterModelStatsDataSO GetCharacterStateDataSo(CharacterModelStatsEnum typeModelState)
     {
         return _characterDataSODictionary[typeModelState];
     }
 
-    public static Dictionary<CharacterModelStatsEnum, CharacterDataSO> GetDictionaryCharacterStateDataSO()
+    public static Dictionary<CharacterModelStatsEnum, CharacterModelStatsDataSO> GetDictionaryCharacterStateDataSO()
     {
         return _characterDataSODictionary;
     }

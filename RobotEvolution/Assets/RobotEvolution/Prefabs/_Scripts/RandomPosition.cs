@@ -1,17 +1,18 @@
 using UnityEngine;
 
-public class RandomPosition: MonoBehaviour
+public class RandomPosition : MonoBehaviour
 {
     [SerializeField] private MeshCollider mapsMeshColider;
     [SerializeField] private Vector3 _sizeCheckColliderBox;
+    [SerializeField] private float _chackBoxPosotionY;
 
-    private float _yPosition;
+    private float _spawnPositionY;
     private Vector3 _emptyPosition;
     private Collider[] hitCollider;
 
-    public Vector3 GetRandomPosition(float posotionY)
+    public Vector3 GetRandomPosition(float spawnPositionY)
     {
-        _yPosition = posotionY;
+        _spawnPositionY = spawnPositionY;
 
         for (int i = 0; i < 100; i++)
         {
@@ -31,11 +32,11 @@ public class RandomPosition: MonoBehaviour
 
     private bool CheckSpawnPoint(float randomX, float randomZ)
     {
-        Vector3 posOverLapBox = new Vector3(randomX, _yPosition, randomZ);
+        Vector3 posOverLapBox = new Vector3(randomX, _chackBoxPosotionY, randomZ);
         hitCollider = Physics.OverlapBox(posOverLapBox, _sizeCheckColliderBox, Quaternion.identity);
         if (hitCollider.Length <= 0)
         {
-            _emptyPosition = posOverLapBox;
+            _emptyPosition = new Vector3(randomX, _spawnPositionY, randomZ);
             return true;
         }
         else
