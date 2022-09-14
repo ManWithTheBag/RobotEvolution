@@ -6,6 +6,7 @@ public class CharacterModelStatsDataSO : ScriptableObject
     [field: SerializeField] public CharacterModelStatsEnum TypeModelStateCharacter { get; private set; }
     [field: SerializeField] public GameObject PrefabCharacterModel { get; private set; }
 
+    [Header("Setup Movement")]
     [Min(0)] [SerializeField] private float _speedMovement;
     public float SpeedMovement
     {
@@ -20,11 +21,11 @@ public class CharacterModelStatsDataSO : ScriptableObject
         private set { _speedBodyRotation = value; }
     }
 
-    [Min(0)] [SerializeField] private float _speedHeadRotation;
-    public float SpeedHeadRotation
+    [Min(0)] [SerializeField] private float _speedTurretRotation;
+    public float SpeedTurretRotation
     {
-        get { return _speedHeadRotation; }
-        private set { _speedHeadRotation = value; }
+        get { return _speedTurretRotation; }
+        private set { _speedTurretRotation = value; }
     }
 
     [Min(0)] [SerializeField] private float _speedBoost;
@@ -32,5 +33,51 @@ public class CharacterModelStatsDataSO : ScriptableObject
     {
         get { return _speedBoost; }
         private set { _speedBoost = value; }
+    }
+
+
+    [Header("Setup Shoot Veapon")]
+    [Range(0, 360)] [SerializeField] private float _viewAngle;
+    public float ViewAngle
+    {
+        get { return _viewAngle; }
+        private set { _viewAngle = value; }
+    }
+
+    [Min(0)] [SerializeField] private float _shotDistance;
+    public float ShotDistance
+    {
+        get { return _shotDistance; }
+        private set { _shotDistance = value; }
+    }
+
+    [Min(0)] [SerializeField] private float _distancePreparedToFire;
+    public float DistancePreparedToFire
+    {
+        get { return _distancePreparedToFire; }
+        private set 
+        { 
+            if(_distancePreparedToFire > _shotDistance)
+                _distancePreparedToFire = value; 
+            else
+            {
+                _distancePreparedToFire = -999;
+                Debug.LogError($"Error: CharacterModelDataSO.DistancePreparedToFire < ShotDistance: {_distancePreparedToFire} < {_shotDistance}");
+            }
+        }
+    }
+
+    [Min(0)] [SerializeField] private float _timeOverheatingGunMachine;
+    public float TimeOverheatingGunMachine
+    {
+        get { return _timeOverheatingGunMachine; }
+        private set { _timeOverheatingGunMachine = value; }
+    }
+
+    [Min(0)] [SerializeField] private float _timeRechargeCannon;
+    public float TimeRechargeCannon
+    {
+        get { return _timeRechargeCannon; }
+        private set { _timeRechargeCannon = value; }
     }
 }

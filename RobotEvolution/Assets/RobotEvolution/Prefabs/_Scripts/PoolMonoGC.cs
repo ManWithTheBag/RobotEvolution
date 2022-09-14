@@ -5,15 +5,19 @@ using Object = UnityEngine.Object;
 
 public class PoolMonoGC<T> where T : MonoBehaviour
 {
+    public bool IsAutoExpand { get; set; }
+
+    private bool _isActiveByDefolt;
     private Transform _container;
     private T _prefab;
     private List<T> _pool;
     private T _temraporyElement;
 
-    public PoolMonoGC(T prefab, int poolCount, Transform container)
+    public PoolMonoGC(T prefab, int poolCount, Transform container, bool isActiveByDefolt)
     {
         _prefab = prefab;
         _container = container;
+        _isActiveByDefolt = isActiveByDefolt;
         CreatePool(poolCount);
     }
 
@@ -22,14 +26,14 @@ public class PoolMonoGC<T> where T : MonoBehaviour
         _pool = new List<T>();
 
         for (int i = 0; i < poolCount; i++)
-            _pool.Add(CreateObject());
+            CreateObject(_isActiveByDefolt);
     }
 
-    private T CreateObject()
+    private T CreateObject(bool isActiveByDefolt)
     {
-
         T element = Object.Instantiate(_prefab, _container);
-        //element.gameObject.SetActive(false);
+        element.gameObject.SetActive(isActiveByDefolt);
+        _pool.Add(element);
         return element;
 
     }
@@ -41,8 +45,14 @@ public class PoolMonoGC<T> where T : MonoBehaviour
             return _temraporyElement;
         }
 
+        if (IsAutoExpand)
+        {
+            return CreateObject(true);
+        }
+
         throw new Exception($"This pool haven't free element, pool's name:{typeof(T)}");
     }
+
     private bool HasFreeElement()
     {
         foreach (T item in _pool)
@@ -53,10 +63,13 @@ public class PoolMonoGC<T> where T : MonoBehaviour
                 _temraporyElement.gameObject.SetActive(true);
                 return true;
             }
+            
         }
         _temraporyElement = null;
         return false;
     }
+
+
     public List<T> GetAllElementsList()
     {
         return _pool;

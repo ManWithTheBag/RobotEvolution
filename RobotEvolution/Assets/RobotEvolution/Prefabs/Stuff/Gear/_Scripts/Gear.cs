@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class Gear : AbsStuff
 {
-
+    public override void SetScore(IDetectable iDetectable)
+    {
+        iDetectable.DetectedAddScore(ScoreDataSO.GearScore);
+    }
 }

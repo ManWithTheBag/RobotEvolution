@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: _1_1_WheeledBotData
   m_EditorClassIdentifier: 
   <TypeModelStateCharacter>k__BackingField: 1
-  <PrefabCharacterModel>k__BackingField: {fileID: 3809226778880491671, guid: 2130eac9405281641b724c124f1ea81f,
+  <PrefabCharacterModel>k__BackingField: {fileID: 6524014649858311632, guid: 5766321d7ee024d438776e69fb67cc10,
     type: 3}
-  _speedMovement: 12
-  _speedBodyRotation: 0
-  _speedHeadRotation: 0
-  _speedBoost: 18
+  _speedMovement: 7
+  _speedBodyRotation: 2
+  _speedTurretRotation: 4
+  _speedBoost: 12
+  _viewAngle: 40
+  _shotDistance: 12
+  _distancePreparedToFire: 24
+  _timeOverheatingGunMachine: 15
+  _timeRechargeCannon: 6

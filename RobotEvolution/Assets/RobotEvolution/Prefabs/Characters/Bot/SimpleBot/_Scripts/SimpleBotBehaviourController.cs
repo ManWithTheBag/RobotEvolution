@@ -1,5 +1,5 @@
 
-public class SimpleBotBehaviourController : AbsCharacterBehaviourController
-{
+//public class SimpleBotBehaviourController : AbsCharacterBehaviourController
+//{
 
-}
+//}

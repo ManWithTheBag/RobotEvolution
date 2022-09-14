@@ -2,9 +2,11 @@ using UnityEngine;
 
 public interface IMovable 
 {
-    public Vector3 CurrentdirectionView { get; }
-    public Vector3 CurrentdirectionMove { get; }
-    public float CurrentSpeedMove { get; }
-    public float CurrentSpeedRotation { get; }
+    public Transform Turret { get; }
+    public Quaternion CurrentBodyView { get; }
+    public Quaternion CurrentTurretView { get; }
+    public Vector3 CurrentCharacterMove { get; }
+    public float CurrentSpeedMovement { get; }
+    public CharacterModelStatsDataSO CharacterModelStatsDataSO { get; }
     public bool IsMovableCharacter { get; }
 }

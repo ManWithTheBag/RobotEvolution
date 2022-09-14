@@ -1,40 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbsStuff : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public abstract class AbsStuff : MonoBehaviour, IDetertor, IRefreshible
 {
-    [Min(0)] [SerializeField] private float _spawnPositionY;
+    [field: SerializeField] public ScoreDataSO ScoreDataSO { get; private set; }
 
-    private RandomPosition _randomPosition;
-    //private bool _isCatched = false;
+    public Transform Soures { get ; set ; }
 
-    private void OnEnable()
+    protected Rigidbody _rb;
+    protected Transform _thisTransform;
+
+    private void Start()
     {
-        _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>(); // TODO: Check perfomence upon complition of development
-
-        GetRandopPosition();
+        _thisTransform = transform;
+        TryGetComponent(out Rigidbody rigidbody); _rb = rigidbody;
     }
 
-    private void GetRandopPosition()
+    private void OnTriggerEnter(Collider other)
     {
-        transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+        if (IsColliderDetactableObj(other, out var iDetectable))
+        {
+            SetScore(iDetectable);
+        }
+
+        TotalReshreshing();
     }
 
-    //public void TotalRefreshing()
-    //{
-    //    SetIsCatched(false);
-    //    gameObject.SetActive(false);
-    //    gameObject.SetActive(true);
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        TotalReshreshing();
+    }
 
-    //public void SetIsCatched(bool turn)
-    //{
-    //    _isCatched = turn;
-    //}
+    public abstract void SetScore(IDetectable iDetectable);
 
-    //public bool GetIsChatched()
-    //{
-    //    return _isCatched;
-    //}
+
+    private bool IsColliderDetactableObj(Collider collision, out IDetectable iDetectable)
+    {
+        iDetectable = collision.gameObject.GetComponentInParent<IDetectable>();
+        return iDetectable != null;
+    }
+
+    public virtual void TotalReshreshing()
+    {
+        gameObject.SetActive(false);
+        GlobalEventManager.OnSearchNewAim.Invoke();
+        gameObject.SetActive(true);
+    }
 }

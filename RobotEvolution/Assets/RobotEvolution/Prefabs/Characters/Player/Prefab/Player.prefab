@@ -5208,7 +5208,6 @@ GameObject:
   - component: {fileID: 1288394022084114739}
   - component: {fileID: 3737883954536041695}
   - component: {fileID: 6725029418524449375}
-  - component: {fileID: -8355917554421519548}
   - component: {fileID: -5896346863935085791}
   - component: {fileID: 5566113823058953821}
   - component: {fileID: 5650783804351763157}
@@ -5299,56 +5298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47f6fd69432afc458957469c44a5142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scale: 1
+  _score: 0
   _spawnPositionY: 0.6
---- !u!114 &-8355917554421519548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7959089654199569439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7d3589aee635c48b7fdff786ed899a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CharacterMovementDataSO>k__BackingField: {fileID: 11400000, guid: 70546e02bfda72a458bba0fdb4639864,
-    type: 2}
-  <AnimaCurvePushEffect>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 2
-      inSlope: -0.022546493
-      outSlope: -0.022546493
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.5800553
-    - serializedVersion: 3
-      time: 0.65784955
-      value: 1.6502047
-      inSlope: -1.4585879
-      outSlope: -1.4585879
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _aimTransform: {fileID: 0}
 --- !u!114 &-5896346863935085791
 MonoBehaviour:
   m_ObjectHideFlags: 0

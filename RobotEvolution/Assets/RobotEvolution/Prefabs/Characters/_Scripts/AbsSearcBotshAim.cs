@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbsSearcBotshAim : MonoBehaviour
 {
-    private Transform _aimStuffTransform;
+    private Transform _aimTransform;
     private Transform _characterTransform;
     private float _sqrDistance;
     protected float _sqrCloseDistance;
@@ -16,7 +15,7 @@ public abstract class AbsSearcBotshAim : MonoBehaviour
 
         SelectSearcingAimLists();
 
-        return _aimStuffTransform;
+        return _aimTransform;   
     }
 
     public abstract void SelectSearcingAimLists();
@@ -31,7 +30,7 @@ public abstract class AbsSearcBotshAim : MonoBehaviour
             if (_sqrCloseDistance > _sqrDistance && item.transform != _characterTransform)
             {
                 _sqrCloseDistance = _sqrDistance;
-                _aimStuffTransform = item.gameObject.transform;
+                _aimTransform = item.gameObject.transform;
             }
         }
     }

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharactersAims : MonoBehaviour
 {
-    private Transform _nearestAimStuff;
+    [SerializeField] private Transform _nearestAimStuff;
 
     public Transform NearestAimStuff
     {
@@ -18,7 +16,7 @@ public class CharactersAims : MonoBehaviour
     }
     }
 
-    private Transform _nearestAimEnemy;
+    [SerializeField] private Transform _nearestAimEnemy;
 
     public Transform NearestAimEnemy
     {
@@ -31,11 +29,14 @@ public class CharactersAims : MonoBehaviour
                 _nearestAimEnemy = _thisTransform.root;
         }
     }
-        
+
+    public float DistanceToEnemy { get; private set; }
 
     private SearchBotsAimStuff _searchBotsAimStuff;
     private SearchBotsAimEnemy _searchBotsAimEnemy;
     private Transform _thisTransform;
+    
+
 
     private void OnEnable()
     {
@@ -50,6 +51,8 @@ public class CharactersAims : MonoBehaviour
         _thisTransform = transform;
         _searchBotsAimStuff = GetLinkSearchBotAimClass<SearchBotsAimStuff>();
         _searchBotsAimEnemy = GetLinkSearchBotAimClass<SearchBotsAimEnemy>();
+
+        OnGetBotAims();
     }
 
     private T GetLinkSearchBotAimClass<T>() where T : AbsSearcBotshAim
@@ -74,7 +77,12 @@ public class CharactersAims : MonoBehaviour
 
     private void OnGetBotAims()
     {
-        NearestAimStuff = _searchBotsAimStuff.GetNecessaryNearestAim(_thisTransform);
-        NearestAimEnemy = _searchBotsAimEnemy.GetNecessaryNearestAim(_thisTransform);
+        _nearestAimStuff = _searchBotsAimStuff.GetNecessaryNearestAim(_thisTransform);
+        _nearestAimEnemy = _searchBotsAimEnemy.GetNecessaryNearestAim(_thisTransform);
+    }
+
+    private void Update()
+    {
+        DistanceToEnemy = Vector3.Distance(_thisTransform.position, NearestAimEnemy.position);
     }
 }

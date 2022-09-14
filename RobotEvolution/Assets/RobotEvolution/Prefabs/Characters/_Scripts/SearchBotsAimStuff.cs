@@ -8,7 +8,7 @@ public class SearchBotsAimStuff :AbsSearcBotshAim
 
     public override void SelectSearcingAimLists()
     {
-        SearchNearestAimInList<Gear>(ActiveCharactersInList.GetActiveCharactersInList(_poolGear.WholeGearsList));
+        SearchNearestAimInList<Gear>(_poolGear.WholeGearsList);
     }
 
 }
