@@ -9,19 +9,18 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
     private AbsCharacterBaseModetState _currentCharacterModelState;
     private Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> _characterModelStateDictionary;
-
-
-    private int _testScore;
     private int _currentLevel;
-    
+
+    public event System.Action<CharacterModelStatsDataSO> EnterModelStateEvent;
+
     private void OnEnable()
     {
-        _scoreCalculation.OnScoreChangedEvent += OnModelStateSwitch;
+        _scoreCalculation.SwapScoreThisCharacterEvent += OnModelStateSwitch;
     }
 
     private void OnDisable()
     {
-        _scoreCalculation.OnScoreChangedEvent -= OnModelStateSwitch;
+        _scoreCalculation.SwapScoreThisCharacterEvent -= OnModelStateSwitch;
     }
 
     private void Start()
@@ -46,6 +45,9 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
         _currentLevel = ((int)characterStatsEnum);
         _currentCharacterModelState = _characterModelStateDictionary[characterStatsEnum];
+
+        EnterModelStateEvent?.Invoke(_currentCharacterModelState.CharacterModelStatsDataSO);
+
         _currentCharacterModelState.Enter();
     }
 

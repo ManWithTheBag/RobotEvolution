@@ -3,19 +3,26 @@ using UnityEngine;
 
 public abstract class AbsSearcBotshAim : MonoBehaviour
 {
+    protected float _sqrCloseDistance;
+    
     private Transform _aimTransform;
     private Transform _characterTransform;
     private float _sqrDistance;
-    protected float _sqrCloseDistance;
     
     public Transform GetNecessaryNearestAim(Transform characterTransform)
     {
-        _sqrCloseDistance = MapsController.t_sqrSizeFiteMap;
+        _sqrCloseDistance = MapsController.t_sqrSizeFiteMap * MapsController.t_sqrSizeFiteMap;
         _characterTransform = characterTransform;
 
         SelectSearcingAimLists();
 
-        return _aimTransform;   
+        if(_aimTransform != null)
+            return _aimTransform;
+        else
+        {
+            Debug.LogError("LoogError: In AbsSearchBotsAim return null. Set defolt stub");
+            return transform;
+        }
     }
 
     public abstract void SelectSearcingAimLists();

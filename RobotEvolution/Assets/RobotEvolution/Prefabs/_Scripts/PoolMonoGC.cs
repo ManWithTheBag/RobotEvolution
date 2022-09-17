@@ -10,8 +10,8 @@ public class PoolMonoGC<T> where T : MonoBehaviour
     private bool _isActiveByDefolt;
     private Transform _container;
     private T _prefab;
-    private List<T> _pool;
     private T _temraporyElement;
+    private List<T> _pool;
 
     public PoolMonoGC(T prefab, int poolCount, Transform container, bool isActiveByDefolt)
     {

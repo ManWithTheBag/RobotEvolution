@@ -1318,6 +1318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3504863491745492561}
   - component: {fileID: 4252703467322070790}
+  - component: {fileID: 8222446411022065224}
   m_Layer: 0
   m_Name: WheelRobot_Turret
   m_TagString: Untagged
@@ -1416,6 +1417,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0005595479, y: 0.016820986, z: -0.000044078566}
     m_Extent: {x: 0.013514247, y: 0.012891006, z: 0.017073516}
   m_DirtyAABB: 0
+--- !u!114 &8222446411022065224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9154639851516101543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ffb1655532715419932873790a5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9158871120889377528
 GameObject:
   m_ObjectHideFlags: 0

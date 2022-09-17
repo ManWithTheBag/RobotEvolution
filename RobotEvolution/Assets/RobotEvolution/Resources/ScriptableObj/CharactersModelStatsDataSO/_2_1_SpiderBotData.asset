@@ -24,3 +24,5 @@ MonoBehaviour:
   _distancePreparedToFire: 35
   _timeOverheatingGunMachine: 3
   _timeRechargeCannon: 8
+  <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -23}
+  <NicknamePosition>k__BackingField: {x: 0, y: 9, z: 0}

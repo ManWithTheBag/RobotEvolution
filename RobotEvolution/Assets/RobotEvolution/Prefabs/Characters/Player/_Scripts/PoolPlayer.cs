@@ -11,7 +11,7 @@ public class PoolPlayer : MonoBehaviour
     private PoolMonoGC<Player> _poolPlayer;
     public List<Player> WholePlayerList { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         _poolPlayer = new PoolMonoGC<Player>(_prefabPlayer, _poolCapasity, transform, _isActiveByDefolt);
         _poolPlayer.IsAutoExpand = _isAutoExpand;

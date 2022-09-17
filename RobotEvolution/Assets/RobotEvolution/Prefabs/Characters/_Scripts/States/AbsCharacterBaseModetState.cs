@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
+public abstract class AbsCharacterBaseModetState : MonoBehaviour
 {
     [field: SerializeField] public Transform Turret { get; protected set; }
 
@@ -11,16 +12,14 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
     public CharacterModelStatsDataSO CharacterModelStatsDataSO { get; protected set; }
     public bool IsMovableCharacter { get; protected set; }
 
-    protected CharacterMovement _characterMovement;
+    protected AbsCharacterMovement _absCharacterMovement;
     protected CharactersAims _charactersAims;
     protected AbsCharacterModelAnimator _absCharacterModelAnimator;
     protected IShootable[] _iShootableArray;
     protected FiringRangeVisualisate _firingRangeVisualisate;
-
     protected Transform _thisTransform;
-    private Vector3 _targetDirection;
+
     private float _relativeAngle;
-    //private float _distanceToEnemy;
     private bool _isShoted = false;
 
     private void Awake()
@@ -28,10 +27,11 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
         _thisTransform = transform;
 
         TryGetComponent(out AbsCharacterModelAnimator absCharacterModelAnimator); _absCharacterModelAnimator = absCharacterModelAnimator;
-        _characterMovement = GetComponentInParent<CharacterMovement>();
+        _absCharacterMovement = GetComponentInParent<AbsCharacterMovement>();
         _charactersAims = GetComponentInParent<CharactersAims>();
         _iShootableArray = GetComponentsInParent<IShootable>();
-        _firingRangeVisualisate = GetComponentInParent<FiringRangeVisualisate>();
+
+        _thisTransform.parent.TryGetComponent(out FiringRangeVisualisate firingRangeVisualisate); _firingRangeVisualisate = firingRangeVisualisate;
     }
 
     public abstract void Start();
@@ -50,9 +50,8 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
 
         SetupCharacterMovable();
         SetupCharacterShot();
-        SetupFiringRangeVisualisation();
 
-        _characterMovement.SetIsMovableCharacter(true);
+        _absCharacterMovement.SetIsMovableCharacter(true);
     }
 
     public virtual void Exit()
@@ -60,7 +59,9 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
         gameObject.SetActive(false);
     }
 
-    #region // Setup artifical intelligence
+
+
+    #region Setup artifical intelligence
 
     private void Update()
     {
@@ -79,8 +80,6 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
 
     private void SetVaribleDirectionals()
     {
-        //_distanceToEnemy = Vector3.Distance(_thisTransform.position, _charactersAims.NearestAimEnemy.position);
-
         if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.DistancePreparedToFire)
         {
             CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
@@ -101,20 +100,15 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
 
 
 
-
-
-
-
-
-
-
     #endregion
 
-    #region // Setup move character
+
+
+    #region Setup move character
 
     private void SetupCharacterMovable()
     {
-        _characterMovement.SetupingCharacterMoveent(this);
+        _absCharacterMovement.SetupingCharacterMoveent(this);
     }
 
     private Quaternion SetCurrentTurretView(Transform enemyTransform)
@@ -131,39 +125,37 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
     public virtual Quaternion LookToEnemy(Transform enemyTransform)
     {
         CharacterAbbleShoot(enemyTransform);
-        return CulculationQuaternionCharacterView(enemyTransform);
-    }
 
-    public virtual Quaternion LookToDefolt()
+        Vector3 targetDirection = enemyTransform.position - _thisTransform.position;
+        return CulculationQuaternionCharacterView(targetDirection);
+    }
+    public Quaternion LookToDefolt()
     {
-        return SetCharacterFrontView();
+        return CulculationQuaternionCharacterView(_thisTransform.forward);
     }
 
     private Quaternion SetCurrentBodyView(Transform aimTransform)
     {
-        return CulculationQuaternionCharacterView(aimTransform);
+        Vector3 targetDirection = aimTransform.position - _thisTransform.position;
+        return CulculationQuaternionCharacterView(targetDirection);
     }
 
-    private Quaternion CulculationQuaternionCharacterView(Transform aimTransform)
+    private Quaternion CulculationQuaternionCharacterView(Vector3 targetDirection)
     {
-        _targetDirection = aimTransform.position - _thisTransform.position;
-        _relativeAngle = Mathf.Atan2(_targetDirection.normalized.x, _targetDirection.normalized.z) * Mathf.Rad2Deg;
+        _relativeAngle = Mathf.Atan2(targetDirection.normalized.x, targetDirection.normalized.z) * Mathf.Rad2Deg;
         return Quaternion.Euler(0f, _relativeAngle, 0f);
-    }
-    private Quaternion SetCharacterFrontView()
-    {
-        return CurrentTurretView = CurrentBodyView;
     }
 
     private void SetCurrentDirectionToCharacterMove()
     {
-        _characterMovement.SetDerectionViewAndMovement(this);
+        _absCharacterMovement.SetCommonDerectionViewAndMovementUpdate(this);
     }
 
     #endregion
 
 
-    #region // Setup shooting character
+
+    #region Setup shooting character
     private void SetupCharacterShot()
     {
         foreach (IShootable item in _iShootableArray)
@@ -178,13 +170,5 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour, IMovable
             item.TryShootUpdate(enemyTransform, _charactersAims.DistanceToEnemy);
         }
     }
-
     #endregion
-
-
-
-    private void SetupFiringRangeVisualisation()
-    {
-        _firingRangeVisualisate.SetCharacterModelDataSO(CharacterModelStatsDataSO);
-    }
 }

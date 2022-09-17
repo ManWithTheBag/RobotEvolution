@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
 [SelectionBase]
-public class AbsCharacter : MonoBehaviour, ICharacter
+public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>
 {
     [Min(0)][SerializeField] private int _score;
     [Min(0)] [SerializeField] private float _spawnPositionY;
@@ -24,10 +25,7 @@ public class AbsCharacter : MonoBehaviour, ICharacter
         get { return _nickname; }
         set 
         {
-            if (value.Length < _maxCountChurInNIcknamne)
                 _nickname = value;
-            else
-                _nickname = "Player";
         }
     }
 
@@ -37,14 +35,12 @@ public class AbsCharacter : MonoBehaviour, ICharacter
         get { return _indexPositionInLIderBoard; }
         set
         {
-            if (_indexPositionInLIderBoard > 0)
+            if (_indexPositionInLIderBoard >= 0)
                 _indexPositionInLIderBoard = value;
             else
-                Debug.LogError($"Position index in LiderBoard Less 0; Nicknamee: {this._nickname}; Obj:{this.gameObject}") ;
+                Debug.LogError($"LoogError: Position index in LiderBoard Less 0; Index{_indexPositionInLIderBoard}; Nicknamee: {this._nickname}; Obj:{this.gameObject};") ;
         }
     }
-
-    private int _maxCountChurInNIcknamne = 14;
 
     private RandomPosition _randomPosition;
 
@@ -58,5 +54,23 @@ public class AbsCharacter : MonoBehaviour, ICharacter
     private void GetRandopPosition()
     {
         transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+    }
+
+    public int CompareTo(AbsCharacter other)
+    {
+        if (other != null)
+        {
+            if (Score > other.Score)
+                return 1;
+            else if (Score < other.Score)
+                return -1;
+            else
+                return 0;
+        }
+        else
+        {
+            Debug.LogError($"LoogError: LiderBoard can't compare elements: {this} and {other}");
+            return 0;
+        }
     }
 }

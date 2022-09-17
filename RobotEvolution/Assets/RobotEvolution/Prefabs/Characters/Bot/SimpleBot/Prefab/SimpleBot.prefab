@@ -12,14 +12,14 @@ GameObject:
   - component: {fileID: 8086041228670649879}
   - component: {fileID: 2112167065394490792}
   - component: {fileID: 7613716412638233947}
+  - component: {fileID: 2187626206112190317}
   - component: {fileID: 1485090687093318153}
-  - component: {fileID: 2914228204057927722}
   - component: {fileID: -1683161484521542419}
   - component: {fileID: 5063765212557210527}
   - component: {fileID: 4636207199022517546}
   - component: {fileID: 2914439559323647599}
   - component: {fileID: -7579245738034065947}
-  - component: {fileID: 7039701346588122892}
+  - component: {fileID: 7056893997870699827}
   m_Layer: 0
   m_Name: SimpleBot
   m_TagString: Untagged
@@ -190,6 +190,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _score: 0
   _spawnPositionY: 0.3
+--- !u!114 &2187626206112190317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36e50428c90b5246a007b906de9df86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _checkSpherePosition: {fileID: 6381653297014315412}
+  _radiusCheckMapSphere: 0.3
+  _mapLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &1485090687093318153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,23 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312cf8a844c16024da604cab97323142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2914228204057927722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce9dd802c50861c49ba02d12b7eeba09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _checkSpherePosition: {fileID: 6381653297014315412}
-  _radiusCheckMapSphere: 0.5
-  _mapLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!114 &-1683161484521542419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0e9c34e205dff40ba73dd66638fbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7039701346588122892
+--- !u!114 &7056893997870699827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,11 +297,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6901429615237464457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7355b4851910a0d48b7456dab6838377, type: 3}
+  m_Script: {fileID: 11500000, guid: 733df815d245f20488f98dd8d94cb5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionY: 0.2
-  _vertexCount: 12
+  _nicknameDataSO: {fileID: 11400000, guid: fef4b1da9f4344d46a5ec7e1092d98db, type: 2}
+  _characterModelStateSwitcher: {fileID: 4636207199022517546}
+  _scoreCalculation: {fileID: -1683161484521542419}
 --- !u!1 &8463537922054459944
 GameObject:
   m_ObjectHideFlags: 0

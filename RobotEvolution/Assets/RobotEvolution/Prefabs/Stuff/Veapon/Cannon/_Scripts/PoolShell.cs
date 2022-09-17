@@ -13,10 +13,11 @@ public class PoolShell : MonoBehaviour
 
     public List<Shell> WholeShellsList { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         PoolShells = new PoolMonoGC<Shell>(_shellPrefab, _poolCapacity, transform, _isActiveByDefolt);
         PoolShells.IsAutoExpand = _isAutoExpand;
         WholeShellsList = PoolShells.GetAllElementsList();
     }
+    
 }

@@ -17,10 +17,12 @@ MonoBehaviour:
     type: 3}
   _speedMovement: 7
   _speedBodyRotation: 2
-  _speedTurretRotation: 4
+  _speedTurretRotation: 6
   _speedBoost: 12
   _viewAngle: 40
   _shotDistance: 12
   _distancePreparedToFire: 24
   _timeOverheatingGunMachine: 15
   _timeRechargeCannon: 6
+  <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -20}
+  <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}

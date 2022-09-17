@@ -12,7 +12,7 @@ public class PoolGear : MonoBehaviour
 
     public List<Gear> WholeGearsList { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         _poolGear = new PoolMonoGC<Gear>(_gearPrefab, _poolCapacity, transform, _isActiveByDefolt);
         _poolGear.IsAutoExpand = _isAutoExpand;

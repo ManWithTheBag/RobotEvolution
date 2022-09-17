@@ -43,7 +43,7 @@ public abstract class AbsStuff : MonoBehaviour, IDetertor, IRefreshible
     public virtual void TotalReshreshing()
     {
         gameObject.SetActive(false);
-        GlobalEventManager.OnSearchNewAim.Invoke();
+        GlobalEventManager.SearchNewAimEvent.Invoke();
         gameObject.SetActive(true);
     }
 }

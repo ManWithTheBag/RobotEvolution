@@ -710,6 +710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4026191494948172138}
   - component: {fileID: 5058789689768455285}
+  - component: {fileID: 2574594263750304828}
   m_Layer: 0
   m_Name: Quadrubot
   m_TagString: Untagged
@@ -814,6 +815,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000007450581, y: -0.009709563, z: -0.0424929}
     m_Extent: {x: 0.039563116, y: 0.039618846, z: 0.0423724}
   m_DirtyAABB: 0
+--- !u!114 &2574594263750304828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537152720607529405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ffb1655532715419932873790a5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4610058944349348414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,8 +1234,6 @@ MonoBehaviour:
   _scoreDataSO: {fileID: 11400000, guid: 7e526073440f622479fd2da259eb68cb, type: 2}
   _positionsVeaponStartLineRenderList:
   - {fileID: 49628471327281608}
-  _koefVisualRayLoss: 1.5
-  _raseYPosition: 2
 --- !u!1 &6034676612932054147
 GameObject:
   m_ObjectHideFlags: 0

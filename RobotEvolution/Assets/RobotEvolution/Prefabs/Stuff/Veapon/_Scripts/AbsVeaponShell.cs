@@ -5,6 +5,7 @@ public abstract class AbsVeaponShell : AbsVeapon
 {
 
     [SerializeField]private List<Transform> _positionsVeaponShellList;
+
     private PoolShell _poolShell;
 
     private void Start()

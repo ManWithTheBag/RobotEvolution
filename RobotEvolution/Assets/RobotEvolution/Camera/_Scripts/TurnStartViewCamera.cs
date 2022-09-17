@@ -7,6 +7,7 @@ public class TurnStartViewCamera : MonoBehaviour
     [SerializeField] private MeshCollider _meshFloo;
     [SerializeField] private Vector3 _axesRotation;
     [Min(0)] [SerializeField] private float _speedRotation;
+
     private Transform _thisTransform;
     private void Start()
     {

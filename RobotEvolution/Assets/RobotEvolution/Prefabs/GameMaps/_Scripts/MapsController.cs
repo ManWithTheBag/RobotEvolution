@@ -6,7 +6,7 @@ public class MapsController : MonoBehaviour
 
     public static float t_sqrSizeFiteMap { get; private set; }
 
-    public void Start()
+    public void Awake()
     {
         CheckSizeMap();
     }

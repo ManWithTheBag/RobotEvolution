@@ -19,7 +19,7 @@ public class RandomPosition : MonoBehaviour
             if (SearchRandomPosotion())
                 return _emptyPosition;
         }
-        Debug.LogError("Haven't find free position por spawn");
+        Debug.LogError("LoogError: Haven't find free position por spawn");
         return Vector3.zero;
     }
 

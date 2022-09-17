@@ -40,11 +40,11 @@ public class CharactersAims : MonoBehaviour
 
     private void OnEnable()
     {
-        GlobalEventManager.OnSearchNewAim.AddListener(OnGetBotAims);
+        GlobalEventManager.SearchNewAimEvent.AddListener(OnGetBotAims);
     }
     private void OnDisable()
     {
-        GlobalEventManager.OnSearchNewAim.RemoveListener(OnGetBotAims);
+        GlobalEventManager.SearchNewAimEvent.RemoveListener(OnGetBotAims);
     }
     private void Start()
     {
@@ -65,7 +65,7 @@ public class CharactersAims : MonoBehaviour
                 perent = perent.parent;
                 if (perent == _thisTransform.root)
                 {
-                    Debug.LogError($"CharacterController hevent scripts {typeof(SearchBotsAimEnemy)}; Add this script to CharacterController");
+                    Debug.LogError($"LoogError: CharacterController hevent scripts {typeof(SearchBotsAimEnemy)}; Add this script to CharacterController");
                 }
             }
             else

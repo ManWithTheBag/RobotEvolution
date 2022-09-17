@@ -11,7 +11,7 @@ public class PoolSimpleBots : MonoBehaviour
     private PoolMonoGC<SimpleBot> _poolSimpleBot;
 
     public List<SimpleBot> WholeSimpleBotList { get; private set; }
-    private void Start()
+    private void Awake()
     {
         _poolSimpleBot = new PoolMonoGC<SimpleBot>(_prifabSimpleBot, _poolCapasity, transform, _isActiveByDefolt);
         _poolSimpleBot.IsAutoExpand = _isAutoExpand;

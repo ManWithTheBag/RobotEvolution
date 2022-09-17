@@ -1,21 +1,15 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using System;
-using UnityEngine.UI;
 
 public class ScoreCalculation : MonoBehaviour
 {
     [SerializeField] private CharacterRateEvolutionSO _characterRateEvolutionSO;
 
-    public Button loss;
-    public Button Add;
-
     private int _oldScore;
     private ICharacter _iCaracter;
 
-    public event Action<int, int> OnScoreChangedEvent; 
-    private void Start()
+    public event Action<int, int> SwapScoreThisCharacterEvent; 
+    private void Awake()
     {
         TryGetComponent(out ICharacter iCharacter); _iCaracter = iCharacter;
         _iCaracter.Score = _characterRateEvolutionSO.Level_1;
@@ -37,6 +31,7 @@ public class ScoreCalculation : MonoBehaviour
 
     public void ScoreISChanged(int oldScoreValue, int newScoreValue)
     {
-        OnScoreChangedEvent?.Invoke(oldScoreValue, newScoreValue);
+        SwapScoreThisCharacterEvent?.Invoke(oldScoreValue, newScoreValue);
+        GlobalEventManager.SwapScoreAnyCharactersEvent.Invoke();
     }
 }

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiringRangeVisualisate : MonoBehaviour
+public class FiringRangeVisualisate : MonoBehaviour, IVisibleInvisible
 {
     [SerializeField] private float _positionY;
     [SerializeField] private int _vertexCount = 12;
+    [SerializeField] private CharacterModelStateSwitcher _characterModelStateSwitcher;
 
     private CharacterModelStatsDataSO _characterModelStatsDataSO;
     private LineRenderer _lineRenderer;
@@ -12,6 +13,15 @@ public class FiringRangeVisualisate : MonoBehaviour
 
     private Transform _pointsContainer, _pointMiddle, _pointLeft, _pointRight;
     private Transform _thisTransform;
+    private void OnEnable()
+    {
+        _characterModelStateSwitcher.EnterModelStateEvent += SetCharacterModelDataSO;
+    }
+    private void OnDisable()
+    {
+        _characterModelStateSwitcher.EnterModelStateEvent -= SetCharacterModelDataSO;
+    }
+
     private void Awake()
     {
         _thisTransform = transform;
@@ -72,5 +82,10 @@ public class FiringRangeVisualisate : MonoBehaviour
     {
         _lineRenderer.positionCount = _pointsVectorList.Count;
         _lineRenderer.SetPositions(_pointsVectorList.ToArray());
+    }
+
+    public void SetVisibleStatusObj(bool isStatus)
+    {
+        enabled = isStatus;
     }
 }

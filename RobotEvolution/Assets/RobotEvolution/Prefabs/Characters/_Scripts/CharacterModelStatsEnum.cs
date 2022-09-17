@@ -5,6 +5,4 @@ public enum CharacterModelStatsEnum
     _2_2_SpiderBotCyclop = 3,
     _2_3_SpiderBotElefant =4,
     _3_1_Human_1 = 5
-        
-
 }
