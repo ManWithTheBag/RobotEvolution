@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d27499ae7ca9de47aa835ad60b45f21, type: 3}
   m_Name: CharacterRateEvolutionSO
   m_EditorClassIdentifier: 
+  _level_0: 0
   _level_1: 100
   _level_2: 200
   _level_3: 300
   _level_4: 400
   _level_5: 500
+  _level_6: 600

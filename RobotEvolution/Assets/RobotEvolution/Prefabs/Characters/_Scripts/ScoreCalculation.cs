@@ -3,16 +3,17 @@ using System;
 
 public class ScoreCalculation : MonoBehaviour
 {
-    [SerializeField] private CharacterRateEvolutionSO _characterRateEvolutionSO;
+    [field: SerializeField] public CharacterRateEvolutionSO CharacterRateEvolutionSO { get; private set; }
 
     private int _oldScore;
     private ICharacter _iCaracter;
 
     public event Action<int, int> SwapScoreThisCharacterEvent; 
-    private void Awake()
+
+    private void Start()
     {
         TryGetComponent(out ICharacter iCharacter); _iCaracter = iCharacter;
-        _iCaracter.Score = _characterRateEvolutionSO.Level_1;
+        AddScore(CharacterRateEvolutionSO.Level_1);
     }
 
     public void AddScore(int addScore) 

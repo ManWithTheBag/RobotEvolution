@@ -10,14 +10,17 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
     [SerializeField] private ScoreCalculation _scoreCalculation;
 
     protected AbsCharacter _absCharacter;
+    protected TextMeshProUGUI _textNicknameScore;
     protected string _thisNickname;
 
-    private TextMeshProUGUI _textNicknameScore;
     private Transform _nicknameCharacterTransform;
     private Transform _thisTransform;
     private Transform _mainCameraTransform;
     private Transform _nicknamePrefabTransform;
     private float _currentDistanceCameraCharacter;
+    private bool _isScoreLearped = true;
+    private float _smoothLearpValue = 0;
+    private int _currentLearpScore;
 
     private void OnEnable()
     {
@@ -87,12 +90,6 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
         _absCharacter.Nickname = _thisNickname;
     }
 
-
-    public void OnRefreshCharacterScore(int oldScoreValue, int newScoreValue)
-    {
-        StartCoroutine(LerpValue(oldScoreValue, (newScoreValue), _nicknameDataSO.TimeLearpingScale));
-    }
-
     public void Update()
     {
         _currentDistanceCameraCharacter = Vector3.Distance(_thisTransform.position, _mainCameraTransform.position); 
@@ -107,18 +104,26 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
             _nicknamePrefabTransform.gameObject.SetActive(false);
     }
 
-    IEnumerator LerpValue(float startValue, float endValue, float timeLearping)
+    public virtual void OnRefreshCharacterScore(int oldScoreValue, int newScoreValue)
     {
-        float nextValue;
-        for (float i = 0; i < 1; i += Time.deltaTime / timeLearping)
-        {
-            nextValue = Mathf.Lerp(startValue, endValue, i);
-            nextValue = (int)nextValue;
+        if(_isScoreLearped)
+            StartCoroutine(LerpValue(oldScoreValue, newScoreValue));
+    }
 
-            _textNicknameScore.text = _thisNickname + " = " + nextValue.ToString();
+    IEnumerator LerpValue(float startValue, float endValue)
+    {
+        _isScoreLearped = false;
+
+        for (float i = 0; i < 1; i += Time.deltaTime / _nicknameDataSO.TimeLearpingScale)
+        {
+            _currentLearpScore = (int)Mathf.Lerp(_smoothLearpValue, endValue, i);
+            _textNicknameScore.text = _thisNickname + " = " + _currentLearpScore.ToString();
             yield return null;
         }
         _textNicknameScore.text = _thisNickname + " = " + endValue.ToString();
+        _smoothLearpValue = endValue;
+
+        _isScoreLearped = true;
     }
 
     public void SetVisibleStatusObj(bool isStatus)

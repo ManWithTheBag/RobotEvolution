@@ -18,9 +18,6 @@ public class CharacterModelStateCreater : MonoBehaviour
         SpawnModelsInCharacter();
 
         SetCCharacterModetStateDictionary(characterModelStateSwitcher);
-
-        SetDefoltCharacterModelState(characterModelStateSwitcher);
-
     }
 
     private void SpawnModelsInCharacter()
@@ -54,10 +51,5 @@ public class CharacterModelStateCreater : MonoBehaviour
     private void SetCCharacterModetStateDictionary(CharacterModelStateSwitcher characterModelStateSwitcher)
     {
         characterModelStateSwitcher.SetCharacterModelStateDictionary(_characterModelStateDictionary);
-    }
-
-    private void SetDefoltCharacterModelState(CharacterModelStateSwitcher characterModelStateSwitcher)
-    {
-        characterModelStateSwitcher.SetDefoltCharacterModelState();
     }
 }

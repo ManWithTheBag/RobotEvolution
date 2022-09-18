@@ -40,8 +40,10 @@ public abstract class AbsCharacterMovement : MonoBehaviour
 
     public void SetCommonDerectionViewAndMovementUpdate(AbsCharacterBaseModetState absCharacterBaseModetState)
     {
+        _turret = absCharacterBaseModetState.Turret;
         _currentTurretView = absCharacterBaseModetState.CurrentTurretView;
         _currentSpeedMovement = absCharacterBaseModetState.CurrentSpeedMovement;
+
         SetIndividualViewAndMove(absCharacterBaseModetState);
     }
 
@@ -54,7 +56,6 @@ public abstract class AbsCharacterMovement : MonoBehaviour
 
     public void SetupingCharacterMoveent(AbsCharacterBaseModetState absCharacterBaseModetState)
     {
-        _turret = absCharacterBaseModetState.Turret;
         _characterModelStatsDataSO = absCharacterBaseModetState.CharacterModelStatsDataSO;
     }
 
@@ -65,14 +66,14 @@ public abstract class AbsCharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isMovableCharacter && _currentBodyView != Quaternion.identity)
+        if (_isMovableCharacter)
         {
-            RotationBodyAndTurret();
+            RotationBody();
             //MoveCharacter();
         }
     }
 
-    private void RotationBodyAndTurret()
+    private void RotationBody()
     {
         _thisTransform.rotation = Quaternion.Lerp(_thisTransform.rotation, _currentBodyView, Time.fixedDeltaTime * _characterModelStatsDataSO.SpeedBodyRotation);
         _turret.rotation = Quaternion.Lerp(_turret.rotation, _currentTurretView, Time.fixedDeltaTime * _characterModelStatsDataSO.SpeedTurretRotation);

@@ -32,5 +32,10 @@ public class PlayerNickname : AbsCharacterNickname
     {
         _thisNickname = _nicknameInputField.textComponent.text;
         _absCharacter.Nickname = _thisNickname;
+        _textNicknameScore.text = _thisNickname;
+    }
+
+    public override void OnRefreshCharacterScore(int oldScoreValue, int newScoreValue)
+    {
     }
 }

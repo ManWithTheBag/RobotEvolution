@@ -1,7 +1,7 @@
 
 public class CharacterModelState_1_1_WheeledBot : AbsCharacterBaseModetState
 {
-    public override void Start()
+    public void Start()
     {
         gameObject.SetActive(true);
     }

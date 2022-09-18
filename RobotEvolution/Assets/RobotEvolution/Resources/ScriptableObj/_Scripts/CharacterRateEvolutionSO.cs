@@ -3,6 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterRateEvolutionSO", menuName = "Scriptable Object/CharacterRateEvolutionSO", order = 52)]
 public class CharacterRateEvolutionSO : ScriptableObject
 {
+    [Min(0)] [SerializeField] private int _level_0;
+    public int Level_0
+    {
+        get { return _level_0; }
+        private set { _level_0 = value; }
+    }
+
     [Min(0)] [SerializeField] private int _level_1;
     public int Level_1
     {
@@ -37,7 +44,7 @@ public class CharacterRateEvolutionSO : ScriptableObject
             else
             {
                 _level_3 = -999;
-                Debug.LogError($"LoogError: CharacterRateEvolutionSo; Score for Level_2 < Level_1: {Level_3} < {Level_2}");
+                Debug.LogError($"LoogError: CharacterRateEvolutionSo; Score for Level_3 < Level_2: {Level_3} < {Level_2}");
             }
         }
     }
@@ -53,7 +60,7 @@ public class CharacterRateEvolutionSO : ScriptableObject
             else
             {
                 _level_4 = -999;
-                Debug.LogError($"LoogError: Error: CharacterRateEvolutionSo; Score for Level_2 < Level_1: {Level_4} < {Level_3}");
+                Debug.LogError($"LoogError: Error: CharacterRateEvolutionSo; Score for Level_4 < Level_3: {Level_4} < {Level_3}");
             }
         }
     }
@@ -69,7 +76,22 @@ public class CharacterRateEvolutionSO : ScriptableObject
             else
             {
                 _level_5 = -999;
-                Debug.LogError($"LoogError: CharacterRateEvolutionSo; Score for Level_2 < Level_1: {Level_5} < {Level_4}");
+                Debug.LogError($"LoogError: CharacterRateEvolutionSo; Score for Level_5 < Level_4: {Level_5} < {Level_4}");
+            }
+        }
+    }
+    [Min(0)] [SerializeField] private int _level_6;
+    public int Level_6
+    {
+        get { return _level_6; }
+        private set
+        {
+            if (value > _level_5)
+                _level_6 = value;
+            else
+            {
+                _level_6 = -999;
+                Debug.LogError($"LoogError: CharacterRateEvolutionSo; Score for Level_6 < Level_5: {Level_6} < {Level_5}");
             }
         }
     }

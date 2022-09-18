@@ -2,7 +2,7 @@
 public class CharacterModelState_2_1_SpiderBot : AbsCharacterBaseModetState
 {
 
-    public override void Start()
+    public void Start()
     {
         gameObject.SetActive(false);
     }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(CharacterModelStateCreater))]
 public class CharacterModelStateSwitcher : MonoBehaviour
@@ -11,7 +12,8 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     private Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> _characterModelStateDictionary;
     private int _currentLevel;
 
-    public event System.Action<CharacterModelStatsDataSO> EnterModelStateEvent;
+    public event Action<CharacterModelStatsDataSO> EnterModelStateEvent;
+    public event Action<int, int> ChangeModelScoreLimetEvent;
 
     private void OnEnable()
     {
@@ -25,7 +27,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
     private void Start()
     {
-        _currentLevel = ((int)CharacterModelStatsEnum._1_1_WheeledBot);
+        SetDefoltCharacterModelState();
     }
 
     public void SetCharacterModelStateDictionary(Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> characterModelStateDictionary)
@@ -35,7 +37,8 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
     public void SetDefoltCharacterModelState()
     {
-        SetNewCharacterState(CharacterModelStatsEnum._1_1_WheeledBot);
+        _currentLevel = ((int)CharacterModelStatsEnum._1_1_WheeledBot);
+        SetLevel_1();
     }
 
     private void SetNewCharacterState(CharacterModelStatsEnum characterStatsEnum)
@@ -77,33 +80,59 @@ public class CharacterModelStateSwitcher : MonoBehaviour
         if (newScoreValue <= 0)
             Death();
         else if (newScoreValue > _characterRateEvolutionSO.Level_2)
-            SetNewCharacterState(CharacterModelStatsEnum._2_1_SpiderBotCrab);
+            SetLevel_2();
     }
 
     private void CheckExitForLimitLevel_2(int newScoreValue)
     {
         if (newScoreValue < _characterRateEvolutionSO.Level_1)
-            SetNewCharacterState(CharacterModelStatsEnum._1_1_WheeledBot);
+            SetLevel_1();
         else if (newScoreValue > _characterRateEvolutionSO.Level_3)
-            SetNewCharacterState(CharacterModelStatsEnum._2_2_SpiderBotCyclop);
+            SetLevel_3();
     }
 
     private void CheckExitForLimitLevel_3(int newScoreValue)
     {
         if (newScoreValue < _characterRateEvolutionSO.Level_2)
-            SetNewCharacterState(CharacterModelStatsEnum._2_1_SpiderBotCrab);
+            SetLevel_2();
         else if (newScoreValue > _characterRateEvolutionSO.Level_4)
-            SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
+            SetLevel_4();
     }
 
     private void CheckExitForLimitLevel_4(int newScoreValue)
     {
         if (newScoreValue < _characterRateEvolutionSO.Level_3)
-            SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
+            SetLevel_3();
         else if (newScoreValue > _characterRateEvolutionSO.Level_5)
-            SetNewCharacterState(CharacterModelStatsEnum._3_1_Human_1);
+            SetLevel_5();
     }
 
+    private void SetLevel_1()
+    {
+        SetNewCharacterState(CharacterModelStatsEnum._1_1_WheeledBot);
+        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_0, _characterRateEvolutionSO.Level_2);
+    }
+    private void SetLevel_2()
+    {
+        SetNewCharacterState(CharacterModelStatsEnum._2_1_SpiderBotCrab);
+        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_1, _characterRateEvolutionSO.Level_3);
+    }
+    private void SetLevel_3()
+    {
+        SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
+        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_2, _characterRateEvolutionSO.Level_4);
+    }
+
+    private void SetLevel_4()
+    {
+        SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
+        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_3, _characterRateEvolutionSO.Level_5);
+    }
+    private void SetLevel_5()
+    {
+        SetNewCharacterState(CharacterModelStatsEnum._3_1_Human_1);
+        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_4, _characterRateEvolutionSO.Level_6);
+    }
 
 
     private void Death()

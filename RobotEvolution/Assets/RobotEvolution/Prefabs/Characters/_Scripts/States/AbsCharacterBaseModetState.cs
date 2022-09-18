@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbsCharacterBaseModetState : MonoBehaviour
@@ -12,15 +13,18 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     public CharacterModelStatsDataSO CharacterModelStatsDataSO { get; protected set; }
     public bool IsMovableCharacter { get; protected set; }
 
-    protected AbsCharacterMovement _absCharacterMovement;
-    protected CharactersAims _charactersAims;
-    protected AbsCharacterModelAnimator _absCharacterModelAnimator;
-    protected IShootable[] _iShootableArray;
-    protected FiringRangeVisualisate _firingRangeVisualisate;
-    protected Transform _thisTransform;
+    private AbsCharacterMovement _absCharacterMovement;
+    private CharactersAims _charactersAims;
+    private AbsCharacterModelAnimator _absCharacterModelAnimator;
+    private FiringRangeVisualisate _firingRangeVisualisate;
+    private Transform _thisTransform;
+    private IShootable[] _AllIShootableArray;
+    private List<IShootable> _EnemaleIShootableList = new();
+    private IVeaponSetupble[] _iVeaponSetapblesArray;
 
     private float _relativeAngle;
-    private bool _isShoted = false;
+    private float _currentAngleToEnemy;
+    private float _maxAngleViewTurrt = 0;
 
     private void Awake()
     {
@@ -29,12 +33,11 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
         TryGetComponent(out AbsCharacterModelAnimator absCharacterModelAnimator); _absCharacterModelAnimator = absCharacterModelAnimator;
         _absCharacterMovement = GetComponentInParent<AbsCharacterMovement>();
         _charactersAims = GetComponentInParent<CharactersAims>();
-        _iShootableArray = GetComponentsInParent<IShootable>();
+        _iVeaponSetapblesArray = GetComponents<IVeaponSetupble>();
+        _AllIShootableArray = GetComponentsInParent<IShootable>();
 
         _thisTransform.parent.TryGetComponent(out FiringRangeVisualisate firingRangeVisualisate); _firingRangeVisualisate = firingRangeVisualisate;
     }
-
-    public abstract void Start();
 
     public void SetSetupsForModelState(CharacterModelStatsDataSO characterModelStatsDataSO)
     {
@@ -49,13 +52,20 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
         _absCharacterModelAnimator.PlayRun();
 
         SetupCharacterMovable();
-        SetupCharacterShot();
+
+        SetCurrentDirectionToCharacterMove();
+
+        EnableAndSetupModelVeapons();
+
+        GetActualIShootableArray();
 
         _absCharacterMovement.SetIsMovableCharacter(true);
     }
 
     public virtual void Exit()
     {
+        DisableModelVeapons();
+
         gameObject.SetActive(false);
     }
 
@@ -80,28 +90,28 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
     private void SetVaribleDirectionals()
     {
-        if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.DistancePreparedToFire)
-        {
-            CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-            _isShoted = false;
-        }
+        CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
 
-        else if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.ShotDistance && _isShoted == false)
-        {
-            CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimEnemy);
+        // ToDO: There Created artifical intelligence for earch <ModelState>!!!
 
-            if (_charactersAims.DistanceToEnemy < CharacterModelStatsDataSO.ShotDistance - 2)
-            {
-                _isShoted = true;
-                CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-            }
-        }
+        //if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.DistancePreparedToFire) 
+        //{
+        //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
+        //    _isShoted = false;
+        //}
+
+        //else if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.ShotDistance && _isShoted == false)
+        //{
+        //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimEnemy);
+
+        //    if (_charactersAims.DistanceToEnemy < CharacterModelStatsDataSO.ShotDistance - 2)
+        //    {
+        //        _isShoted = true;
+        //        CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
+        //    }
+        //}
     }
-
-
-
     #endregion
-
 
 
     #region Setup move character
@@ -113,8 +123,9 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
     private Quaternion SetCurrentTurretView(Transform enemyTransform)
     {
-        float angle = Vector3.Angle(_thisTransform.forward, enemyTransform.position - _thisTransform.position);
-        if (angle < CharacterModelStatsDataSO.ViewAngle / 2f)
+        _currentAngleToEnemy = Vector3.Angle(_thisTransform.forward, enemyTransform.position - _thisTransform.position);
+
+        if (_currentAngleToEnemy < _maxAngleViewTurrt / 2f)
         {
             return LookToEnemy(enemyTransform);
         }
@@ -124,8 +135,6 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
     public virtual Quaternion LookToEnemy(Transform enemyTransform)
     {
-        CharacterAbbleShoot(enemyTransform);
-
         Vector3 targetDirection = enemyTransform.position - _thisTransform.position;
         return CulculationQuaternionCharacterView(targetDirection);
     }
@@ -154,21 +163,52 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     #endregion
 
 
+    #region Setup Shooting
 
-    #region Setup shooting character
-    private void SetupCharacterShot()
+    private void EnableAndSetupModelVeapons()
     {
-        foreach (IShootable item in _iShootableArray)
+        foreach (IVeaponSetupble item in _iVeaponSetapblesArray)
         {
-            item.SetSetupCharacterModelForShoot(CharacterModelStatsDataSO);
+            item.SetEvableThisVeapon();
+            item.SetupVeaponForModelState();
         }
     }
-    private void CharacterAbbleShoot(Transform enemyTransform)
+    private void DisableModelVeapons()
     {
-        foreach (IShootable item in _iShootableArray)
+        foreach (IVeaponSetupble item in _iVeaponSetapblesArray)
         {
-            item.TryShootUpdate(enemyTransform, _charactersAims.DistanceToEnemy);
+            item.SetDisableThisVeapon();
         }
+    }
+
+
+    private void GetActualIShootableArray()
+    {
+        _EnemaleIShootableList.Clear();
+
+        foreach (IShootable item in _AllIShootableArray)
+        {
+            if (item.IsEnemleThisComponent)
+                _EnemaleIShootableList.Add(item);
+        }
+
+        SetMaxAngleViewTurret();
+
+        SetMaxDistanceFiringRangeVisualisate();
+    }
+    private void SetMaxAngleViewTurret()
+    {
+        foreach (var item in _EnemaleIShootableList)
+        {
+            if (_maxAngleViewTurrt < item.ViewAngleTurretAndVeapon)
+                _maxAngleViewTurrt = item.ViewAngleTurretAndVeapon;
+        }
+    }
+
+    private void SetMaxDistanceFiringRangeVisualisate()
+    {
+        if (_firingRangeVisualisate != null)
+            _firingRangeVisualisate.SetMaxDistaceVisualisate(_EnemaleIShootableList.ToArray());
     }
     #endregion
 }

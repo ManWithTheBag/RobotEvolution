@@ -38,54 +38,17 @@ public class CharacterModelStatsDataSO : ScriptableObject
     }
     #endregion
 
-    #region  Setup Shoot Veapon
-    [Header("Setup Shoot Veapon")]
-    [Range(0, 360)] [SerializeField] private float _viewAngle;
-    public float ViewAngle
-    {
-        get { return _viewAngle; }
-        private set { _viewAngle = value; }
-    }
+    //#region  Setup Shoot Veapon
+    //[Header("Setup Shoot Veapon")]
+    //[Range(0, 360)] [SerializeField] private float _viewAngleTurretAndVeapon;
+    //public float ViewAngleTurretAndVeapon
+    //{
+    //    get { return _viewAngleTurretAndVeapon; }
+    //    private set { _viewAngleTurretAndVeapon = value; }
+    //}
+    //#endregion
 
-    [Min(0)] [SerializeField] private float _shotDistance;
-    public float ShotDistance
-    {
-        get { return _shotDistance; }
-        private set { _shotDistance = value; }
-    }
 
-    [Min(0)] [SerializeField] private float _distancePreparedToFire;
-    public float DistancePreparedToFire
-    {
-        get { return _distancePreparedToFire; }
-        private set 
-        { 
-            if(_distancePreparedToFire > _shotDistance)
-                _distancePreparedToFire = value; 
-            else
-            {
-                _distancePreparedToFire = -999;
-                Debug.LogError($"LoogError: CharacterModelDataSO.DistancePreparedToFire < ShotDistance: {_distancePreparedToFire} < {_shotDistance}");
-            }
-        }
-    }
-
-    [Min(0)] [SerializeField] private float _timeOverheatingGunMachine;
-    public float TimeOverheatingGunMachine
-    {
-        get { return _timeOverheatingGunMachine; }
-        private set { _timeOverheatingGunMachine = value; }
-    }
-
-    [Min(0)] [SerializeField] private float _timeRechargeCannon;
-    public float TimeRechargeCannon
-    {
-        get { return _timeRechargeCannon; }
-        private set { _timeRechargeCannon = value; }
-    }
-    #endregion
-
-    
     [field: SerializeField]public Vector3 ThirdtVierCameraPosition { get; private set; }
     [field: SerializeField] public Vector3 NicknamePosition { get; private set; }
 }

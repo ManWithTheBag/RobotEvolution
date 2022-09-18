@@ -3,15 +3,24 @@ using UnityEngine;
 
 public abstract class AbsVeaponShell : AbsVeapon
 {
+    protected Transform _turret;
 
-    [SerializeField]private List<Transform> _positionsVeaponShellList;
-
+    private List<Transform> _positionsVeaponShellList;
     private PoolShell _poolShell;
+    private Shell _shellClass;
 
-    private void Start()
+    public override void Awake()
     {
         if (GameObject.Find("PoolShell").TryGetComponent(out PoolShell poolShell))
             _poolShell = poolShell;
+
+        base.Awake();
+    }
+
+    public void SetSetupVeaponForModelState(List<Transform> positionsVeaponShellList, Transform turret)
+    {
+        _turret = turret;
+        _positionsVeaponShellList = positionsVeaponShellList;
     }
 
     public override void Shoot(Transform enemyTransform)
@@ -20,7 +29,9 @@ public abstract class AbsVeaponShell : AbsVeapon
         {
             Transform shell = _poolShell.PoolShells.GetFreeElement().transform;
             shell.transform.position = item.position;
-            shell.GetComponent<Shell>().LauncheShell(item.forward, _thisTransform.parent);
+            _shellClass = shell.GetComponent<Shell>();
+            _shellClass.LauncheShell(item.forward, _thisTransform);
+            _shellClass.SetScoreDamageVeapon(_veaponDataSO.ScoreDamageCannon);
         }
     }
 }

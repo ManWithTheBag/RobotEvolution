@@ -3,10 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class AbsStuff : MonoBehaviour, IDetertor, IRefreshible
 {
-    [field: SerializeField] public ScoreDataSO ScoreDataSO { get; private set; }
-
-    public Transform Soures { get ; set ; }
-
     protected Rigidbody _rb;
     protected Transform _thisTransform;
 

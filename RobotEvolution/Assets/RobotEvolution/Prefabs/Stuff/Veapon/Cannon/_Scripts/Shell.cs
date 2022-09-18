@@ -4,15 +4,17 @@ public class Shell : AbsStuff
 {
     [SerializeField] float _speedShellMovement;
 
+    private Transform _souresShot;
     private Vector3 _directionStuffMoveNorm;
     private bool _isCanMove = false;
+    private int _scoreDamageShell;
 
     public override void SetScore(IDetectable iDetectableEnemy)
     {
-        iDetectableEnemy.DetectedLossScore(ScoreDataSO.ScoreVeapoonCannon);
+        iDetectableEnemy.DetectedLossScore(_scoreDamageShell);
 
-        if (Soures.TryGetComponent(out IDetectable iDetectableSoures))
-            iDetectableSoures.DetectedAddScore(ScoreDataSO.ScoreVeapoonCannon);
+        if (_souresShot.TryGetComponent(out IDetectable iDetectableSoures))
+            iDetectableSoures.DetectedAddScore(_scoreDamageShell);
     }
 
     public override void TotalReshreshing()
@@ -22,9 +24,14 @@ public class Shell : AbsStuff
 
     public void LauncheShell(Vector3 directionMove,Transform soures)
     {
-        Soures = soures;
+        _souresShot = soures;
         _directionStuffMoveNorm = directionMove.normalized;
         _isCanMove = true;
+    }
+
+    public void SetScoreDamageVeapon(int scoreDamageShell)
+    {
+        _scoreDamageShell = scoreDamageShell;
     }
 
     private void FixedUpdate()
