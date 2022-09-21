@@ -16,28 +16,34 @@ public class DetectedAimForPlayer : MonoBehaviour
         _searchAngle = searchAngle;
         _maxShootDistance = maxShootDistance;
 
-        CheckAimForHook();
-
-        return _enemyTransform;
+        return CheckAimForHook();
     }
 
-    public void CheckAimForHook()
+    public Transform CheckAimForHook()
     {
-        if(RayToScan())
+        if (RayToScan())
+            return SekectNearestEnemy();
+        else
+            return null;
+    }
+
+    private Transform SekectNearestEnemy()
+    {
+        float temparoryDistance = MapsController.t_sqrSizeFiteMap;
+        Transform enemyTransform = null;
+
+        for (int i = 0; i < _enemyTransformList.Count; i++)
         {
-            float temparoryDistance = MapsController.t_sqrSizeFiteMap;
+            float distanceToEnemy = Vector3.Distance(_rayCastDetectTransform.position, _enemyTransformList[i].position);
 
-            for (int i = 0; i < _enemyTransformList.Count; i++)
+            if (temparoryDistance > distanceToEnemy)
             {
-                float distanceToEnemy = Vector3.Distance(_rayCastDetectTransform.position, _enemyTransformList[i].position);
-
-                if (temparoryDistance > distanceToEnemy)
-                {
-                    temparoryDistance = distanceToEnemy;
-                    _enemyTransform = _enemyTransformList[i];
-                }
+                temparoryDistance = distanceToEnemy;
+                enemyTransform = _enemyTransformList[i];
             }
         }
+
+        return enemyTransform;
     }
 
     private bool RayToScan()
@@ -52,12 +58,12 @@ public class DetectedAimForPlayer : MonoBehaviour
             var x = Mathf.Sin(j);
             var y = Mathf.Cos(j);
 
-            j += + _searchAngle * Mathf.Deg2Rad / _countRayInScan;
+            j += + (_searchAngle / 2) * Mathf.Deg2Rad / _countRayInScan;
 
             Vector3 dir = _rayCastDetectTransform.TransformDirection(new Vector3(x, 0, y));
             if (GetRaycast(dir)) 
+                
                 a = true;
-
             if (x != 0)
             {
                 dir = _rayCastDetectTransform.TransformDirection(new Vector3(-x, 0, y));
@@ -78,7 +84,7 @@ public class DetectedAimForPlayer : MonoBehaviour
 
         if (Physics.Raycast(position, dir, out hit, _maxShootDistance))
         {
-            if (hit.transform.tag == "Bot")
+            if (hit.collider.tag == "Character")
             {
                 _enemyTransformList.Add(hit.transform);
                 result = true;

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class StartPanel : MonoBehaviour
 {
     [SerializeField] private Button _startGameB;
-    [SerializeField] private GameObject _startP;
-    [SerializeField] private GameObject _uiGameContainer;
+    [SerializeField] private GameObject _onlyStartActiveContainerP;
+    [SerializeField] private GameObject _onlyGameActiveContainer;
     [SerializeField] private GameObject _poolPlayer;
 
     private void OnEnable()
@@ -18,16 +18,15 @@ public class StartPanel : MonoBehaviour
     {
         _startGameB.onClick.RemoveListener(OnStartGame);
     }
-
-    private void Awake()
+    private void Start()
     {
-        _uiGameContainer.SetActive(false);
+        _onlyGameActiveContainer.SetActive(false);
     }
 
     private void OnStartGame()
     {
-        _uiGameContainer.SetActive(true);
-        _startP.SetActive(false);
+        _onlyGameActiveContainer.SetActive(true);
+        _onlyStartActiveContainerP.SetActive(false);
         
         
         if (_poolPlayer.transform.childCount > 0)
@@ -37,4 +36,5 @@ public class StartPanel : MonoBehaviour
 
         GlobalEventManager.ActivatePlayerEvent.Invoke();
     }
+
 }

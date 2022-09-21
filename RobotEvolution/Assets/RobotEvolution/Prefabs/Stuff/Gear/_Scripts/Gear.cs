@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class Gear : AbsStuff
+public class Gear : AbsStuff, IAddScore
 {
     [SerializeField] private StuffScoreDataSO _stuffScoreDataSO;
-    public override void SetScore(IDetectable iDetectable)
+
+    public int ScoreAdd()
     {
-        iDetectable.DetectedAddScore(_stuffScoreDataSO.GearScore);
+        return _stuffScoreDataSO.GearScore;
     }
 }

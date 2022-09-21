@@ -18,11 +18,11 @@ public abstract class AbsVeapon : MonoBehaviour, IShootable
     private float _currentAngleToEnemy;
     private float _currentDistanceToEnemy;
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
         IsEnemleThisComponent = true;
     }
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         IsEnemleThisComponent = false;
     }
@@ -77,12 +77,6 @@ public abstract class AbsVeapon : MonoBehaviour, IShootable
     {
 
     }
-    //public virtual async Task RechargingVeapon()
-    //{
-    //    await Task.Delay(TimeSpan.FromSeconds(_timeRechargeVeapon));
-    //    _isRecharged = true;
-    //}
 
     public abstract void Shoot(Transform enemyTransform);
-
 }

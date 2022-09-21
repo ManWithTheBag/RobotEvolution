@@ -42,7 +42,7 @@ public class FiringRangeVisualisate : MonoBehaviour, IVisibleInvisible
 
         foreach (IShootable item in iShootable)
         {
-            if (_maxDistanceVisualisate < item.MaxShootDistance)
+            if (_maxDistanceVisualisate < item.MaxShootDistance )
                 _maxDistanceVisualisate = item.MaxShootDistance;
 
             if (_maxAngleViewTurretAndVeapon < item.ViewAngleTurretAndVeapon)

@@ -15,5 +15,5 @@ MonoBehaviour:
   <NicknamePrefab>k__BackingField: {fileID: 4529152511228301803, guid: 5a780b66a33861949afee37d3494c974,
     type: 3}
   <MaxCountChurInNIcknamne>k__BackingField: 10
-  <TimeLearpingScale>k__BackingField: 2
+  <TimeLearpingScale>k__BackingField: 1.5
   <MaxDistanceVisibleNickname>k__BackingField: 80

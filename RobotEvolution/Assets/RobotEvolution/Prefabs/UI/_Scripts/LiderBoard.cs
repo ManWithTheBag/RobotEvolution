@@ -76,7 +76,7 @@ public class LiderBoard : MonoBehaviour
 
     public void RefreshLiderBoard()
     {
-        if (_isLearped)
+        if (_isLearped && _allAbsCharacterInGame.Count != 0)
         {
             _isLearped = false;
 

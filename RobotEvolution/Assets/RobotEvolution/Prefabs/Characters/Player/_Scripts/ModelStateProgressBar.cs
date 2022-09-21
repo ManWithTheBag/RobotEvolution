@@ -3,34 +3,37 @@ using System.Collections;
 
 public class ModelStateProgressBar : MonoBehaviour
 {
-    [SerializeField]private ScoreCalculation _scoreCalculation;
-    [SerializeField]private CharacterModelStateSwitcher _characterModelStateSwitcher;
     [SerializeField] private float _timeLearpingScoreInProgressBar;
     
+    private ScoreCalculation _scoreCalculation;
+    private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private ModelProgressBarFields _modelProgressBarFields;
-    private bool _isScoreLeearped = true;
     private int _upperScoreLimit;
     private float _smoothLearpValue = 0;
     private float _currentLearpScore;
+    private int _newScoreValue;
 
     private void OnEnable()
     {
-        _scoreCalculation.SwapScoreThisCharacterEvent += RefreshModelProgressBar;
-        _characterModelStateSwitcher.ChangeModelScoreLimetEvent += SetCurrentLimitsInModelProgressBar;
+        _scoreCalculation.SwapScoreThisCharacterEvent += OnRefreshModelProgressBar;
+        _characterModelStateSwitcher.ChangeModelScoreLimitEvent += OnSetCurrentLimitsInModelProgressBar;
     }
     private void OnDisable()
     {
-        _scoreCalculation.SwapScoreThisCharacterEvent -= RefreshModelProgressBar;
-        _characterModelStateSwitcher.ChangeModelScoreLimetEvent -= SetCurrentLimitsInModelProgressBar;
+        _scoreCalculation.SwapScoreThisCharacterEvent -= OnRefreshModelProgressBar;
+        _characterModelStateSwitcher.ChangeModelScoreLimitEvent -= OnSetCurrentLimitsInModelProgressBar;
     }
 
     private void Awake()
     {
+        TryGetComponent(out CharacterModelStateSwitcher characterModelStateSwitcher); _characterModelStateSwitcher = characterModelStateSwitcher;
+        TryGetComponent(out ScoreCalculation scoreCalculation); _scoreCalculation = scoreCalculation;
+
         _modelProgressBarFields = GameObject.Find("UiController").GetComponent<ModelProgressBarFields>();
-        _upperScoreLimit = _scoreCalculation.CharacterRateEvolutionSO.Level_1;
+        //_upperScoreLimit = _scoreCalculation.CharacterRateEvolutionSO.Level_1;
     }
 
-    private void SetCurrentLimitsInModelProgressBar(int lowerScoreLimit, int upperScoreLimet)
+    private void OnSetCurrentLimitsInModelProgressBar(int lowerScoreLimit, int upperScoreLimet)
     {
         _upperScoreLimit = upperScoreLimet;
 
@@ -38,28 +41,23 @@ public class ModelStateProgressBar : MonoBehaviour
         _modelProgressBarFields.TextUpperLimit.text = upperScoreLimet.ToString();
     }
 
-
-    private void RefreshModelProgressBar(int oldScoreValue, int newScoreValue)
+    private void OnRefreshModelProgressBar(int oldScoreValue, int newScoreValue)
     {
-        if (_isScoreLeearped)
-            StartCoroutine(LearpingScoreInProgressBar(oldScoreValue, newScoreValue));
+        _newScoreValue = newScoreValue;
+
+        StartCoroutine(LearpingScoreInProgressBar());
     }
 
-    private IEnumerator LearpingScoreInProgressBar(int oldScoreValue, int newScoreValue)
+    private IEnumerator LearpingScoreInProgressBar()
     {
-        _isScoreLeearped = false;
-
         for (float i = 0; i < 1; i += Time.deltaTime / _timeLearpingScoreInProgressBar)
         {
-            _currentLearpScore = Mathf.Lerp(_smoothLearpValue, newScoreValue, i);
+            _currentLearpScore = Mathf.Lerp(_smoothLearpValue, _newScoreValue, i);
             _modelProgressBarFields.TextCurrentScore.text = Mathf.Round(_currentLearpScore).ToString();
             _modelProgressBarFields.ImageModelProgressBar.fillAmount = _currentLearpScore / _upperScoreLimit;
             yield return null;
         }
-        _modelProgressBarFields.TextCurrentScore.text = newScoreValue.ToString();
-        _modelProgressBarFields.ImageModelProgressBar.fillAmount = (float)newScoreValue / _upperScoreLimit;
-        _smoothLearpValue = newScoreValue;
 
-        _isScoreLeearped = true;
+        _smoothLearpValue = _newScoreValue;
     }
 }

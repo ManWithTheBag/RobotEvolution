@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,27 +7,38 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
     private Button _buttonShot;
     private DetectedAimForPlayer _detectedAimForPlayer;
     private ShotFiilB _shotFiilB;
-    private Transform _missClickEnemy;
 
-    private void Start()
+    public override void Awake()
     {
         GetButtonLinks();
 
-        _thisTransform.TryGetComponent(out DetectedAimForPlayer detectedAimForPlayer); _detectedAimForPlayer = detectedAimForPlayer;
+        base.Awake();
     }
-
     private void GetButtonLinks()
     {
         GameObject button = GameObject.Find("ShotB");
         _buttonShot = button.GetComponent<Button>();
         _shotFiilB = button.GetComponent<ShotFiilB>();
+    }
 
+    public override void OnEnable()
+    {
         _buttonShot.onClick.AddListener(SearchPlayersEnemy);
 
-        _missClickEnemy = new GameObject("BigBlazeMissClickEnemy").transform;
-        _missClickEnemy.SetParent(_turret);
-        _missClickEnemy.localPosition = new Vector3(0, 0, MaxShootDistance);
+        base.OnEnable();
     }
+    public override void OnDisable()
+    {
+        _buttonShot.onClick.RemoveListener(SearchPlayersEnemy);
+        base.OnDisable();
+    }
+    public override void Start()
+    {
+        _thisTransform.TryGetComponent(out DetectedAimForPlayer detectedAimForPlayer); _detectedAimForPlayer = detectedAimForPlayer;
+
+        base.Start();
+    }
+
 
     public override void Update()
     {
@@ -37,15 +46,12 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
 
     private void SearchPlayersEnemy()
     {
-        Transform enemyTransform = _detectedAimForPlayer.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance);
+        Transform enemyTransform = _detectedAimForPlayer.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance); // If have't found enemy, return null
+        
         if (enemyTransform != null)
-        {
             _charactersAims.NearestAimEnemy = enemyTransform;
-
-            TryToShoot(enemyTransform);
-        }
-        else
-            TryToShoot(_missClickEnemy);
+         
+        TryToShoot(enemyTransform);
     }
 
     public override void TryToShoot(Transform enemyTransform)
@@ -55,6 +61,7 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
             FillButtonImage(0);
 
             _isRecharged = false;
+
             Shoot(enemyTransform);
 
             StartCoroutine(RechargingVeapon());
@@ -63,11 +70,14 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
 
     public override void Shoot(Transform enemyTransform)
     {
-        foreach (Transform item in _positionsVeaponStartLineRenderList)
+        if (CheckRayCast())
         {
-            VisualisateRayCast(item);
-            ChangeScore(enemyTransform);
+           
+            SetupVisualisatePosition(_hit.point);
+            ChangeScore(_hit.transform);
         }
+        else
+            SetupVisualisatePosition(_missShotTransform.position);
     }
 
     public override void FillButtonImage(float currentFillAmount)

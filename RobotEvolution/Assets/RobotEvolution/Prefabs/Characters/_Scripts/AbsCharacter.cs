@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
-public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>
+public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>, IRefreshible
 {
     [Min(0)][SerializeField] private int _score;
     [Min(0)] [SerializeField] private float _spawnPositionY;
@@ -44,16 +44,14 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>
 
     private RandomPosition _randomPosition;
 
-    private void OnEnable()
+    private void Awake()
     {
-        _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>(); // TODO: Check perfomence upon complition of development
-
-        GetRandopPosition();
+        _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>();
     }
 
-    private void GetRandopPosition()
+    private void OnEnable()
     {
-        transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+        TotalReshreshing();
     }
 
     public int CompareTo(AbsCharacter other)
@@ -72,5 +70,10 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>
             Debug.LogError($"LoogError: LiderBoard can't compare elements: {this} and {other}");
             return 0;
         }
+    }
+
+    public void TotalReshreshing()
+    {
+        transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
     }
 }

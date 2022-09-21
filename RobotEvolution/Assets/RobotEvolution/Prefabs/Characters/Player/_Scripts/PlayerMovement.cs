@@ -4,6 +4,7 @@ public class PlayerMovement : AbsCharacterMovement
 {
     private InputJoystick _inputJoystick;
     private float _relativeAngle;
+    private Vector3 _movePlayerVector;
 
     public override void Awake()
     {
@@ -13,9 +14,15 @@ public class PlayerMovement : AbsCharacterMovement
 
     public override void SetIndividualViewAndMove(AbsCharacterBaseModetState absCharacterBaseModetState)
     {
-        _currentBodyView = CulculationQuaternionPlayerView(_inputJoystick.GetDirectionUpdate());
-        _currentCharacterMove = _thisTransform.forward;
+        _movePlayerVector = _inputJoystick.GetDirectionUpdate();
 
+        if (_movePlayerVector != Vector3.zero)
+        {
+            _currentBodyView = CulculationQuaternionPlayerView(_inputJoystick.GetDirectionUpdate());
+            _currentCharacterMove = _thisTransform.forward;
+        }
+        else
+            _currentCharacterMove = Vector3.zero;
     }
     
     private Quaternion CulculationQuaternionPlayerView(Vector3 directionView)

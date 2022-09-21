@@ -7,7 +7,7 @@ public abstract class AbsVeaponShell : AbsVeapon
 
     private List<Transform> _positionsVeaponShellList;
     private PoolShell _poolShell;
-    private Shell _shellClass;
+    private ShellCannon _shellClass;
 
     public override void Awake()
     {
@@ -29,9 +29,9 @@ public abstract class AbsVeaponShell : AbsVeapon
         {
             Transform shell = _poolShell.PoolShells.GetFreeElement().transform;
             shell.transform.position = item.position;
-            _shellClass = shell.GetComponent<Shell>();
-            _shellClass.LauncheShell(item.forward, _thisTransform);
-            _shellClass.SetScoreDamageVeapon(_veaponDataSO.ScoreDamageCannon);
+            _shellClass = shell.GetComponent<ShellCannon>();
+            _shellClass.LauncheShell(item.forward);
+            _shellClass.SetSouresCharacter(_thisTransform);
         }
     }
 }

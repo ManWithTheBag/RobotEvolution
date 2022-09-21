@@ -15,14 +15,12 @@ MonoBehaviour:
   <TypeModelStateCharacter>k__BackingField: 1
   <PrefabCharacterModel>k__BackingField: {fileID: 6524014649858311632, guid: 5766321d7ee024d438776e69fb67cc10,
     type: 3}
+  <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -20}
+  <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}
   _speedMovement: 7
   _speedBodyRotation: 2
   _speedTurretRotation: 6
   _speedBoost: 12
-  _viewAngle: 40
-  _shotDistance: 12
-  _distancePreparedToFire: 24
-  _timeOverheatingGunMachine: 15
-  _timeRechargeCannon: 6
-  <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -20}
-  <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}
+  _maxCapasityEnergyInShield: 50
+  _diametrSphereShield: 6
+  _positionSphereShieldY: 1

@@ -1,44 +1,29 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public abstract class AbsStuff : MonoBehaviour, IDetertor, IRefreshible
+public abstract class AbsStuff : MonoBehaviour, IRefreshible
 {
-    protected Rigidbody _rb;
+    [Min(0)] [SerializeField] private float _spawnPositionY;
+    
     protected Transform _thisTransform;
+
+    private RandomPosition _randomPosition;
+
+    public virtual void Awake()
+    {
+        _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>();
+        _thisTransform = transform;
+        _thisTransform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+    }
 
     private void Start()
     {
-        _thisTransform = transform;
-        TryGetComponent(out Rigidbody rigidbody); _rb = rigidbody;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (IsColliderDetactableObj(other, out var iDetectable))
-        {
-            SetScore(iDetectable);
-        }
-
-        TotalReshreshing();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        TotalReshreshing();
-    }
-
-    public abstract void SetScore(IDetectable iDetectable);
-
-
-    private bool IsColliderDetactableObj(Collider collision, out IDetectable iDetectable)
-    {
-        iDetectable = collision.gameObject.GetComponentInParent<IDetectable>();
-        return iDetectable != null;
+        //_thisTransform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
     }
 
     public virtual void TotalReshreshing()
     {
         gameObject.SetActive(false);
+        transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
         GlobalEventManager.SearchNewAimEvent.Invoke();
         gameObject.SetActive(true);
     }

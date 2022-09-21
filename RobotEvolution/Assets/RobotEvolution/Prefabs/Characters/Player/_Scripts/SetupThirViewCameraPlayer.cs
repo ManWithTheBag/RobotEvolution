@@ -3,22 +3,14 @@ using System.Collections;
 
 public class SetupThirViewCameraPlayer : MonoBehaviour
 {
-    [SerializeField] private CharacterModelStateSwitcher _characterModelStateSwitcher;
-
+    private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private Transform _lookAtCameraTransform;
     private Transform _thisTransform;
 
-    private void OnEnable()
-    {
-        _characterModelStateSwitcher.EnterModelStateEvent += SetSetupThirViewCamera;
-    }
-    private void OnDisable()
-    {
-        _characterModelStateSwitcher.EnterModelStateEvent -= SetSetupThirViewCamera;
-    }
-
     private void Awake()
     {
+        TryGetComponent(out CharacterModelStateSwitcher characterModelStateSwitcher); _characterModelStateSwitcher = characterModelStateSwitcher;
+
         _thisTransform = transform;
         _lookAtCameraTransform = new GameObject("ThirdViewCameraTransform").transform;
         _lookAtCameraTransform.SetParent(_thisTransform);
@@ -26,8 +18,19 @@ public class SetupThirViewCameraPlayer : MonoBehaviour
         GameObject.Find("CameraController").TryGetComponent(out CameraController cameraController); 
         cameraController.OnSetThirdAndFirstViewCameraTransform(_thisTransform, _lookAtCameraTransform);
     }
+    
 
-    public void SetSetupThirViewCamera(CharacterModelStatsDataSO characterModelStatsDataSO)
+    private void OnEnable()
+    {
+        _characterModelStateSwitcher.EnterModelStateEvent += OnSetSetupThirViewCamera;
+    }
+    private void OnDisable()
+    {
+        _characterModelStateSwitcher.EnterModelStateEvent -= OnSetSetupThirViewCamera;
+    }
+
+
+    public void OnSetSetupThirViewCamera(CharacterModelStatsDataSO characterModelStatsDataSO)
     {
         StartCoroutine(LearpingThirdViewCameraPosition(characterModelStatsDataSO.ThirdtVierCameraPosition));
     }

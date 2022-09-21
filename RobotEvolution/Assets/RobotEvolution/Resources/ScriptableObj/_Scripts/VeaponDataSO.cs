@@ -3,6 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "VeaponDataSO", menuName = "Scriptable Object/VeaponDataSO", order = 55)]
 public class VeaponDataSO : ScriptableObject
 {
+    [Header("Common veapon data")]
+    [Min(0)] [SerializeField] private float _reductionGetScireFactor;
+    public float ReductionGetScoreFactor
+    {
+        get { return _reductionGetScireFactor; }
+        set { _reductionGetScireFactor = value; }
+    }
+
+
 
     [Header("Cannon")]
     [Min(0)] [SerializeField] private int _maxDistanceCannon;
@@ -17,6 +26,13 @@ public class VeaponDataSO : ScriptableObject
     {
         get { return _timeRechargeCannon; }
         set { _timeRechargeCannon = value; }
+    }
+    
+    [Min(0)] [SerializeField] private float _speedShellCannon;    
+    public float SpeedShellCannon
+    {
+        get { return _speedShellCannon; }
+        set { _speedShellCannon = value; }
     }
 
     [Min(0)] [SerializeField] private int _scoreDamageCannon;

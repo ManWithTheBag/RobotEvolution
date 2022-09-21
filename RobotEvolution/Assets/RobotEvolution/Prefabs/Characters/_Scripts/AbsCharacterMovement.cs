@@ -13,6 +13,7 @@ public abstract class AbsCharacterMovement : MonoBehaviour
     protected Quaternion _currentTurretView;
     protected Vector3 _currentCharacterMove;
     protected Transform _thisTransform;
+    protected bool _isMovableCharacter;
 
     private Transform _turret;
     private CharacterModelStatsDataSO _characterModelStatsDataSO;
@@ -20,7 +21,6 @@ public abstract class AbsCharacterMovement : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _directionAlongSurface;
     private float _currentSpeedMovement;
-    private bool _isMovableCharacter;
     
     public virtual void Awake()
     {

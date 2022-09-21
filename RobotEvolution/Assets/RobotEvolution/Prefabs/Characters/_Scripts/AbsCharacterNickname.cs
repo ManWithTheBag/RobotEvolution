@@ -6,21 +6,37 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
 {
     [SerializeField] protected NicknameDataSO _nicknameDataSO;
 
-    [SerializeField] private CharacterModelStateSwitcher _characterModelStateSwitcher;
-    [SerializeField] private ScoreCalculation _scoreCalculation;
-
     protected AbsCharacter _absCharacter;
     protected TextMeshProUGUI _textNicknameScore;
     protected string _thisNickname;
 
+    private ScoreCalculation _scoreCalculation;
+    private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private Transform _nicknameCharacterTransform;
     private Transform _thisTransform;
     private Transform _mainCameraTransform;
     private Transform _nicknamePrefabTransform;
     private float _currentDistanceCameraCharacter;
-    private bool _isScoreLearped = true;
     private float _smoothLearpValue = 0;
     private int _currentLearpScore;
+    private int _newScoreValue;
+
+
+    
+    public virtual void Awake()
+    {
+        _thisTransform = transform;
+        _mainCameraTransform = Camera.main.transform;
+
+        TryGetComponent(out AbsCharacter absCharacter); _absCharacter = absCharacter;
+        TryGetComponent(out CharacterModelStateSwitcher characterModelStateSwitcher); _characterModelStateSwitcher = characterModelStateSwitcher;
+        TryGetComponent(out ScoreCalculation scoreCalculation); _scoreCalculation = scoreCalculation;
+
+        CreateNicknamePrefub();
+        CreateNicknameFollowTransform();
+
+        SetNickname();
+    }
 
     private void OnEnable()
     {
@@ -43,18 +59,6 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
             _nicknamePrefabTransform.gameObject.SetActive(false);
     }
 
-    public virtual void Awake()
-    {
-        _thisTransform = transform;
-        _mainCameraTransform = Camera.main.transform;
-
-        TryGetComponent(out AbsCharacter absCharacter); _absCharacter = absCharacter;
-
-        CreateNicknamePrefub();
-        CreateNicknameFollowTransform();
-
-        SetNickname();
-    }
 
     private void CreateNicknamePrefub()
     {
@@ -106,24 +110,19 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
 
     public virtual void OnRefreshCharacterScore(int oldScoreValue, int newScoreValue)
     {
-        if(_isScoreLearped)
-            StartCoroutine(LerpValue(oldScoreValue, newScoreValue));
+        _newScoreValue = newScoreValue;
+        
+        StartCoroutine(LerpValue());
     }
 
-    IEnumerator LerpValue(float startValue, float endValue)
+    IEnumerator LerpValue()
     {
-        _isScoreLearped = false;
-
         for (float i = 0; i < 1; i += Time.deltaTime / _nicknameDataSO.TimeLearpingScale)
         {
-            _currentLearpScore = (int)Mathf.Lerp(_smoothLearpValue, endValue, i);
+            _currentLearpScore = (int)Mathf.Lerp(_smoothLearpValue, _newScoreValue, i);
             _textNicknameScore.text = _thisNickname + " = " + _currentLearpScore.ToString();
             yield return null;
         }
-        _textNicknameScore.text = _thisNickname + " = " + endValue.ToString();
-        _smoothLearpValue = endValue;
-
-        _isScoreLearped = true;
     }
 
     public void SetVisibleStatusObj(bool isStatus)

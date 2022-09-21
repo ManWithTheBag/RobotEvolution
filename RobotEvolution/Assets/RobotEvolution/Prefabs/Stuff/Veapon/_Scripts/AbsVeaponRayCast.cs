@@ -6,9 +6,23 @@ public abstract class AbsVeaponRayCast : AbsVeapon
 {
     protected Transform _turret;
     protected List<Transform> _positionsVeaponStartLineRenderList;
+    protected Transform _missShotTransform;
+    protected RaycastHit _hit;
 
-    private RaycastHit _hit;
     private LineRenderer _lineRenderer;
+
+
+    public virtual void Start()
+    {
+        CreateMissShotTransform();
+    }
+
+    private void CreateMissShotTransform()
+    {
+        _missShotTransform = new GameObject("BigBlazeMissClickEnemy").transform;
+        _missShotTransform.SetParent(_turret);
+        _missShotTransform.localPosition = new Vector3(0, 0, MaxShootDistance * _missShotTransform.localScale.z);
+    }
 
     public void SetSetupVeaponForModelState(List<Transform> positionsVeaponStartLineRenderList, Transform turret, LineRenderer lineRenderer)
     {
@@ -24,39 +38,38 @@ public abstract class AbsVeaponRayCast : AbsVeapon
     {
         if (CheckRayCast())
         {
-            foreach (Transform item in _positionsVeaponStartLineRenderList)
-            {
-                VisualisateRayCast(item);
-                ChangeScore(enemyTransform);
-            }
+            SetupVisualisatePosition(_hit.point);
+            ChangeScore(_hit.transform);
         }
     }
-
-    private bool CheckRayCast()
+    protected bool CheckRayCast()
     {
-        Physics.Raycast(_turret.position, _turret.forward, out _hit);
-        if (_hit.collider != null && _hit.collider.tag == "Bot")
+        Physics.Raycast(_turret.position, _turret.forward, out _hit, MaxShootDistance);
+        if (_hit.collider != null)
             return true;
         else
             return false;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawRay(_turret.position, _turret.forward * MaxShootDistance);
-    //}
+    protected void SetupVisualisatePosition(Vector3 enemyPosition)
+    {
+        foreach (Transform item in _positionsVeaponStartLineRenderList)
+        {
+            VisualisateRayCast(item, enemyPosition);
+        }
+    }
+
 
     public abstract void ChangeScore(Transform enemyTransform);
 
-    public virtual async Task  VisualisateRayCast(Transform veaponPosition)
+    public virtual async Task  VisualisateRayCast(Transform veaponPosition, Vector3 enemyPosition)
     {
         _lineRenderer.enabled = true;
 
         for (float i = 0; i < 1; i += Time.deltaTime)
         {
             _lineRenderer.SetPosition(0, veaponPosition.position);
-            _lineRenderer.SetPosition(1, _hit.point);
+            _lineRenderer.SetPosition(1, enemyPosition);
             await Task.Yield();
         }
 

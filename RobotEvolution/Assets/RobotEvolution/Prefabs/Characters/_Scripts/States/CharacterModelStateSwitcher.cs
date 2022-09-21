@@ -13,7 +13,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     private int _currentLevel;
 
     public event Action<CharacterModelStatsDataSO> EnterModelStateEvent;
-    public event Action<int, int> ChangeModelScoreLimetEvent;
+    public event Action<int, int> ChangeModelScoreLimitEvent;
 
     private void OnEnable()
     {
@@ -110,28 +110,28 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     private void SetLevel_1()
     {
         SetNewCharacterState(CharacterModelStatsEnum._1_1_WheeledBot);
-        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_0, _characterRateEvolutionSO.Level_2);
+        ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_0, _characterRateEvolutionSO.Level_2);
     }
     private void SetLevel_2()
     {
         SetNewCharacterState(CharacterModelStatsEnum._2_1_SpiderBotCrab);
-        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_1, _characterRateEvolutionSO.Level_3);
+        ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_1, _characterRateEvolutionSO.Level_3);
     }
     private void SetLevel_3()
     {
         SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
-        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_2, _characterRateEvolutionSO.Level_4);
+        ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_2, _characterRateEvolutionSO.Level_4);
     }
 
     private void SetLevel_4()
     {
         SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
-        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_3, _characterRateEvolutionSO.Level_5);
+        ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_3, _characterRateEvolutionSO.Level_5);
     }
     private void SetLevel_5()
     {
         SetNewCharacterState(CharacterModelStatsEnum._3_1_Human_1);
-        ChangeModelScoreLimetEvent?.Invoke(_characterRateEvolutionSO.Level_4, _characterRateEvolutionSO.Level_6);
+        ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_4, _characterRateEvolutionSO.Level_6);
     }
 
 
