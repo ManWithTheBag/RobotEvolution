@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
-public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>, IRefreshible
+public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceToAimQuikSortable, IComparable<AbsCharacter>
 {
     [Min(0)][SerializeField] private int _score;
     [Min(0)] [SerializeField] private float _spawnPositionY;
@@ -42,10 +42,16 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>
         }
     }
 
+    public float SortDistanceAimToCharacter { get; private set; }
+    public Transform SortedTransform { get; private set; }
+
     private RandomPosition _randomPosition;
+    private Transform _thisTransform;
 
     private void Awake()
     {
+        _thisTransform = transform;
+        SortedTransform = _thisTransform;
         _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>();
     }
 
@@ -72,8 +78,15 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IComparable<AbsCharacter>
         }
     }
 
+
     public void TotalReshreshing()
     {
         transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+    }
+
+
+    public void CalculateDistanceAimToCharacter(Transform characterTransform)
+    {
+        SortDistanceAimToCharacter = Vector3.Distance(_thisTransform.position, characterTransform.position);
     }
 }

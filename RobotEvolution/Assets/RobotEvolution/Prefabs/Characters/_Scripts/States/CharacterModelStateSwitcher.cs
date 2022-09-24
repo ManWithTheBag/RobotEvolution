@@ -14,6 +14,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
     public event Action<CharacterModelStatsDataSO> EnterModelStateEvent;
     public event Action<int, int> ChangeModelScoreLimitEvent;
+    public event Action FinishFinalModelRateEvent; // TODO: Invoke this event in this script when will by right final level
 
     private void OnEnable()
     {

@@ -11,6 +11,6 @@ public class NicknameDataSO : ScriptableObject
 
     [field: SerializeField] public GameObject NicknamePrefab { get; private set; }
     [field: SerializeField] public int MaxCountChurInNIcknamne { get; private set; }
-    [field: SerializeField] public float TimeLearpingScale { get; private set; }
+    [field: SerializeField] public float TimeLearpingScore { get; private set; }
     [field: SerializeField] public float MaxDistanceVisibleNickname { get; private set; }
 }

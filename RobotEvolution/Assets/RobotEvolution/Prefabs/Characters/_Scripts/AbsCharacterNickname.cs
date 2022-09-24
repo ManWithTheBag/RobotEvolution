@@ -10,6 +10,7 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
     protected TextMeshProUGUI _textNicknameScore;
     protected string _thisNickname;
 
+    private AlphaAnimator _alphaAnimator;
     private ScoreCalculation _scoreCalculation;
     private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private Transform _nicknameCharacterTransform;
@@ -20,7 +21,7 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
     private float _smoothLearpValue = 0;
     private int _currentLearpScore;
     private int _newScoreValue;
-
+    private bool _isVisibleNicknameText = false;
 
     
     public virtual void Awake()
@@ -56,7 +57,7 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
     private void ActivateDisableNicknamePrefab(bool isStatus)
     {
         if (_nicknamePrefabTransform != null)
-            _nicknamePrefabTransform.gameObject.SetActive(false);
+            _nicknamePrefabTransform.gameObject.SetActive(isStatus);
     }
 
 
@@ -65,7 +66,9 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
         Transform nicknameObjContater = GameObject.Find("NicknameObjContater").transform;
         _nicknamePrefabTransform = Instantiate(_nicknameDataSO.NicknamePrefab).transform;
         _nicknamePrefabTransform.SetParent(nicknameObjContater);
-        _textNicknameScore = _nicknamePrefabTransform.GetComponent<TextMeshProUGUI>();
+
+        _alphaAnimator = _nicknamePrefabTransform.GetComponent<AlphaAnimator>();
+        _textNicknameScore = _nicknamePrefabTransform.GetComponent<NicknameT>().NicknameText;
     }
 
     private void CreateNicknameFollowTransform()
@@ -77,8 +80,6 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
     private void Start()
     {
         OnRefreshCharacterScore(0, _absCharacter.Score);
-        if (!gameObject.activeInHierarchy)
-            ActivateDisableNicknamePrefab(false);
     }
 
 
@@ -96,16 +97,46 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
 
     public void Update()
     {
-        _currentDistanceCameraCharacter = Vector3.Distance(_thisTransform.position, _mainCameraTransform.position); 
+        CheckDictanceToCamera();
+    }
 
-        if(_currentDistanceCameraCharacter < _nicknameDataSO.MaxDistanceVisibleNickname)
+    private void CheckDictanceToCamera()
+    {
+        _currentDistanceCameraCharacter = Vector3.Distance(_thisTransform.position, _mainCameraTransform.position);
+
+        if (_currentDistanceCameraCharacter < _nicknameDataSO.MaxDistanceVisibleNickname)
         {
-            _nicknamePrefabTransform.gameObject.SetActive(true);
-            _nicknamePrefabTransform.rotation = _mainCameraTransform.rotation;
-            _nicknamePrefabTransform.position = _nicknameCharacterTransform.position;
+            AppearNicknameText();
+            SetNicknamePositionAndRotation();
         }
         else
-            _nicknamePrefabTransform.gameObject.SetActive(false);
+        {
+            HideNicknameText();
+            SetNicknamePositionAndRotation();
+        }
+    }
+
+    private void SetNicknamePositionAndRotation()
+    {
+        _nicknamePrefabTransform.rotation = _mainCameraTransform.rotation;
+        _nicknamePrefabTransform.position = _nicknameCharacterTransform.position;
+    }
+
+    private void AppearNicknameText()
+    {
+        if(_isVisibleNicknameText == false)
+        {
+            _isVisibleNicknameText = true;
+            _alphaAnimator.PlayAppearAlpha();
+        }
+    }
+    private void HideNicknameText()
+    {
+        if(_isVisibleNicknameText == true)
+        {
+            _isVisibleNicknameText = false;
+            _alphaAnimator.PlayHideAlpha();
+        }
     }
 
     public virtual void OnRefreshCharacterScore(int oldScoreValue, int newScoreValue)
@@ -117,7 +148,7 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
 
     IEnumerator LerpValue()
     {
-        for (float i = 0; i < 1; i += Time.deltaTime / _nicknameDataSO.TimeLearpingScale)
+        for (float i = 0; i < 1; i += Time.deltaTime / _nicknameDataSO.TimeLearpingScore)
         {
             _currentLearpScore = (int)Mathf.Lerp(_smoothLearpValue, _newScoreValue, i);
             _textNicknameScore.text = _thisNickname + " = " + _currentLearpScore.ToString();

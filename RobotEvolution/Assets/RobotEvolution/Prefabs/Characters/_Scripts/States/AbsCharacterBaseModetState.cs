@@ -136,20 +136,20 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     public virtual Quaternion LookToEnemy(Transform enemyTransform)
     {
         Vector3 targetDirection = enemyTransform.position - _thisTransform.position;
-        return CulculationQuaternionCharacterView(targetDirection);
+        return CulculatQuaternionCharacterView(targetDirection);
     }
     public Quaternion LookToDefolt()
     {
-        return CulculationQuaternionCharacterView(_thisTransform.forward);
+        return CulculatQuaternionCharacterView(_thisTransform.forward);
     }
 
     private Quaternion SetCurrentBodyView(Transform aimTransform)
     {
         Vector3 targetDirection = aimTransform.position - _thisTransform.position;
-        return CulculationQuaternionCharacterView(targetDirection);
+        return CulculatQuaternionCharacterView(targetDirection);
     }
 
-    private Quaternion CulculationQuaternionCharacterView(Vector3 targetDirection)
+    private Quaternion CulculatQuaternionCharacterView(Vector3 targetDirection)
     {
         _relativeAngle = Mathf.Atan2(targetDirection.normalized.x, targetDirection.normalized.z) * Mathf.Rad2Deg;
         return Quaternion.Euler(0f, _relativeAngle, 0f);
