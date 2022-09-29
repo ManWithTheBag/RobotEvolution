@@ -11,18 +11,27 @@ public class CharacterModelStatsDataSO : ScriptableObject
 
     #region  Setup Movement
     [Header("Setup Movement")]
-    [Min(0)][SerializeField]private float _speedMovement;
-    public float SpeedMovement
+    [SerializeField] public int navMeshModelStateID;
+
+    [Min(0)][SerializeField]private float _navSpeedMovement;
+    public float NavSpeedMovement
     {
-        get { return _speedMovement; }
-        private set { _speedMovement = value; }
+        get { return _navSpeedMovement; }
+        private set { _navSpeedMovement = value; }
     }
 
-    [Min(0)][SerializeField]private float _speedBodyRotation;
-    public float SpeedBodyRotation
+    [Min(0)][SerializeField]private float _navAngularspeedBody;
+    public float NavAngularSpeedBody
     {
-        get { return _speedBodyRotation; }
-        private set { _speedBodyRotation = value; }
+        get { return _navAngularspeedBody; }
+        private set { _navAngularspeedBody = value; }
+    }
+
+    [Min(0)] [SerializeField] private float _navAnguAcceleration;
+    public float NavAnguAcceleration
+    {
+        get { return _navAnguAcceleration; }
+        private set { _navAnguAcceleration = value; }
     }
 
     [Min(0)][SerializeField]private float _speedTurretRotation;
@@ -32,12 +41,12 @@ public class CharacterModelStatsDataSO : ScriptableObject
         private set { _speedTurretRotation = value; }
     }
 
-    [Min(0)][SerializeField]private float _speedBoost;
-    public float SpeedBoost
-    {
-        get { return _speedBoost; }
-        private set { _speedBoost = value; }
-    }
+    //[Min(0)][SerializeField]private float _speedBoost;
+    //public float SpeedBoost
+    //{
+    //    get { return _speedBoost; }
+    //    private set { _speedBoost = value; }
+    //}
     #endregion
 
 

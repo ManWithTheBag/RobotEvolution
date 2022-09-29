@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerVeaponBigBlaze : VeaponBigBlaze
 {
     private Button _buttonShot;
-    private PlayerDetectedAim _playerDetectedAim;
+    private CharacterRayCastDetectedEnemy _characterRayCastDetectedEnemy;
     private ShotFiilB _shotFiilB;
 
     public override void Awake()
@@ -34,7 +34,7 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
     }
     public override void Start()
     {
-        _thisTransform.TryGetComponent(out PlayerDetectedAim detectedAimForPlayer); _playerDetectedAim = detectedAimForPlayer;
+        _thisTransform.TryGetComponent(out CharacterRayCastDetectedEnemy characterRayCastDetectedEnemy); _characterRayCastDetectedEnemy = characterRayCastDetectedEnemy;
 
         base.Start();
     }
@@ -46,7 +46,7 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
 
     private void SearchPlayersEnemy()
     {
-        Transform enemyTransform = _playerDetectedAim.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance); // If have't found enemy, return null
+        Transform enemyTransform = _characterRayCastDetectedEnemy.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance); // If have't found enemy, return null
         
         if (enemyTransform != null)
             _charactersAims.NearestAimEnemy = enemyTransform;

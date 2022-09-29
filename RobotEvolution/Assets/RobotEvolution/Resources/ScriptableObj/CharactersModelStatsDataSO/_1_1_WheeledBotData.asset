@@ -17,10 +17,11 @@ MonoBehaviour:
     type: 3}
   <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -20}
   <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}
-  _speedMovement: 7
-  _speedBodyRotation: 2
-  _speedTurretRotation: 6
-  _speedBoost: 12
+  navMeshModelStateID: 0
+  _navSpeedMovement: 7
+  _navAngularspeedBody: 100
+  _navAnguAcceleration: 80
+  _speedTurretRotation: 1
   _maxCapasityEnergyInShield: 50
   _diametrSphereShield: 6
   _positionSphereShieldY: 1

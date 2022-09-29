@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceToAimQuikSortable, IComparable<AbsCharacter>
 {
     [Min(0)][SerializeField] private int _score;
-    [Min(0)] [SerializeField] private float _spawnPositionY;
+     //[SerializeField] private float _spawnPositionY;
     public int Score
     {
         get { return _score; }
@@ -81,7 +81,7 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceTo
 
     public void TotalReshreshing()
     {
-        transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+        transform.position = _randomPosition.GetRandomPosition();
     }
 
 

@@ -22,11 +22,11 @@ public class PlayerThirViewCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent += OnSetSetupThirViewCamera;
+        _characterModelStateSwitcher.EnterNewModelStateEvent += OnSetSetupThirViewCamera;
     }
     private void OnDisable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent -= OnSetSetupThirViewCamera;
+        _characterModelStateSwitcher.EnterNewModelStateEvent -= OnSetSetupThirViewCamera;
     }
 
 

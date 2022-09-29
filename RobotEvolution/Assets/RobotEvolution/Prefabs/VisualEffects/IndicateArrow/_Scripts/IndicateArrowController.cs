@@ -9,7 +9,7 @@ public class IndicateArrowController : MonoBehaviour
     private PoolIndicateArrow _poolIndicateArrow;
     private CharactersAims _charactersAims;
     private Transform _thisTransform;
-    private float _timerCheckNewNearestEnemy;
+    private float _timerSearchNewNearestEnemy;
 
     private void Awake()
     {
@@ -36,25 +36,25 @@ public class IndicateArrowController : MonoBehaviour
 
     private void Update()
     {
-        CheckingNewNearestEnemyTimer();
+        SearchNewNearestEnemyTimer();
     }
 
-    private void CheckingNewNearestEnemyTimer()
+    private void SearchNewNearestEnemyTimer()
     {
-        _timerCheckNewNearestEnemy += Time.deltaTime / _timeRefreshNearestEnemyList;
-        if (_timerCheckNewNearestEnemy > 1)
+        _timerSearchNewNearestEnemy += Time.deltaTime / _timeRefreshNearestEnemyList;
+        if (_timerSearchNewNearestEnemy > 1)
         {
-            _timerCheckNewNearestEnemy = 0;
+            _timerSearchNewNearestEnemy = 0;
             SetEnemyTransformToIndicateArrow();
         }
     }
 
     private void SetEnemyTransformToIndicateArrow()
     {
-        for (int i = 0; i < _charactersAims.GetNearestlyEnemyList(_poolIndicateArrow.PoolCapacity).Count; i++)
+        for (int i = 0; i < _charactersAims.GetNearestAimsForIndicateArrow(_poolIndicateArrow.PoolCapacity).Count; i++)
         {
             _poolIndicateArrow.WholeIndicateArrowList[i].SetCurrentEnemy
-                (_charactersAims.GetNearestlyEnemyList(_poolIndicateArrow.PoolCapacity)[i].SortedTransform);
+                (_charactersAims.GetNearestAimsForIndicateArrow(_poolIndicateArrow.PoolCapacity)[i].SortedTransform);
         }
     }
 }

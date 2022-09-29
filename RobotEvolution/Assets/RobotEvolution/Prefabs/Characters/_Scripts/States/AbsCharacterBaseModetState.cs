@@ -2,26 +2,26 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharactersAims)), RequireComponent(typeof(FiringRangeVisualisate)), RequireComponent(typeof(CharacterRayCastDetectedEnemy))]
 public abstract class AbsCharacterBaseModetState : MonoBehaviour
 {
-    [field: SerializeField] public Transform Turret { get; protected set; }
-
-    public Quaternion CurrentBodyView { get; protected set; }
-    public Quaternion CurrentTurretView { get; protected set; }
-    public Vector3 CurrentCharacterMove { get; protected set; }
-    public float CurrentSpeedMovement { get; protected set; }
+    [SerializeField] private Transform _turret;
+    [Min(0)][SerializeField] private float _timerRayCastVisibleEnemy;
     public CharacterModelStatsDataSO CharacterModelStatsDataSO { get; protected set; }
-    public bool IsMovableCharacter { get; protected set; }
 
+    private Quaternion _currentTurretView;
+    private Vector3 _currentCharacterMove;
     private AbsCharacterMovement _absCharacterMovement;
     private CharactersAims _charactersAims;
     private AbsCharacterModelAnimator _absCharacterModelAnimator;
     private FiringRangeVisualisate _firingRangeVisualisate;
+    private CharacterRayCastDetectedEnemy _characterRayCastDetectedEnemy;
     private Transform _thisTransform;
     private IShootable[] _AllIShootableArray;
     private List<IShootable> _EnemaleIShootableList = new();
     private IVeaponSetupble[] _iVeaponSetapblesArray;
 
+    private float _timerCheckVisibleNearestEnemy;
     private float _relativeAngle;
     private float _currentAngleToEnemy;
     private float _maxAngleViewTurrt = 0;
@@ -31,6 +31,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
         _thisTransform = transform;
 
         TryGetComponent(out AbsCharacterModelAnimator absCharacterModelAnimator); _absCharacterModelAnimator = absCharacterModelAnimator;
+        _characterRayCastDetectedEnemy = GetComponentInParent<CharacterRayCastDetectedEnemy>();
         _absCharacterMovement = GetComponentInParent<AbsCharacterMovement>();
         _charactersAims = GetComponentInParent<CharactersAims>();
         _iVeaponSetapblesArray = GetComponents<IVeaponSetupble>();
@@ -42,7 +43,6 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     public void SetSetupsForModelState(CharacterModelStatsDataSO characterModelStatsDataSO)
     {
         CharacterModelStatsDataSO = characterModelStatsDataSO;
-        CurrentSpeedMovement = characterModelStatsDataSO.SpeedMovement;
     }
 
     public virtual void Enter()
@@ -51,15 +51,11 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
         _absCharacterModelAnimator.PlayRun();
 
-        SetupCharacterMovable();
-
-        SetCurrentDirectionToCharacterMove();
+        SetupCharacterMova();
 
         EnableAndSetupModelVeapons();
 
         GetActualIShootableArray();
-
-        _absCharacterMovement.SetIsMovableCharacter(true);
     }
 
     public virtual void Exit()
@@ -75,50 +71,72 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
     private void Update()
     {
-        SetConstantDirectionals();
+        SetTurretDirectionals();
 
-        SetVaribleDirectionals();
+        SetBodyMoveTarget();
 
-        SetCurrentDirectionToCharacterMove();
+        TimerRayCastVisibleEnemy();
     }
 
-    private void SetConstantDirectionals()
+    private void TimerRayCastVisibleEnemy()
     {
-        CurrentTurretView = SetCurrentTurretView(_charactersAims.NearestAimEnemy);
-        CurrentCharacterMove = _thisTransform.forward;
+        _timerCheckVisibleNearestEnemy += Time.deltaTime / _timerCheckVisibleNearestEnemy;
+        if (_timerCheckVisibleNearestEnemy > 1)
+        {
+            _timerCheckVisibleNearestEnemy = 0;
+            //SetEnemyTransformToIndicateArrow();
+        }
     }
 
-    private void SetVaribleDirectionals()
+    private void SrtVisibleNearestEnemyTransform()
     {
-        CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-
-        // ToDO: There Created artifical intelligence for earch <ModelState>!!!
-
-        //if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.DistancePreparedToFire) 
-        //{
-        //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-        //    _isShoted = false;
-        //}
-
-        //else if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.ShotDistance && _isShoted == false)
-        //{
-        //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimEnemy);
-
-        //    if (_charactersAims.DistanceToEnemy < CharacterModelStatsDataSO.ShotDistance - 2)
-        //    {
-        //        _isShoted = true;
-        //        CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-        //    }
-        //}
+        _currentCharacterMove = _charactersAims.NearestAimStuff.position;
     }
+
+    private void SetBodyMoveTarget()
+    {
+        _currentCharacterMove = _charactersAims.NearestAimStuff.position;
+
+        _absCharacterMovement.SetCharacterMovePosition(_currentCharacterMove);
+    }
+
+    //private void SetVaribleDirectionals()
+    //{
+    //    //CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
+
+    //    // ToDO: There Created artifical intelligence for earch <ModelState>!!!
+
+    //    //if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.DistancePreparedToFire) 
+    //    //{
+    //    //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
+    //    //    _isShoted = false;
+    //    //}
+
+    //    //else if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.ShotDistance && _isShoted == false)
+    //    //{
+    //    //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimEnemy);
+
+    //    //    if (_charactersAims.DistanceToEnemy < CharacterModelStatsDataSO.ShotDistance - 2)
+    //    //    {
+    //    //        _isShoted = true;
+    //    //        CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
+    //    //    }
+    //    //}
+    //}
     #endregion
 
 
     #region Setup move character
-
-    private void SetupCharacterMovable()
+    private void SetupCharacterMova()
     {
-        _absCharacterMovement.SetupingCharacterMoveent(this);
+        _absCharacterMovement.SetupMoveCharacterOneTime(CharacterModelStatsDataSO, _turret);
+    }
+
+    private void SetTurretDirectionals()
+    {
+        _currentTurretView = SetCurrentTurretView(_charactersAims.NearestAimEnemy);
+
+        _absCharacterMovement.SetTurretDirectionInUpdate(_currentTurretView);
     }
 
     private Quaternion SetCurrentTurretView(Transform enemyTransform)
@@ -126,9 +144,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
         _currentAngleToEnemy = Vector3.Angle(_thisTransform.forward, enemyTransform.position - _thisTransform.position);
 
         if (_currentAngleToEnemy < _maxAngleViewTurrt / 2f)
-        {
             return LookToEnemy(enemyTransform);
-        }
         else
             return LookToDefolt();
     }
@@ -142,22 +158,10 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     {
         return CulculatQuaternionCharacterView(_thisTransform.forward);
     }
-
-    private Quaternion SetCurrentBodyView(Transform aimTransform)
-    {
-        Vector3 targetDirection = aimTransform.position - _thisTransform.position;
-        return CulculatQuaternionCharacterView(targetDirection);
-    }
-
     private Quaternion CulculatQuaternionCharacterView(Vector3 targetDirection)
     {
         _relativeAngle = Mathf.Atan2(targetDirection.normalized.x, targetDirection.normalized.z) * Mathf.Rad2Deg;
         return Quaternion.Euler(0f, _relativeAngle, 0f);
-    }
-
-    private void SetCurrentDirectionToCharacterMove()
-    {
-        _absCharacterMovement.SetCommonDerectionViewAndMovementUpdate(this);
     }
 
     #endregion

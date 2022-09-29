@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerVeaponCannon : VeaponCannon
 {
     private Button _buttonShot;
-    private PlayerDetectedAim _playerDetectedAim;
+    private CharacterRayCastDetectedEnemy _characterRayCastDetectedEnemy;
     private ShotFiilB _shotFiilB;
 
     public override void Awake()
@@ -35,7 +35,7 @@ public class PlayerVeaponCannon : VeaponCannon
 
     private void Start()
     {
-        _thisTransform.TryGetComponent(out PlayerDetectedAim detectedAimForPlayer); _playerDetectedAim = detectedAimForPlayer;
+        _thisTransform.TryGetComponent(out CharacterRayCastDetectedEnemy characterRayCastDetectedEnemy); _characterRayCastDetectedEnemy = characterRayCastDetectedEnemy;
     }
 
     public override void Update()
@@ -44,7 +44,7 @@ public class PlayerVeaponCannon : VeaponCannon
 
     private void SearchPlayersEnemy()
     {
-        Transform enemyTransform = _playerDetectedAim.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance);
+        Transform enemyTransform = _characterRayCastDetectedEnemy.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance);
 
         if (enemyTransform != null)
             _charactersAims.NearestAimEnemy = enemyTransform;

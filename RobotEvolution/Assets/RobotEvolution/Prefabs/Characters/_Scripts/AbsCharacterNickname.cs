@@ -41,14 +41,14 @@ public abstract class AbsCharacterNickname : MonoBehaviour, IVisibleInvisible
 
     private void OnEnable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent += OnSetNicknamePosition;
+        _characterModelStateSwitcher.EnterNewModelStateEvent += OnSetNicknamePosition;
         _scoreCalculation.SwapScoreThisCharacterEvent += OnRefreshCharacterScore;
 
         ActivateDisableNicknamePrefab(true);
     }
     private void OnDisable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent -= OnSetNicknamePosition;
+        _characterModelStateSwitcher.EnterNewModelStateEvent -= OnSetNicknamePosition;
         _scoreCalculation.SwapScoreThisCharacterEvent -= OnRefreshCharacterScore;
 
         ActivateDisableNicknamePrefab(false);

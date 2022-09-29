@@ -61,8 +61,6 @@ public class IndicateArrow : MonoBehaviour
 
     private void Update()
     {
-
-
         if (_currentEnemyTransform == null)
             return;
 

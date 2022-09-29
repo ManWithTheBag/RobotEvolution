@@ -20,12 +20,12 @@ public abstract class AbsShield : MonoBehaviour
 
     public virtual void OnEnable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent += OnSetupShielForCurrentStateModel;
+        _characterModelStateSwitcher.EnterNewModelStateEvent += OnSetupShielForCurrentStateModel;
         _shieldDetected.ShieldDetectedHitEvent += OnLossEnergy;
     }
     public virtual void OnDisable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent -= OnSetupShielForCurrentStateModel;
+        _characterModelStateSwitcher.EnterNewModelStateEvent -= OnSetupShielForCurrentStateModel;
         _shieldDetected.ShieldDetectedHitEvent -= OnLossEnergy;
     }
 

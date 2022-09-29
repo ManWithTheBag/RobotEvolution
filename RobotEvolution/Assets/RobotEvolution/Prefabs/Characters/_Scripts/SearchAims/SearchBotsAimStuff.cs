@@ -41,8 +41,6 @@ public class SearchBotsAimStuff :AbsSearcBotshAim
 
         _quikSortStuffList.Sort(_distanceToAimComparer);
 
-        _quikSortStuffList.RemoveAt(0); // Remove zero distance, compare by myself
-
         return _quikSortStuffList;
     }
 }

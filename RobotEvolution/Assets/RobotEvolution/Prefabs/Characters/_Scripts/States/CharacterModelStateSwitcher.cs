@@ -12,7 +12,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     private Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> _characterModelStateDictionary;
     private int _currentLevel;
 
-    public event Action<CharacterModelStatsDataSO> EnterModelStateEvent;
+    public event Action<CharacterModelStatsDataSO> EnterNewModelStateEvent;
     public event Action<int, int> ChangeModelScoreLimitEvent;
     public event Action FinishFinalModelRateEvent; // TODO: Invoke this event in this script when will by right final level
 
@@ -50,7 +50,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
         _currentLevel = ((int)characterStatsEnum);
         _currentCharacterModelState = _characterModelStateDictionary[characterStatsEnum];
 
-        EnterModelStateEvent?.Invoke(_currentCharacterModelState.CharacterModelStatsDataSO);
+        EnterNewModelStateEvent?.Invoke(_currentCharacterModelState.CharacterModelStatsDataSO);
 
         _currentCharacterModelState.Enter();
     }

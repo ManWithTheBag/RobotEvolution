@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CharactersAims : MonoBehaviour
 {
@@ -37,26 +39,35 @@ public class CharactersAims : MonoBehaviour
     private SearchBotsAimEnemy _searchBotsAimEnemy;
     private List<IDistanceToAimQuikSortable> _sortedEnemysList = new();
     private List<IDistanceToAimQuikSortable> _sortStuffsList = new();
-    private List<IDistanceToAimQuikSortable> _nearestEnemyList = new();
+    private List<IDistanceToAimQuikSortable> _pathComplitedSortAimsList = new();
     private Transform _thisTransform;
+    private NavMeshAgent _currentNavMeshAgent;
+    private NavMeshPath _navMeshPath;
+    private CharacterModelStateSwitcher _characterModelStateSwitcher;
 
     private void Awake()
     {
         _thisTransform = transform;
         _searchBotsAimStuff = GetLinkSearchBotAimClass<SearchBotsAimStuff>();
         _searchBotsAimEnemy = GetLinkSearchBotAimClass<SearchBotsAimEnemy>();
+        _currentNavMeshAgent = GetComponent<NavMeshAgent>();
+        _characterModelStateSwitcher = GetComponent<CharacterModelStateSwitcher>();
     }
 
     private void OnEnable()
     {
         GlobalEventManager.SearchNewAimEvent.AddListener(OnGetOneBotAims);
+        _characterModelStateSwitcher.EnterNewModelStateEvent += UpdateNavMeshAgent;
     }
     private void OnDisable()
     {
         GlobalEventManager.SearchNewAimEvent.RemoveListener(OnGetOneBotAims);
+        _characterModelStateSwitcher.EnterNewModelStateEvent -= UpdateNavMeshAgent;
     }
     private void Start()
     {
+        _navMeshPath = new NavMeshPath();
+
         OnGetOneBotAims();
     }
     private T GetLinkSearchBotAimClass<T>() where T : AbsSearcBotshAim
@@ -79,36 +90,57 @@ public class CharactersAims : MonoBehaviour
         }
     }
 
+    private void UpdateNavMeshAgent(CharacterModelStatsDataSO characterModelStatsDataSO)
+    {
+        StartCoroutine(UpdateNavMeshAgentInEndFrame());
+    }
+    private IEnumerator UpdateNavMeshAgentInEndFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        _currentNavMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
     private void OnGetOneBotAims()
     {
         GetBothTypeAimsLists();
 
-        _nearestAimStuff = _sortStuffsList[0].SortedTransform;
-        _nearestAimEnemy = _sortedEnemysList[0].SortedTransform;
-    }
-
-    public List<IDistanceToAimQuikSortable> GetNearestlyEnemyList(int coutArrowRequest)
-    {
-        GetBothTypeAimsLists();
-
-        _nearestEnemyList.Clear();
-
-        for (int i = 0; i < coutArrowRequest; i++)
-        {
-            if (_sortedEnemysList.Count > i)
-                _nearestEnemyList.Add(_sortedEnemysList[i]);
-            else
-                Debug.LogError($"LogError: Request cout indicate arrow more then enemy in game: count enemy = {_sortedEnemysList.Count}, count indicateArrow request = {coutArrowRequest}");
-        }
-
-        return _nearestEnemyList;
+        _nearestAimEnemy = GetPathComplitedSortAimList(1, _sortedEnemysList)[0].SortedTransform;
+        _nearestAimStuff = GetPathComplitedSortAimList(1, _sortStuffsList)[0].SortedTransform;
     }
 
     private void GetBothTypeAimsLists()
     {
         _sortStuffsList = _searchBotsAimStuff.GetSortFoDistanceAimsList(_thisTransform);
         _sortedEnemysList = _searchBotsAimEnemy.GetSortFoDistanceAimsList(_thisTransform);
+    }
+
+    public List<IDistanceToAimQuikSortable> GetNearestAimsForIndicateArrow(int amountAimsRequest)
+    {
+        GetBothTypeAimsLists();
+
+        return GetPathComplitedSortAimList(amountAimsRequest, _sortedEnemysList);
+    }
+
+    public List<IDistanceToAimQuikSortable> GetPathComplitedSortAimList(int amountAimsRequest, List<IDistanceToAimQuikSortable> checkedList)
+    {
+
+        _pathComplitedSortAimsList.Clear();
+
+        for (int i = 0; i < checkedList.Count; i++)
+        {
+            _currentNavMeshAgent.CalculatePath(checkedList[i].SortedTransform.position, _navMeshPath);
+
+            if (_navMeshPath.status == NavMeshPathStatus.PathComplete)
+                _pathComplitedSortAimsList.Add(checkedList[i]);
+
+            if (_pathComplitedSortAimsList.Count == amountAimsRequest)
+                break;
+        }
+
+        if(_pathComplitedSortAimsList.Count != amountAimsRequest)
+            Debug.LogError($"LogError: Can't find complited path for aim from {checkedList}: count aims = {checkedList.Count}, count indicateArrow request = {amountAimsRequest}");
+
+        return _pathComplitedSortAimsList;
     }
 
     private void Update()

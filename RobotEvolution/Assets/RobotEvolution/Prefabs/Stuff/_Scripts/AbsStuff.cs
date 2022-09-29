@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
+[SelectionBase]
 public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceToAimQuikSortable
 {
-    [Min(0)] [SerializeField] private float _spawnPositionY;
+    //[Min(0)] [SerializeField] private float _spawnPositionY;
     public float SortDistanceAimToCharacter { get; private set; }
     public Transform SortedTransform { get; private set; }
 
@@ -17,13 +18,13 @@ public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceToAimQuik
         SortedTransform = _thisTransform;
 
         _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>();
-        _thisTransform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+        _thisTransform.position = _randomPosition.GetRandomPosition();
     }
 
     public virtual void TotalReshreshing()
     {
         gameObject.SetActive(false);
-        transform.position = _randomPosition.GetRandomPosition(_spawnPositionY);
+        transform.position = _randomPosition.GetRandomPosition();
         GlobalEventManager.SearchNewAimEvent.Invoke();
         gameObject.SetActive(true);
     }

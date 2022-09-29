@@ -22,11 +22,11 @@ public class IndicateArrowSetuper : MonoBehaviour
 
     private void OnEnable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent += CheckCurrentModelLevel;
+        _characterModelStateSwitcher.EnterNewModelStateEvent += CheckCurrentModelLevel;
     }
     private void OnDisable()
     {
-        _characterModelStateSwitcher.EnterModelStateEvent -= CheckCurrentModelLevel;
+        _characterModelStateSwitcher.EnterNewModelStateEvent -= CheckCurrentModelLevel;
     } 
 
     private void CheckCurrentModelLevel(CharacterModelStatsDataSO characterModelStatsDataSO)
