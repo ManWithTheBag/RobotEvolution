@@ -1,43 +1,51 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharactersAims)), RequireComponent(typeof(FiringRangeVisualisate)), RequireComponent(typeof(CharacterRayCastDetectedEnemy))]
 public abstract class AbsCharacterBaseModetState : MonoBehaviour
 {
     [SerializeField] private Transform _turret;
-    [Min(0)][SerializeField] private float _timerRayCastVisibleEnemy;
+    [Range(1, 100)][SerializeField] private int _probablyAttack = 50;
     public CharacterModelStatsDataSO CharacterModelStatsDataSO { get; protected set; }
 
-    private Quaternion _currentTurretView;
-    private Vector3 _currentCharacterMove;
+    [SerializeField] private Transform _currentCharactersAim;
     private AbsCharacterMovement _absCharacterMovement;
     private CharactersAims _charactersAims;
     private AbsCharacterModelAnimator _absCharacterModelAnimator;
-    private FiringRangeVisualisate _firingRangeVisualisate;
-    private CharacterRayCastDetectedEnemy _characterRayCastDetectedEnemy;
-    private Transform _thisTransform;
-    private IShootable[] _AllIShootableArray;
-    private List<IShootable> _EnemaleIShootableList = new();
-    private IVeaponSetupble[] _iVeaponSetapblesArray;
+    private VeaponUpdater _veaponUpdater;
+    private BotShield _botShield;
 
-    private float _timerCheckVisibleNearestEnemy;
-    private float _relativeAngle;
-    private float _currentAngleToEnemy;
-    private float _maxAngleViewTurrt = 0;
+    private Transform _thisTransform;
+    private bool _isEnergyRequested;
+    private bool _isBattleComplited = false;
+    private bool _isEnougfDistance = false;
 
     private void Awake()
     {
         _thisTransform = transform;
 
-        TryGetComponent(out AbsCharacterModelAnimator absCharacterModelAnimator); _absCharacterModelAnimator = absCharacterModelAnimator;
-        _characterRayCastDetectedEnemy = GetComponentInParent<CharacterRayCastDetectedEnemy>();
+        _thisTransform.parent.TryGetComponent(out BotShield botShield); _botShield = botShield;
         _absCharacterMovement = GetComponentInParent<AbsCharacterMovement>();
         _charactersAims = GetComponentInParent<CharactersAims>();
-        _iVeaponSetapblesArray = GetComponents<IVeaponSetupble>();
-        _AllIShootableArray = GetComponentsInParent<IShootable>();
+        _veaponUpdater = GetComponent<VeaponUpdater>();
 
-        _thisTransform.parent.TryGetComponent(out FiringRangeVisualisate firingRangeVisualisate); _firingRangeVisualisate = firingRangeVisualisate;
+        TryGetComponent(out AbsCharacterModelAnimator absCharacterModelAnimator); _absCharacterModelAnimator = absCharacterModelAnimator;
+    }
+
+    private void OnEnable()
+    {
+        _charactersAims.ScanrdComplitEvent += OnCheckBehaviourModel;
+
+        if (_botShield != null)
+            _botShield.RequestBatteryEvent += MoveToVisibleBattery;
+    }
+    private void OnDisable()
+    {
+        _charactersAims.ScanrdComplitEvent -= OnCheckBehaviourModel;
+
+        if (_botShield != null)
+            _botShield.RequestBatteryEvent -= MoveToVisibleBattery;
     }
 
     public void SetSetupsForModelState(CharacterModelStatsDataSO characterModelStatsDataSO)
@@ -51,168 +59,120 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
         _absCharacterModelAnimator.PlayRun();
 
-        SetupCharacterMova();
+        _veaponUpdater.EnableModelVeapons();
 
-        EnableAndSetupModelVeapons();
+        SetAimCharacter(_charactersAims.RandomPoint);
 
-        GetActualIShootableArray();
+        SetupCharacterMove();
     }
 
     public virtual void Exit()
     {
-        DisableModelVeapons();
+        _veaponUpdater.DisableModelVeapons();
 
         gameObject.SetActive(false);
     }
 
-
+    private void Update()
+    {
+        SetCurrentMovePosition();
+    }
 
     #region Setup artifical intelligence
 
-    private void Update()
+    private void OnCheckBehaviourModel(IAimsSelectable iAimsSelectable)
     {
-        SetTurretDirectionals();
+        if (_isEnergyRequested && iAimsSelectable.GetBatteryVisibleList().Count > 0)
+        {
+            _currentCharactersAim = iAimsSelectable.GetBatteryVisibleList()[0].SortedTransform;
+        }
 
-        SetBodyMoveTarget();
+        else if (iAimsSelectable.GetEnemyVisibleList().Count > 0 && _isBattleComplited == false && _isEnougfDistance == false
+            && UnityEngine.Random.Range(0, 100) < _probablyAttack)
+        {
+            if (CheckVisibleEnemyList(iAimsSelectable.GetEnemyVisibleList()))
+            {
+                StartCoroutine(BattleTimeController());
 
-        TimerRayCastVisibleEnemy();
+                _charactersAims.NearestEnemy = iAimsSelectable.GetEnemyVisibleList()[0].SortedTransform;
+                SetAimCharacter(iAimsSelectable.GetEnemyVisibleList()[0].SortedTransform);
+            }
+        }
+
+        else if (iAimsSelectable.GetGearVisibleList().Count > 0)
+        {
+            SetAimCharacter(iAimsSelectable.GetGearVisibleList()[0].SortedTransform);
+        }
+
+        else
+        {
+            SetAimCharacter(_charactersAims.RandomPoint);
+        }
+
     }
 
-    private void TimerRayCastVisibleEnemy()
+
+    private void MoveToVisibleBattery(bool isTurn)
     {
-        _timerCheckVisibleNearestEnemy += Time.deltaTime / _timerCheckVisibleNearestEnemy;
-        if (_timerCheckVisibleNearestEnemy > 1)
+        _isEnergyRequested = isTurn;
+    }
+
+    #region Checked EvemyVisibleList logic
+    private bool CheckVisibleEnemyList(List<IDistanceAimsComparable> newVisibleEnemyList)
+    {
+        return (CompareMaxCraudEnemy(newVisibleEnemyList) == true && CompareLevels(newVisibleEnemyList) == true) ? true : false;
+    }
+
+    private bool CompareMaxCraudEnemy(List<IDistanceAimsComparable> newSortedVisibleEnemyList)
+    {
+        return (newSortedVisibleEnemyList.Count <= CharacterModelStatsDataSO.MaxAmountCrowdEnemy) ? true : false;
+    }
+    private bool CompareLevels(List<IDistanceAimsComparable> newSortedVisibleEnemyList)
+    {
+        if (newSortedVisibleEnemyList[0].SortedTransform.TryGetComponent(out ICharacter iCharacter))
+            return ((int)CharacterModelStatsDataSO.TypeModelStateCharacter >= iCharacter.Level) ? true : false;
+        else
+            return false;
+    }
+
+    private IEnumerator BattleTimeController()
+    {
+        yield return new WaitForSeconds(CharacterModelStatsDataSO.TimeBattle);
+        _isBattleComplited = true;
+
+        yield return new WaitForSeconds(CharacterModelStatsDataSO.TimeNotBattle);
+        _isBattleComplited = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_currentCharactersAim != null) // TODO: Make better later
         {
-            _timerCheckVisibleNearestEnemy = 0;
-            //SetEnemyTransformToIndicateArrow();
+            if ((Vector3.Distance(_thisTransform.position, _currentCharactersAim.position) < 10))
+                _isEnergyRequested = true;
+            else
+                _isEnergyRequested = false;
         }
     }
 
-    private void SrtVisibleNearestEnemyTransform()
-    {
-        _currentCharacterMove = _charactersAims.NearestAimStuff.position;
-    }
-
-    private void SetBodyMoveTarget()
-    {
-        _currentCharacterMove = _charactersAims.NearestAimStuff.position;
-
-        _absCharacterMovement.SetCharacterMovePosition(_currentCharacterMove);
-    }
-
-    //private void SetVaribleDirectionals()
-    //{
-    //    //CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-
-    //    // ToDO: There Created artifical intelligence for earch <ModelState>!!!
-
-    //    //if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.DistancePreparedToFire) 
-    //    //{
-    //    //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-    //    //    _isShoted = false;
-    //    //}
-
-    //    //else if (_charactersAims.DistanceToEnemy > CharacterModelStatsDataSO.ShotDistance && _isShoted == false)
-    //    //{
-    //    //    CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimEnemy);
-
-    //    //    if (_charactersAims.DistanceToEnemy < CharacterModelStatsDataSO.ShotDistance - 2)
-    //    //    {
-    //    //        _isShoted = true;
-    //    //        CurrentBodyView = SetCurrentBodyView(_charactersAims.NearestAimStuff);
-    //    //    }
-    //    //}
-    //}
     #endregion
 
 
-    #region Setup move character
-    private void SetupCharacterMova()
+    private void SetAimCharacter(Transform aimTransform)
+    {
+        _currentCharactersAim = aimTransform;
+    }
+
+
+    #endregion
+
+    private void SetupCharacterMove()
     {
         _absCharacterMovement.SetupMoveCharacterOneTime(CharacterModelStatsDataSO, _turret);
     }
-
-    private void SetTurretDirectionals()
+    private void SetCurrentMovePosition()
     {
-        _currentTurretView = SetCurrentTurretView(_charactersAims.NearestAimEnemy);
-
-        _absCharacterMovement.SetTurretDirectionInUpdate(_currentTurretView);
+        if (_currentCharactersAim != null)
+            _absCharacterMovement.SetCharacterMovePosition(_currentCharactersAim.position);
     }
-
-    private Quaternion SetCurrentTurretView(Transform enemyTransform)
-    {
-        _currentAngleToEnemy = Vector3.Angle(_thisTransform.forward, enemyTransform.position - _thisTransform.position);
-
-        if (_currentAngleToEnemy < _maxAngleViewTurrt / 2f)
-            return LookToEnemy(enemyTransform);
-        else
-            return LookToDefolt();
-    }
-
-    public virtual Quaternion LookToEnemy(Transform enemyTransform)
-    {
-        Vector3 targetDirection = enemyTransform.position - _thisTransform.position;
-        return CulculatQuaternionCharacterView(targetDirection);
-    }
-    public Quaternion LookToDefolt()
-    {
-        return CulculatQuaternionCharacterView(_thisTransform.forward);
-    }
-    private Quaternion CulculatQuaternionCharacterView(Vector3 targetDirection)
-    {
-        _relativeAngle = Mathf.Atan2(targetDirection.normalized.x, targetDirection.normalized.z) * Mathf.Rad2Deg;
-        return Quaternion.Euler(0f, _relativeAngle, 0f);
-    }
-
-    #endregion
-
-
-    #region Setup Shooting
-
-    private void EnableAndSetupModelVeapons()
-    {
-        foreach (IVeaponSetupble item in _iVeaponSetapblesArray)
-        {
-            item.SetEvableThisVeapon();
-            item.SetupVeaponForModelState();
-        }
-    }
-    private void DisableModelVeapons()
-    {
-        foreach (IVeaponSetupble item in _iVeaponSetapblesArray)
-        {
-            item.SetDisableThisVeapon();
-        }
-    }
-
-
-    private void GetActualIShootableArray()
-    {
-        _EnemaleIShootableList.Clear();
-
-        foreach (IShootable item in _AllIShootableArray)
-        {
-            if (item.IsEnemleThisComponent)
-                _EnemaleIShootableList.Add(item);
-        }
-
-        SetMaxAngleViewTurret();
-
-        SetMaxDistanceFiringRangeVisualisate();
-    }
-    private void SetMaxAngleViewTurret()
-    {
-        foreach (var item in _EnemaleIShootableList)
-        {
-            if (_maxAngleViewTurrt < item.ViewAngleTurretAndVeapon)
-                _maxAngleViewTurrt = item.ViewAngleTurretAndVeapon;
-        }
-    }
-
-    private void SetMaxDistanceFiringRangeVisualisate()
-    {
-        if (_firingRangeVisualisate != null)
-            _firingRangeVisualisate.SetMaxDistaceVisualisate(_EnemaleIShootableList.ToArray());
-    }
-    #endregion
 }

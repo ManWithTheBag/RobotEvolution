@@ -49,6 +49,29 @@ public class CharacterModelStatsDataSO : ScriptableObject
     //}
     #endregion
 
+    #region Setup Attack
+    [Header("Setup Attack")]
+    [Min(0)] [SerializeField] private int _maxAmountCrowdEnemy;
+    public int MaxAmountCrowdEnemy
+    {
+        get { return _maxAmountCrowdEnemy; }
+        private set { _maxAmountCrowdEnemy = value; }
+    }
+
+    [Min(0)] [SerializeField] private int _timeBattle;
+    public int TimeBattle
+    {
+        get { return _timeBattle; }
+        private set { _timeBattle = value; }
+    }
+
+    [Min(0)] [SerializeField] private int _timeNotBattle;
+    public int TimeNotBattle
+    {
+        get { return _timeNotBattle; }
+        private set { _timeNotBattle = value; }
+    }
+    #endregion
 
     #region Setup Shield
     [Header("Setup Shield")]

@@ -18,12 +18,12 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
     private void OnEnable()
     {
-        _scoreCalculation.SwapScoreThisCharacterEvent += OnModelStateSwitch;
+        _scoreCalculation.SwapScoreEvent += OnModelStateSwitch;
     }
 
     private void OnDisable()
     {
-        _scoreCalculation.SwapScoreThisCharacterEvent -= OnModelStateSwitch;
+        _scoreCalculation.SwapScoreEvent -= OnModelStateSwitch;
     }
 
     private void Start()

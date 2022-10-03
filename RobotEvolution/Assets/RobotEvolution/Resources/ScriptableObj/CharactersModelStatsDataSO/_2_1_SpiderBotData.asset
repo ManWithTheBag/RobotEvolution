@@ -21,7 +21,10 @@ MonoBehaviour:
   _navSpeedMovement: 4
   _navAngularspeedBody: 50
   _navAnguAcceleration: 50
-  _speedTurretRotation: 0.5
-  _maxCapasityEnergyInShield: 80
+  _speedTurretRotation: 2
+  _maxAmountCrowdEnemy: 3
+  _timeBattle: 30
+  _timeNotBattle: 30
+  _maxCapasityEnergyInShield: 30
   _diametrSphereShield: 10
   _positionSphereShieldY: 2.5

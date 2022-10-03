@@ -40,7 +40,7 @@ public abstract class AbsVeapon : MonoBehaviour, IShootable
 
     public virtual void Update()
     {
-        TryToShoot(_charactersAims.NearestAimEnemy);
+        TryToShoot(_charactersAims.NearestEnemy);
     }
 
     public virtual void TryToShoot(Transform enemyTransform)

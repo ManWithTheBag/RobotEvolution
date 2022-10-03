@@ -8,7 +8,8 @@ public class ScoreCalculation : MonoBehaviour
     private int _oldScore;
     private ICharacter _iCaracter;
 
-    public event Action<int, int> SwapScoreThisCharacterEvent; 
+    public event Action<int, int> SwapScoreEvent;
+    public event Action LoseScoreEvent;
 
     private void Start()
     {
@@ -28,11 +29,13 @@ public class ScoreCalculation : MonoBehaviour
         _oldScore = _iCaracter.Score;
         _iCaracter.Score -= lossScore;
         ScoreISChanged(_oldScore, _iCaracter.Score);
+
+        LoseScoreEvent?.Invoke();
     }
 
     public void ScoreISChanged(int oldScoreValue, int newScoreValue)
     {
-        SwapScoreThisCharacterEvent?.Invoke(oldScoreValue, newScoreValue);
+        SwapScoreEvent?.Invoke(oldScoreValue, newScoreValue);
         GlobalEventManager.SwapScoreAnyCharactersEvent.Invoke();
     }
 }

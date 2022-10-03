@@ -4,13 +4,14 @@ using UnityEngine;
 
 public abstract class AbsVeaponRayCast : AbsVeapon
 {
+    [SerializeField] int _countRayInRayCast = 3;
+    [SerializeField] float _scanningAngle = 20;
+
     protected Transform _turret;
     protected List<Transform> _positionsVeaponStartLineRenderList;
     protected Transform _missShotTransform;
     protected RaycastHit _hit;
-
     private LineRenderer _lineRenderer;
-
 
     public virtual void Start()
     {
@@ -44,12 +45,40 @@ public abstract class AbsVeaponRayCast : AbsVeapon
     }
     protected bool CheckRayCast()
     {
-        Physics.Raycast(_turret.position, _turret.forward, out _hit, MaxShootDistance);
-        if (_hit.collider != null)
-            return true;
-        else
-            return false;
+        bool isHited = false;
+        float j = 0;
+
+        for (int i = 0; i < _countRayInRayCast; i++)
+        {
+            var z = Mathf.Sin(j);
+            var y = Mathf.Cos(j);
+
+            j += +(_scanningAngle / 2) * Mathf.Deg2Rad / _countRayInRayCast;
+
+            Vector3 dir = _turret.TransformDirection(new Vector3(0, z, y));
+            isHited = GetRaycast(dir);
+
+            if (z != 0)
+            {
+                dir = _turret.TransformDirection(new Vector3(0, -z, y));
+                isHited = GetRaycast(dir);
+            }
+        }
+
+        return isHited;
     }
+
+    private bool GetRaycast(Vector3 dir)
+    {
+        if (Physics.Raycast(_turret.position, dir, out _hit, MaxShootDistance))
+        {
+            if(_hit.collider.transform.tag == "Character" || _hit.collider.transform.tag == "Shield")
+                return true;
+        }
+
+        return false;
+    }
+
 
     protected void SetupVisualisatePosition(Vector3 enemyPosition)
     {

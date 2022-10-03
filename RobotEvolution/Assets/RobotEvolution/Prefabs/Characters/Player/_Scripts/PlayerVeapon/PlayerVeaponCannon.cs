@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class PlayerVeaponCannon : VeaponCannon
 {
     private Button _buttonShot;
-    private CharacterRayCastDetectedEnemy _characterRayCastDetectedEnemy;
+    //private CharacterScanningAims _characterScanningAims;
     private ShotFiilB _shotFiilB;
 
     public override void Awake()
     {
         GetButtonLinks();
 
+        //_thisTransform.TryGetComponent(out CharacterScanningAims characterScanningAims); _characterScanningAims = characterScanningAims;
+        
         base.Awake();
     }
     private void GetButtonLinks()
@@ -23,33 +25,24 @@ public class PlayerVeaponCannon : VeaponCannon
     }
     public override void OnEnable()
     {
-        _buttonShot.onClick.AddListener(SearchPlayersEnemy);
-
+        _buttonShot.onClick.AddListener(ScanEnemy);
         base.OnEnable();
     }
     public override void OnDisable()
     {
-        _buttonShot.onClick.RemoveListener(SearchPlayersEnemy);
+        _buttonShot.onClick.RemoveListener(ScanEnemy);
         base.OnDisable();
-    }
-
-    private void Start()
-    {
-        _thisTransform.TryGetComponent(out CharacterRayCastDetectedEnemy characterRayCastDetectedEnemy); _characterRayCastDetectedEnemy = characterRayCastDetectedEnemy;
     }
 
     public override void Update()
     {
     }
 
-    private void SearchPlayersEnemy()
+    private void ScanEnemy()
     {
-        Transform enemyTransform = _characterRayCastDetectedEnemy.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance);
+        _charactersAims.ScanningEnemyVisibleList();
 
-        if (enemyTransform != null)
-            _charactersAims.NearestAimEnemy = enemyTransform;
-
-        TryToShoot(enemyTransform);
+        TryToShoot(_charactersAims.NearestEnemy);
     }
 
     public override void TryToShoot(Transform enemyTransform)

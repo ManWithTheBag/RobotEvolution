@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bot
   - Character
+  - Shield
   layers:
   - Default
   - TransparentFX

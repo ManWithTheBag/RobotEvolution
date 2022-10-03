@@ -9,12 +9,9 @@ public class RandomPosition : MonoBehaviour
     [SerializeField] private float _radiusSearchSphere;
 
     private NavMeshHit _navMeshHit;
-    private float _spawnPositionY;
     private Collider[] hitCollider;
     public Vector3 GetRandomPosition()
     {
-        //_spawnPositionY = spawnPositionY;
-
         if (SearchPositionOnNavMesh())
             return new Vector3(_navMeshHit.position.x, _navMeshHit.position.y, _navMeshHit.position.z);
 
@@ -45,9 +42,7 @@ public class RandomPosition : MonoBehaviour
     private bool CheckMapPoint(Vector3 randomNavPosition)
     {
         hitCollider = Physics.OverlapBox(randomNavPosition, _sizeCheckColliderBox, Quaternion.identity);
-        if (hitCollider.Length <= 0)
-            return true;
-        else
-            return false;
+
+        return (hitCollider.Length <= 0) ? true : false;
     }
 }

@@ -61,7 +61,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391741887381869259}
   m_Layer: 0
-  m_Name: RayChastStransform
+  m_Name: ScanerTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1730369551392270824}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 0
+  _level: 0
 --- !u!114 &7544937240970143330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,8 +444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bbac50ccc6cab4abf93346fbd606ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nearestAimStuff: {fileID: 0}
-  _nearestAimEnemy: {fileID: 0}
+  _timerScanningAims: 5
+  _minDistanceRandomPoint: 80
+  _randomPoint: {fileID: 0}
+  _nearestEnemy: {fileID: 0}
 --- !u!114 &7039701346588122892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c529600045751d41814f6b0468a8b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rayCastDetectTransform: {fileID: 391741887381869259}
+  _scannerTransform: {fileID: 391741887381869259}
+  _maxScanDistance: 100
+  _scanningAngle: 160
   _countRayInScan: 12
 --- !u!114 &-4176619698535663579
 MonoBehaviour:

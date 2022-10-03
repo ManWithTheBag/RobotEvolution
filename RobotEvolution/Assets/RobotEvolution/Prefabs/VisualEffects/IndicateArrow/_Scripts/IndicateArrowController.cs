@@ -51,10 +51,10 @@ public class IndicateArrowController : MonoBehaviour
 
     private void SetEnemyTransformToIndicateArrow()
     {
-        for (int i = 0; i < _charactersAims.GetNearestAimsForIndicateArrow(_poolIndicateArrow.PoolCapacity).Count; i++)
+        for (int i = 0; i < _charactersAims.GetNearestEnemyListForIndicationArrow(_poolIndicateArrow.PoolCapacity).Count; i++)
         {
             _poolIndicateArrow.WholeIndicateArrowList[i].SetCurrentEnemy
-                (_charactersAims.GetNearestAimsForIndicateArrow(_poolIndicateArrow.PoolCapacity)[i].SortedTransform);
+                (_charactersAims.GetNearestEnemyListForIndicationArrow(_poolIndicateArrow.PoolCapacity)[i].SortedTransform);
         }
     }
 }

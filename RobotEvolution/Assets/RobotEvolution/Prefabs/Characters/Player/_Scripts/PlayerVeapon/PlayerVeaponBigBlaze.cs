@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerVeaponBigBlaze : VeaponBigBlaze
 {
     private Button _buttonShot;
-    private CharacterRayCastDetectedEnemy _characterRayCastDetectedEnemy;
+    private CharacterScanningAims _characterRayCastDetectedEnemy;
     private ShotFiilB _shotFiilB;
 
     public override void Awake()
@@ -34,7 +34,7 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
     }
     public override void Start()
     {
-        _thisTransform.TryGetComponent(out CharacterRayCastDetectedEnemy characterRayCastDetectedEnemy); _characterRayCastDetectedEnemy = characterRayCastDetectedEnemy;
+        _thisTransform.TryGetComponent(out CharacterScanningAims characterRayCastDetectedEnemy); _characterRayCastDetectedEnemy = characterRayCastDetectedEnemy;
 
         base.Start();
     }
@@ -46,12 +46,9 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
 
     private void SearchPlayersEnemy()
     {
-        Transform enemyTransform = _characterRayCastDetectedEnemy.SearchPlayerEnemy(ViewAngleTurretAndVeapon, MaxShootDistance); // If have't found enemy, return null
-        
-        if (enemyTransform != null)
-            _charactersAims.NearestAimEnemy = enemyTransform;
+        _charactersAims.ScanningEnemyVisibleList();
          
-        TryToShoot(enemyTransform);
+        TryToShoot(_charactersAims.NearestEnemy);
     }
 
     public override void TryToShoot(Transform enemyTransform)
@@ -72,7 +69,6 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
     {
         if (CheckRayCast())
         {
-           
             SetupVisualisatePosition(_hit.point);
             ChangeScore(_hit.transform);
         }

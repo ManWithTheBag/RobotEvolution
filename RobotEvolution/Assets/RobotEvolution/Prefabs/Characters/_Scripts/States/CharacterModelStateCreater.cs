@@ -41,9 +41,7 @@ public class CharacterModelStateCreater : MonoBehaviour
     private void SetapapingModelState(KeyValuePair<CharacterModelStatsEnum, CharacterModelStatsDataSO> dictionaryItem, GameObject characterModel)
     {
         if (characterModel.TryGetComponent(out AbsCharacterBaseModetState characterStateClass))
-        {
             characterStateClass.SetSetupsForModelState(dictionaryItem.Value);
-        }
         else
             Debug.LogError($"LoogError: Havent CharacterState script on the model!!! Add Character script on the model:{characterModel.name}");
     }

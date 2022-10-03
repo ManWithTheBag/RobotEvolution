@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class AbsShield : MonoBehaviour
 {
     [SerializeField] protected int _newEnergyInShield;
-    [SerializeField] private GameObject _shieldObj;
+    [SerializeField] protected GameObject _shieldObj;
     [SerializeField] private float _timeAddOnePpintEnergy;
 
     protected int _maxCapasityEnergyInShield;
@@ -55,13 +55,13 @@ public abstract class AbsShield : MonoBehaviour
     }
     
 
-    private void CheckChargeBattery()
+    public virtual void CheckChargeBattery()
     {
         if (_newEnergyInShield <= 0)
             _shieldObj.SetActive(false);
     }
 
-    protected void OnTryActivateShield()
+    public virtual void OnTryActivateShield()
     {
         if(_newEnergyInShield >= _maxCapasityEnergyInShield)
             _shieldObj.SetActive(true);

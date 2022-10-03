@@ -4,15 +4,20 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class AbsCharacterMovement : MonoBehaviour
 {
+    protected CharactersAims _charactersAims;
     protected NavMeshAgent _navMeshAgent;
     protected Transform _thisTransform;
 
-    private Quaternion _currentTurretView;
     private Transform _turret;
+    private Vector3 _turretView;
+    private Vector3 _enemyDirection;
     private CharacterModelStatsDataSO _characterModelStatsDataSO;
+    private float _currentAngleToEnemy;
+    private float _maxAngleViewTurrt;
 
     public virtual void Awake()
     {
+        _charactersAims = GetComponent<CharactersAims>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _thisTransform = transform;
     }
@@ -28,26 +33,45 @@ public abstract class AbsCharacterMovement : MonoBehaviour
         _navMeshAgent.acceleration = characterModelStatsDataSO.NavAnguAcceleration;
     }
 
-
-    public void SetTurretDirectionInUpdate(Quaternion currentTurretView)
-    {
-        _currentTurretView = currentTurretView;
-
-    }
     public virtual void SetCharacterMovePosition(Vector3 targetPosition)
     {
         _navMeshAgent.SetDestination(targetPosition);
     }
+    public void SetCurrentMaxAngleViewTarret(float maxAngleViewTurrt)
+    {
+        _maxAngleViewTurrt = maxAngleViewTurrt;
+    }
 
     private void Update()
     {
-        RotationBody();
+        RotationTurret();
     }
 
-    private void RotationBody()
+    #region Rotation Turret
+
+    private void RotationTurret()
     {
-        _turret.rotation = Quaternion.Lerp(_turret.rotation, _currentTurretView, Time.deltaTime * _characterModelStatsDataSO.SpeedTurretRotation);
+        SetTurretDirectionals();
+
+        _turret.rotation = Quaternion.Lerp(_turret.rotation, Quaternion.LookRotation(_turretView), Time.deltaTime * _characterModelStatsDataSO.SpeedTurretRotation);
     }
+
+    private void SetTurretDirectionals()
+    {
+        if (CheckCurrentAngleToEnemy())
+            _turretView = _enemyDirection;
+        else
+            _turretView = _thisTransform.forward;
+    }
+
+    private bool CheckCurrentAngleToEnemy()
+    {
+        _enemyDirection = (_charactersAims.NearestEnemy.position - _thisTransform.position);
+        _currentAngleToEnemy = Vector3.Angle(_thisTransform.forward, _enemyDirection);
+
+        return (_currentAngleToEnemy < _maxAngleViewTurrt / 2f) ? true : false;
+    }
+    #endregion
 }
 
 

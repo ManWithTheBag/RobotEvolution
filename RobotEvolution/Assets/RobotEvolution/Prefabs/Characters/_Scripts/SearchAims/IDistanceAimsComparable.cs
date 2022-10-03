@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IDistanceToAimQuikSortable
+public interface IDistanceAimsComparable
 {
     public Transform SortedTransform { get; }
     public float SortDistanceAimToCharacter { get;}

@@ -2,10 +2,9 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
-public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceToAimQuikSortable, IComparable<AbsCharacter>
+public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceAimsComparable, IComparable<AbsCharacter>
 {
     [Min(0)][SerializeField] private int _score;
-     //[SerializeField] private float _spawnPositionY;
     public int Score
     {
         get { return _score; }
@@ -16,6 +15,20 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceTo
 
             else
                 _score = value;
+        }
+    }
+
+    [Min(0)] [SerializeField] private int _level;
+    public int Level
+    {
+        get { return _level; }
+        set
+        {
+            if (value < 0)
+                _level = 0;
+
+            else
+                _level = value;
         }
     }
 
@@ -44,7 +57,9 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceTo
 
     public float SortDistanceAimToCharacter { get; private set; }
     public Transform SortedTransform { get; private set; }
+    //public IFree IFree => null;
 
+    private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private RandomPosition _randomPosition;
     private Transform _thisTransform;
 
@@ -53,11 +68,22 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceTo
         _thisTransform = transform;
         SortedTransform = _thisTransform;
         _randomPosition = GameObject.Find("ObjController").GetComponent<RandomPosition>();
+        _characterModelStateSwitcher = GetComponent<CharacterModelStateSwitcher>();
     }
 
     private void OnEnable()
     {
+        _characterModelStateSwitcher.EnterNewModelStateEvent += SetCurrentLevel;
         TotalReshreshing();
+    }
+    private void OnDisable()
+    {
+        _characterModelStateSwitcher.EnterNewModelStateEvent -= SetCurrentLevel;
+    }
+
+    public void TotalReshreshing()
+    {
+        transform.position = _randomPosition.GetRandomPosition();
     }
 
     public int CompareTo(AbsCharacter other)
@@ -79,14 +105,13 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceTo
     }
 
 
-    public void TotalReshreshing()
-    {
-        transform.position = _randomPosition.GetRandomPosition();
-    }
-
-
     public void CalculateDistanceAimToCharacter(Transform characterTransform)
     {
         SortDistanceAimToCharacter = Vector3.Distance(_thisTransform.position, characterTransform.position);
+    }
+
+    private void SetCurrentLevel(CharacterModelStatsDataSO characterModelStatsDataSO)
+    {
+        _level = (int)characterModelStatsDataSO.TypeModelStateCharacter;
     }
 }

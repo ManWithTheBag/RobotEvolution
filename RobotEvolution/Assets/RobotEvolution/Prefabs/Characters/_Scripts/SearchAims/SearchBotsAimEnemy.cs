@@ -7,7 +7,7 @@ public class SearchBotsAimEnemy : AbsSearcBotshAim
     [SerializeField] private PoolSimpleBots _poolSimpleBots;
 
     private DistanceToAimComparer _distanceToAimComparer;
-    private List<IDistanceToAimQuikSortable> _quikSortEnemyList = new();
+    private List<IDistanceAimsComparable> _quikSortEnemyList = new();
 
     private void Awake()
     {
@@ -22,19 +22,19 @@ public class SearchBotsAimEnemy : AbsSearcBotshAim
 
     public override void CreateMutualQuikSortAimsList<T>(List<T> List)
     {
-        foreach (IDistanceToAimQuikSortable item in List)
+        foreach (IDistanceAimsComparable item in List)
         {
             _quikSortEnemyList.Add(item);
         }   
     }
 
-    public override List<IDistanceToAimQuikSortable> GetSortFoDistanceAimsList(Transform characterTransform)
+    public override List<IDistanceAimsComparable> GetSortFoDistanceAimsList(Transform characterTransform)
     {
         _quikSortEnemyList.Clear();
 
         SetectListForMutualAimsList();
 
-        foreach (IDistanceToAimQuikSortable item in _quikSortEnemyList)
+        foreach (IDistanceAimsComparable item in _quikSortEnemyList)
         {
             item.CalculateDistanceAimToCharacter(characterTransform);
         }

@@ -5,7 +5,7 @@ public abstract class AbsSearcBotshAim : MonoBehaviour
 {
     public abstract void SetectListForMutualAimsList();
 
-    public abstract void CreateMutualQuikSortAimsList<T>(List<T> List) where T : IDistanceToAimQuikSortable;
+    public abstract void CreateMutualQuikSortAimsList<T>(List<T> List) where T : IDistanceAimsComparable;
 
-    public abstract List<IDistanceToAimQuikSortable> GetSortFoDistanceAimsList(Transform characterTransform);
+    public abstract List<IDistanceAimsComparable> GetSortFoDistanceAimsList(Transform characterTransform);
 }

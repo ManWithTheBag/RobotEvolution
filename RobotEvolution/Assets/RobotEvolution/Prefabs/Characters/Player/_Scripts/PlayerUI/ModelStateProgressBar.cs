@@ -15,12 +15,12 @@ public class ModelStateProgressBar : MonoBehaviour
 
     private void OnEnable()
     {
-        _scoreCalculation.SwapScoreThisCharacterEvent += OnRefreshModelProgressBar;
+        _scoreCalculation.SwapScoreEvent += OnRefreshModelProgressBar;
         _characterModelStateSwitcher.ChangeModelScoreLimitEvent += OnSetCurrentLimitsInModelProgressBar;
     }
     private void OnDisable()
     {
-        _scoreCalculation.SwapScoreThisCharacterEvent -= OnRefreshModelProgressBar;
+        _scoreCalculation.SwapScoreEvent -= OnRefreshModelProgressBar;
         _characterModelStateSwitcher.ChangeModelScoreLimitEvent -= OnSetCurrentLimitsInModelProgressBar;
     }
 

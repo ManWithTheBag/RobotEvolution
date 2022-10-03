@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class DistanceToAimComparer : IComparer<IDistanceToAimQuikSortable>
+public class DistanceToAimComparer : IComparer<IDistanceAimsComparable>
 {
-    public int Compare(IDistanceToAimQuikSortable x, IDistanceToAimQuikSortable y)
+    public int Compare(IDistanceAimsComparable x, IDistanceAimsComparable y)
     {
         if (x.SortDistanceAimToCharacter != y.SortDistanceAimToCharacter)
         {

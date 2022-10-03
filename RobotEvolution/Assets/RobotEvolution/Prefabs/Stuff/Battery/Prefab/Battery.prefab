@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 8841309594916435998}
   m_Layer: 0
   m_Name: Battery
-  m_TagString: Untagged
+  m_TagString: Battery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3903f9636f8f5479f00e47f383f26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPositionY: 0
+  _currentBooking: 0
 --- !u!114 &8841309594916435998
 MonoBehaviour:
   m_ObjectHideFlags: 0

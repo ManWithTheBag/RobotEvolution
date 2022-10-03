@@ -2,16 +2,15 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
-public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceToAimQuikSortable
+public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceAimsComparable/*, IFree*/
 {
-    //[Min(0)] [SerializeField] private float _spawnPositionY;
     public float SortDistanceAimToCharacter { get; private set; }
     public Transform SortedTransform { get; private set; }
 
     protected Transform _thisTransform;
-
     private RandomPosition _randomPosition;
-
+    [SerializeField]private int _currentBooking;
+    
     public virtual void Awake()
     {
         _thisTransform = transform;
@@ -24,8 +23,10 @@ public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceToAimQuik
     public virtual void TotalReshreshing()
     {
         gameObject.SetActive(false);
+
         transform.position = _randomPosition.GetRandomPosition();
         GlobalEventManager.SearchNewAimEvent.Invoke();
+
         gameObject.SetActive(true);
     }
 

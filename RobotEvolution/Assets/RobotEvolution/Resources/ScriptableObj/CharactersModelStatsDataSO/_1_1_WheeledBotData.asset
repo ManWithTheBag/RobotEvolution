@@ -18,10 +18,13 @@ MonoBehaviour:
   <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -20}
   <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}
   navMeshModelStateID: 0
-  _navSpeedMovement: 7
+  _navSpeedMovement: 8
   _navAngularspeedBody: 100
   _navAnguAcceleration: 80
   _speedTurretRotation: 1
-  _maxCapasityEnergyInShield: 50
+  _maxAmountCrowdEnemy: 2
+  _timeBattle: 15
+  _timeNotBattle: 30
+  _maxCapasityEnergyInShield: 20
   _diametrSphereShield: 6
   _positionSphereShieldY: 1
