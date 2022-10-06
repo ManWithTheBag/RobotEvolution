@@ -10,8 +10,19 @@ public class InputJoystick : MonoBehaviour
         _joystick = joystick;
     }
 
-    public Vector3 GetDirectionUpdate() 
+    public float GetHorisontalValue()
     {
-        return new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical);
+        return _joystick.Horizontal;
     }
+
+    public float GetVerticalValue ()
+    {
+        return _joystick.Vertical;
+    }
+
+
+    //public Vector3 GetDirectionUpdate() 
+    //{
+    //    return new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical);
+    //}
 }

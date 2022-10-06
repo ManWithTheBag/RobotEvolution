@@ -832,6 +832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turret: {fileID: 2728368084522671489}
+  _probablyAttack: 81
   _currentCharactersAim: {fileID: 0}
 --- !u!114 &-999060758251852901
 MonoBehaviour:

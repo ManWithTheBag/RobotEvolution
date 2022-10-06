@@ -18,7 +18,7 @@ MonoBehaviour:
   <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 17, z: -20}
   <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}
   navMeshModelStateID: 0
-  _navSpeedMovement: 8
+  _navSpeedMovement: 9.92
   _navAngularspeedBody: 100
   _navAnguAcceleration: 80
   _speedTurretRotation: 1

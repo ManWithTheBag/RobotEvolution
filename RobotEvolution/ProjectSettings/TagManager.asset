@@ -7,6 +7,8 @@ TagManager:
   - Bot
   - Character
   - Shield
+  - Battery
+  - Gear
   layers:
   - Default
   - TransparentFX
@@ -15,10 +17,10 @@ TagManager:
   - Water
   - UI
   - Shield
-  - Body
-  - Character
-  - 
-  - 
+  - Model
+  - Gear
+  - Battery
+  - UISurface
   - 
   - 
   - 

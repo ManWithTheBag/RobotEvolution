@@ -2,14 +2,13 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
-public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceAimsComparable/*, IFree*/
+public abstract class AbsStuff : MonoBehaviour, IRefreshible, IDistanceAimsComparable
 {
     public float SortDistanceAimToCharacter { get; private set; }
     public Transform SortedTransform { get; private set; }
 
     protected Transform _thisTransform;
     private RandomPosition _randomPosition;
-    [SerializeField]private int _currentBooking;
     
     public virtual void Awake()
     {

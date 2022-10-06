@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class PlayerVeaponBigBlaze : VeaponBigBlaze
 {
     private Button _buttonShot;
-    private CharacterScanningAims _characterRayCastDetectedEnemy;
     private ShotFiilB _shotFiilB;
 
     public override void Awake()
@@ -32,13 +31,6 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
         _buttonShot.onClick.RemoveListener(SearchPlayersEnemy);
         base.OnDisable();
     }
-    public override void Start()
-    {
-        _thisTransform.TryGetComponent(out CharacterScanningAims characterRayCastDetectedEnemy); _characterRayCastDetectedEnemy = characterRayCastDetectedEnemy;
-
-        base.Start();
-    }
-
 
     public override void Update()
     {
@@ -69,11 +61,11 @@ public class PlayerVeaponBigBlaze : VeaponBigBlaze
     {
         if (CheckRayCast())
         {
-            SetupVisualisatePosition(_hit.point);
+            SetupVisualisatePosition(_hit.point, _hit.transform);
             ChangeScore(_hit.transform);
         }
         else
-            SetupVisualisatePosition(_missShotTransform.position);
+            SetupVisualisatePosition(_missShotTransform.position, _blazeHitTransform);
     }
 
     public override void FillButtonImage(float currentFillAmount)

@@ -35,31 +35,25 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
         }
     }
 
-    private List<string> _tegsForScan = new();
+    protected AimsListsContainer _aimsListsContainer;
+    protected Transform _thisTransform;
+    
+    private List<int> _layerMaskForScan = new();
     private List<IDistanceAimsComparable> _enemyVisibleList = new();
     private List<IDistanceAimsComparable> _gearVisibleList = new();
     private List<IDistanceAimsComparable> _batteryVisibleList = new();
-    private List<IDistanceAimsComparable> _sortedEnemysList = new();
-    private SearchBotsAimEnemy _searchBotsAimEnemy;
-    private SearchRandomPoint _searchRandomPoint;
     private NavMeshAgent _currentNavMeshAgent;
     private NavMeshPath _navMeshPath;
     private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private CharacterScanningAims _characterRayCastDetectedEnemy;
-    private Transform _thisTransform;
 
     public event Action<IAimsSelectable> ScanrdComplitEvent;
-    //public event Action<List<IDistanceAimsComparable>> EnemyVisibleListChangedEvent;
-    //public event Action<List<IDistanceAimsComparable>> GearVisibleListChangedEvent;
-    //public event Action<List<IDistanceAimsComparable>> BatteryVisibleListChangedEvent;
 
     private void Awake()
     {
         _thisTransform = transform;
 
-        _searchBotsAimEnemy = GetLinkSearchBotAimClass<SearchBotsAimEnemy>();
-        _searchRandomPoint = GetLinkRandomPointClass<SearchRandomPoint>();
-
+        _aimsListsContainer = GetLinkAimsListsContainerClass();
         _characterRayCastDetectedEnemy = GetComponentInParent<CharacterScanningAims>();
         _currentNavMeshAgent = GetComponent<NavMeshAgent>();
         _characterModelStateSwitcher = GetComponent<CharacterModelStateSwitcher>();
@@ -67,71 +61,47 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
 
     private void OnEnable()
     {
-        //GlobalEventManager.SearchNewAimEvent.AddListener(OnGetBotAims);
-
         GlobalEventManager.SearchNewAimEvent.AddListener(Scanning);
         _characterModelStateSwitcher.EnterNewModelStateEvent += UpdateNavMeshAgent;
     }
     private void OnDisable()
     {
-        //GlobalEventManager.SearchNewAimEvent.RemoveListener(OnGetBotAims);
-
         GlobalEventManager.SearchNewAimEvent.RemoveListener(Scanning);
         _characterModelStateSwitcher.EnterNewModelStateEvent -= UpdateNavMeshAgent;
     }
 
-    private void Start()
+    public virtual void Start()
     {
+        _nearestEnemy = _thisTransform.root;
         _navMeshPath = new NavMeshPath();
 
-        GetNearestEnemyListForIndicationArrow(1);
         GetRandomPoint();
         Scanning();
         ActivatorScanningObj();
         StartCoroutine(TimerNewRandompoint());
     }
 
-    #region Setup script for strart and NewStateModet
-    private T GetLinkRandomPointClass<T>() where T : SearchRandomPoint // TODO: make better later
+    private AimsListsContainer GetLinkAimsListsContainerClass()
     {
-        Transform perent = _thisTransform.parent;
+        Transform perent = _thisTransform;
         while (true)
         {
-            if (!perent.TryGetComponent(out T searchBotsAimClass))
+            if (!perent.TryGetComponent(out AimsListsContainer aimsListsContainer))
             {
-                perent = perent.parent;
                 if (perent == _thisTransform.root)
                 {
-                    Debug.LogError($"LoogError: CharacterController hevent scripts {typeof(SearchBotsAimEnemy)}; Add this script to CharacterController");
+                    Debug.LogError($"LoogError: CharacterController hevent scripts {typeof(AimsListsContainer)}; Add this script to CharacterController");
                 }
             }
             else
             {
-                return searchBotsAimClass;
+                return aimsListsContainer;
             }
-        }
-    }
-
-    private T GetLinkSearchBotAimClass<T>() where T : AbsSearcBotshAim // TODO: make better later
-    {
-        Transform perent = _thisTransform.parent;
-        while (true)
-        {
-            if (!perent.TryGetComponent(out T searchBotsAimClass))
-            {
                 perent = perent.parent;
-                if (perent == _thisTransform.root)
-                {
-                    Debug.LogError($"LoogError: CharacterController hevent scripts {typeof(SearchBotsAimEnemy)}; Add this script to CharacterController");
-                }
-            }
-            else
-            {
-                return searchBotsAimClass;
-            }
         }
     }
 
+    #region UpdateNavMesh
     private void UpdateNavMeshAgent(CharacterModelStatsDataSO characterModelStatsDataSO)
     {
         StartCoroutine(UpdateNavMeshAgentInEndFrame());
@@ -153,7 +123,7 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
     {
         List<RandomPoints> sutableRandomPoint = new();
 
-        foreach (RandomPoints item in _searchRandomPoint.GetRandomPointsList())
+        foreach (RandomPoints item in _aimsListsContainer.GetRandomPointsList())
         {
             float distanceToRandomPoint = Vector3.Distance(_thisTransform.position, item.GetTransformRandomPoint().position);
 
@@ -209,11 +179,11 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
 
     public void ScanningEnemyVisibleList()
     {
-        _tegsForScan.Clear();
-        _tegsForScan.Add("Character");
-        _tegsForScan.Add("Shield");
+        _layerMaskForScan.Clear();
+        _layerMaskForScan.Add(LayerMask.NameToLayer("Character"));
+        _layerMaskForScan.Add(LayerMask.NameToLayer("Shield"));
 
-        List<IDistanceAimsComparable> enemyVisibleList = LookForAims(_tegsForScan);
+        List<IDistanceAimsComparable> enemyVisibleList = LookForAims(_layerMaskForScan);
 
         _enemyVisibleList = enemyVisibleList;
 
@@ -222,20 +192,20 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
 
     public void ScanningGearVisibleList()
     {
-        _tegsForScan.Clear();
-        _tegsForScan.Add("Gear");
+        _layerMaskForScan.Clear();
+        _layerMaskForScan.Add(LayerMask.NameToLayer("Gear"));
 
-        List<IDistanceAimsComparable> gearVisibleList = LookForAims(_tegsForScan);
+        List<IDistanceAimsComparable> gearVisibleList = LookForAims(_layerMaskForScan);
 
         _gearVisibleList = gearVisibleList;
     }
 
     public void ScanningBattaryVisibleList()
     {
-        _tegsForScan.Clear();
-        _tegsForScan.Add("Battery");
+        _layerMaskForScan.Clear();
+        _layerMaskForScan.Add(LayerMask.NameToLayer("Battery"));
 
-        List<IDistanceAimsComparable> batteryVisibleList = LookForAims(_tegsForScan);
+        List<IDistanceAimsComparable> batteryVisibleList = LookForAims(_layerMaskForScan);
 
         _batteryVisibleList = batteryVisibleList;
     }
@@ -246,20 +216,11 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
             _nearestEnemy = enemyList[0].SortedTransform;
     }
 
-    public List<IDistanceAimsComparable> GetNearestEnemyListForIndicationArrow(int amountAimsRequest)
-    {
-        _sortedEnemysList = _searchBotsAimEnemy.GetSortFoDistanceAimsList(_thisTransform);
-
-        SetNearestEneemy(_sortedEnemysList);
-
-        return GetPathComplitedSortAimList(amountAimsRequest, _sortedEnemysList);
-    }
-
 
     #region Casculatuon Requested list
-    private List<IDistanceAimsComparable> LookForAims(List<string> tegsForScan)
+    private List<IDistanceAimsComparable> LookForAims(List<int> layerMaskForScan)
     {
-        List<IDistanceAimsComparable> newVisibleAimsList = _characterRayCastDetectedEnemy.GetVisibleSoortedAimsList(tegsForScan);
+        List<IDistanceAimsComparable> newVisibleAimsList = _characterRayCastDetectedEnemy.GetVisibleSoortedAimsList(layerMaskForScan);
         return GetPathComplitedSortAimList(newVisibleAimsList.Count, newVisibleAimsList);
     }
 
@@ -278,10 +239,6 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
             if (pathComplitedSortAimsList.Count == amountAimsRequest)
                 break;
         }
-
-        //if (pathComplitedSortAimsList.Count == 0)
-        //    Debug.LogError($"LogError: Can't find complited path for aim from {checkedList}: " +
-        //        $"amount aims = {checkedList.Count}, amount request = {amountAimsRequest}, amount found = {pathComplitedSortAimsList.Count}");
 
         return pathComplitedSortAimsList;
     }

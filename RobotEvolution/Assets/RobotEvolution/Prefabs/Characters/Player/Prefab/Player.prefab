@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbb79eceb7b6b1499b481d9d37aac73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeRefreshNearestEnemyList: 0.2
+  _timeRefreshNearestEnemyList: 1
 --- !u!1 &6901429615237464457
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,16 +163,17 @@ GameObject:
   - component: {fileID: -1683161484521542419}
   - component: {fileID: 5063765212557210527}
   - component: {fileID: 4636207199022517546}
-  - component: {fileID: 2914439559323647599}
   - component: {fileID: 7039701346588122892}
   - component: {fileID: 4593750700528282111}
   - component: {fileID: 3859440290286534204}
+  - component: {fileID: -3958194563265542578}
   - component: {fileID: -2854588672405498109}
   - component: {fileID: 5497185699914937237}
   - component: {fileID: -4176619698535663579}
   - component: {fileID: 1319304550045530115}
   - component: {fileID: 5756274798537886396}
   - component: {fileID: 1730369551392270824}
+  - component: {fileID: -4773268855332314143}
   m_Layer: 8
   m_Name: Player
   m_TagString: Character
@@ -432,22 +433,6 @@ MonoBehaviour:
   _characterRateEvolutionSO: {fileID: 11400000, guid: 41a6d36f71b12294287d27c1646eeccc,
     type: 2}
   _scoreCalculation: {fileID: -1683161484521542419}
---- !u!114 &2914439559323647599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bbac50ccc6cab4abf93346fbd606ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timerScanningAims: 5
-  _minDistanceRandomPoint: 80
-  _randomPoint: {fileID: 0}
-  _nearestEnemy: {fileID: 0}
 --- !u!114 &7039701346588122892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +473,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nicknameDataSO: {fileID: 11400000, guid: fef4b1da9f4344d46a5ec7e1092d98db, type: 2}
   _defoltNickname: Player
+--- !u!114 &-3958194563265542578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32af55ca4a093744dbe80089bf6f1747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timerScanningAims: 2
+  _minDistanceRandomPoint: 50
+  _randomPoint: {fileID: 0}
+  _nearestEnemy: {fileID: 0}
 --- !u!114 &-2854588672405498109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,8 +516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scannerTransform: {fileID: 391741887381869259}
   _maxScanDistance: 100
-  _scanningAngle: 160
-  _countRayInScan: 12
+  _scanningAngleY: 140
+  _countRayInScanY: 8
+  _rotationScanerX: 
 --- !u!114 &-4176619698535663579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +561,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _veaponDataSO: {fileID: 11400000, guid: 4bc8666d52df2cb4883b575bcb8d3466, type: 2}
+  _countRayInRayCast: 3
+  _scanningAngle: 20
 --- !u!114 &1730369551392270824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +576,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winPointCount: 0
+--- !u!114 &-4773268855332314143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ccb6cc547eb1947a238e30ebabd04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeActiveApprovalWord: 50
+  _persentActivateApprovalWord: 90
 --- !u!1001 &7041874339783515362
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -296,10 +296,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scannerTransform: {fileID: 1875587481292176108}
   _maxScanDistance: 80
-  _scanningAngleY: 90
-  _countRayInScanY: 3
-  _scanningAngleX: 30.01
-  _countRayInScanX: 1
+  _scanningAngleY: 180
+  _countRayInScanY: 6
+  _rotationScanerX: f1ffffff4cffffff5bffffff
 --- !u!114 &-6102036875814557576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,14 +382,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7611655490916883297}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.9914449, y: -0, z: -0, w: 0.13052626}
   m_LocalPosition: {x: 0, y: 1, z: 0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8208351297591430254}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -13.6, y: 0, z: 0}
 --- !u!1001 &1479569624455655130
 PrefabInstance:
   m_ObjectHideFlags: 0

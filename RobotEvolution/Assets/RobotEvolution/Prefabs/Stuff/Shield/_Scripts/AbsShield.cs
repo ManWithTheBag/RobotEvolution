@@ -51,13 +51,17 @@ public abstract class AbsShield : MonoBehaviour
     public virtual void OnLossEnergy(int lossEnergyValue)
     {
         _newEnergyInShield -= lossEnergyValue;
+
+        if (_newEnergyInShield < 0)
+            _newEnergyInShield = 0;
+
         CheckChargeBattery();
     }
     
 
     public virtual void CheckChargeBattery()
     {
-        if (_newEnergyInShield <= 0)
+        if (_newEnergyInShield == 0)
             _shieldObj.SetActive(false);
     }
 

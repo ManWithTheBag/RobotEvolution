@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class IndicateArrowController : MonoBehaviour
@@ -7,7 +5,7 @@ public class IndicateArrowController : MonoBehaviour
     [SerializeField] private float _timeRefreshNearestEnemyList;
 
     private PoolIndicateArrow _poolIndicateArrow;
-    private CharactersAims _charactersAims;
+    private PlayerAims _playerAims;
     private Transform _thisTransform;
     private float _timerSearchNewNearestEnemy;
 
@@ -20,14 +18,14 @@ public class IndicateArrowController : MonoBehaviour
     }
     private void GetLinkCharacterAimClass()
     {
-        Transform perent = _thisTransform.parent;
+        Transform perent = _thisTransform;
         while (true)
         {
-            if (!perent.TryGetComponent(out CharactersAims charactersAims))
+            if (!perent.TryGetComponent(out PlayerAims playersAims))
                 perent = perent.parent;
             else
             {
-                _charactersAims = charactersAims;
+                _playerAims = playersAims;
                 break;
             }
         }
@@ -51,10 +49,10 @@ public class IndicateArrowController : MonoBehaviour
 
     private void SetEnemyTransformToIndicateArrow()
     {
-        for (int i = 0; i < _charactersAims.GetNearestEnemyListForIndicationArrow(_poolIndicateArrow.PoolCapacity).Count; i++)
+        for (int i = 0; i < _playerAims.GetNearestEnemyListForIndicationArrow(_poolIndicateArrow.PoolCapacity).Count; i++)
         {
             _poolIndicateArrow.WholeIndicateArrowList[i].SetCurrentEnemy
-                (_charactersAims.GetNearestEnemyListForIndicationArrow(_poolIndicateArrow.PoolCapacity)[i].SortedTransform);
+                (_playerAims.GetNearestEnemyListForIndicationArrow(_poolIndicateArrow.PoolCapacity)[i].SortedTransform);
         }
     }
 }

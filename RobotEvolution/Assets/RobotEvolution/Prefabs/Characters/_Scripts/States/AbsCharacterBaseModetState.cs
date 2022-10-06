@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class AbsCharacterBaseModetState : MonoBehaviour
 {
     [SerializeField] private Transform _turret;
-    [Range(1, 100)][SerializeField] private int _probablyAttack = 50;
     public CharacterModelStatsDataSO CharacterModelStatsDataSO { get; protected set; }
 
     [SerializeField] private Transform _currentCharactersAim;
@@ -87,8 +86,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
             _currentCharactersAim = iAimsSelectable.GetBatteryVisibleList()[0].SortedTransform;
         }
 
-        else if (iAimsSelectable.GetEnemyVisibleList().Count > 0 && _isBattleComplited == false && _isEnougfDistance == false
-            && UnityEngine.Random.Range(0, 100) < _probablyAttack)
+        else if (iAimsSelectable.GetEnemyVisibleList().Count > 0 && _isBattleComplited == false && _isEnougfDistance == false)
         {
             if (CheckVisibleEnemyList(iAimsSelectable.GetEnemyVisibleList()))
             {

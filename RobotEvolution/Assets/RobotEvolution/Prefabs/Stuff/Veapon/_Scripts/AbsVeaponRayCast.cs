@@ -5,17 +5,29 @@ using UnityEngine;
 public abstract class AbsVeaponRayCast : AbsVeapon
 {
     [SerializeField] int _countRayInRayCast = 3;
-    [SerializeField] float _scanningAngle = 20;
+    [SerializeField] float _scanningAngle = 60;
 
     protected Transform _turret;
+    protected RaycastHit _hit;
     protected List<Transform> _positionsVeaponStartLineRenderList;
     protected Transform _missShotTransform;
-    protected RaycastHit _hit;
+    protected Transform _blazeHitTransform;
+
     private LineRenderer _lineRenderer;
+    private List<int> _hitableLayerMaskList = new();
 
     public virtual void Start()
     {
+        _blazeHitTransform = new GameObject("BlazeHitTransform").transform;
+
+        CreateHilableLayerMask();
         CreateMissShotTransform();
+    }
+
+    private void CreateHilableLayerMask()
+    {
+        _hitableLayerMaskList.Add(LayerMask.NameToLayer("Model"));
+        _hitableLayerMaskList.Add(LayerMask.NameToLayer("Shield"));
     }
 
     private void CreateMissShotTransform()
@@ -39,13 +51,12 @@ public abstract class AbsVeaponRayCast : AbsVeapon
     {
         if (CheckRayCast())
         {
-            SetupVisualisatePosition(_hit.point);
+            SetupVisualisatePosition(_hit.point, _hit.transform);
             ChangeScore(_hit.transform);
         }
     }
     protected bool CheckRayCast()
     {
-        bool isHited = false;
         float j = 0;
 
         for (int i = 0; i < _countRayInRayCast; i++)
@@ -56,49 +67,58 @@ public abstract class AbsVeaponRayCast : AbsVeapon
             j += +(_scanningAngle / 2) * Mathf.Deg2Rad / _countRayInRayCast;
 
             Vector3 dir = _turret.TransformDirection(new Vector3(0, z, y));
-            isHited = GetRaycast(dir);
+            if (GetRaycast(dir))
+                return true;
 
             if (z != 0)
             {
                 dir = _turret.TransformDirection(new Vector3(0, -z, y));
-                isHited = GetRaycast(dir);
+                if (GetRaycast(dir))
+                    return true;
             }
         }
 
-        return isHited;
+        return false;
     }
 
     private bool GetRaycast(Vector3 dir)
     {
-        if (Physics.Raycast(_turret.position, dir, out _hit, MaxShootDistance))
+        for (int i = 0; i < _hitableLayerMaskList.Count; i++)
         {
-            if(_hit.collider.transform.tag == "Character" || _hit.collider.transform.tag == "Shield")
+            if (Physics.Raycast(_turret.position, dir, out _hit, MaxShootDistance))
+            {
                 return true;
+            }
         }
 
         return false;
     }
 
 
-    protected void SetupVisualisatePosition(Vector3 enemyPosition)
+    protected void SetupVisualisatePosition(Vector3 hitPoint, Transform enemyTransform)
     {
+        _blazeHitTransform.SetParent(null);
+        _blazeHitTransform.position = hitPoint;
+        _blazeHitTransform.SetParent(enemyTransform);
+
+
         foreach (Transform item in _positionsVeaponStartLineRenderList)
         {
-            VisualisateRayCast(item, enemyPosition);
+            VisualisateRayCast(item);
         }
     }
 
 
     public abstract void ChangeScore(Transform enemyTransform);
 
-    public virtual async Task  VisualisateRayCast(Transform veaponPosition, Vector3 enemyPosition)
+    public virtual async Task  VisualisateRayCast(Transform veaponPosition)
     {
         _lineRenderer.enabled = true;
 
         for (float i = 0; i < 1; i += Time.deltaTime)
         {
             _lineRenderer.SetPosition(0, veaponPosition.position);
-            _lineRenderer.SetPosition(1, enemyPosition);
+            _lineRenderer.SetPosition(1, _blazeHitTransform.position);
             await Task.Yield();
         }
 

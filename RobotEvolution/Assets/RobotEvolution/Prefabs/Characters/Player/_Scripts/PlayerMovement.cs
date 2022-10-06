@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : AbsCharacterMovement
 {
     private InputJoystick _inputJoystick;
-    private Vector3 _directionatMovePlayer;
+    private float _rotateAngle;
 
     public override void Awake()
     {
@@ -13,15 +13,21 @@ public class PlayerMovement : AbsCharacterMovement
 
     public override void SetCharacterMovePosition(Vector3 targetPosition)
     {
-        _directionatMovePlayer = _inputJoystick.GetDirectionUpdate();
+        PlayerMove();
+        PlayerRotation();
+    }
 
-        if (_directionatMovePlayer != Vector3.zero)
-        {
-            _navMeshAgent.SetDestination(_thisTransform.position + _directionatMovePlayer);
-        }
-        else
-        {
-            _navMeshAgent.SetDestination(_thisTransform.position);
-        }
+    private void PlayerMove()
+    {
+        if (_inputJoystick.GetVerticalValue() > 0)
+            _navMeshAgent.Move(_thisTransform.forward * _characterModelStatsDataSO.NavSpeedMovement * Time.deltaTime);
+        else if (_inputJoystick.GetVerticalValue() < 0)
+            _navMeshAgent.Move(-_thisTransform.forward * _characterModelStatsDataSO.NavSpeedMovement * Time.deltaTime);
+    }
+    int i;
+    private void PlayerRotation()
+    {
+        _rotateAngle = _inputJoystick.GetHorisontalValue() * Time.deltaTime * _characterModelStatsDataSO.NavAngularSpeedBody;
+        _thisTransform.Rotate(0,_rotateAngle, 0);
     }
 }

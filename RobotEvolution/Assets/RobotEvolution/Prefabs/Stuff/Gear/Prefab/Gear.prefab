@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8777893404154466049}
   - component: {fileID: 7814698202508529536}
   - component: {fileID: 8401380026740322822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gear
   m_TagString: Gear
   m_Icon: {fileID: 0}

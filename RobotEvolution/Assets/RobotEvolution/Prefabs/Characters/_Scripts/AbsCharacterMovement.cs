@@ -4,6 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class AbsCharacterMovement : MonoBehaviour
 {
+    protected CharacterModelStatsDataSO _characterModelStatsDataSO;
     protected CharactersAims _charactersAims;
     protected NavMeshAgent _navMeshAgent;
     protected Transform _thisTransform;
@@ -11,7 +12,6 @@ public abstract class AbsCharacterMovement : MonoBehaviour
     private Transform _turret;
     private Vector3 _turretView;
     private Vector3 _enemyDirection;
-    private CharacterModelStatsDataSO _characterModelStatsDataSO;
     private float _currentAngleToEnemy;
     private float _maxAngleViewTurrt;
 
