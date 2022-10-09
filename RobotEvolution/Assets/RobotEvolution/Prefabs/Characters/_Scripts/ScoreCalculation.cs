@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class ScoreCalculation : MonoBehaviour
 {
@@ -12,9 +13,29 @@ public class ScoreCalculation : MonoBehaviour
     public event Action AddScoreEvent;
     public event Action LoseScoreEvent;
 
-    private void Start()
+    private void Awake()
     {
         TryGetComponent(out ICharacter iCharacter); _iCaracter = iCharacter;
+        SetDefoltScore();
+    }
+    private void OnEnable()
+    {
+        _iCaracter.CharacterRefreshedEvent += SetDefoltScore;
+    }
+    private void OnDisable()
+    {
+        _iCaracter.CharacterRefreshedEvent -= SetDefoltScore;
+    }
+
+    private void SetDefoltScore()
+    {
+        StartCoroutine(DefoltScore());
+    }
+
+    private IEnumerator DefoltScore()
+    {
+        yield return new WaitForEndOfFrame();
+
         AddScore(CharacterRateEvolutionSO.Level_1);
     }
 

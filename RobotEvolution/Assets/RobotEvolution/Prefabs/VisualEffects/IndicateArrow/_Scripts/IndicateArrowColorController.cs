@@ -4,16 +4,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class IndicateArrowColorController : MonoBehaviour
 {
+    [SerializeField] Image _imageIndicateArrow;
     [SerializeField] private Color _minDictanceColor;
     [SerializeField] private Color _maxDistanceColor;
-
-    private Image _imageIndicateArrow;
 
     private void Awake()
     {
         _imageIndicateArrow = GetComponent<Image>();
     }
-    private void Start()
+    private void OnEnable()
     {
         _imageIndicateArrow.color = _maxDistanceColor;
     }

@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CharacterScanningAims))]
 public class CharactersAims : MonoBehaviour, IAimsSelectable
 {
-    [Min(1)][SerializeField] private float _timerScanningAims = 1;
+    [Min(1)][SerializeField] private float _timerScanningAims ;
     [Min(0)] [SerializeField] private float _minDistanceRandomPoint;
     [SerializeField] private Transform _randomPoint;
     public Transform RandomPoint
@@ -72,7 +72,8 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
 
     public virtual void Start()
     {
-        _nearestEnemy = _thisTransform.root;
+        _nearestEnemy = _aimsListsContainer.GetEnemysSortedList(_thisTransform)[0].SortedTransform;
+
         _navMeshPath = new NavMeshPath();
 
         GetRandomPoint();
@@ -180,7 +181,7 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
     public void ScanningEnemyVisibleList()
     {
         _layerMaskForScan.Clear();
-        _layerMaskForScan.Add(LayerMask.NameToLayer("Character"));
+        _layerMaskForScan.Add(LayerMask.NameToLayer("Model"));
         _layerMaskForScan.Add(LayerMask.NameToLayer("Shield"));
 
         List<IDistanceAimsComparable> enemyVisibleList = LookForAims(_layerMaskForScan);

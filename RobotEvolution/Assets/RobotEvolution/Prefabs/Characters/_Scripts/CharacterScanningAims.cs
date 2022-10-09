@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class CharacterScanningAims : MonoBehaviour
 {
@@ -11,22 +10,24 @@ public class CharacterScanningAims : MonoBehaviour
     [SerializeField] private List<int> _rotationScanerX;
 
     private List<IDistanceAimsComparable> _aimsList = new();
-    private List<int> _layerMaskForScan = new();
+    private int _bitMask;
     private DistanceToAimComparer _distanceToAimComparer;
-
     private Transform _currentHitTransform;
-    private RaycastHit _hit;
 
     private void Awake()
     {
         _distanceToAimComparer = new DistanceToAimComparer();
     }
 
-    public List<IDistanceAimsComparable> GetVisibleSoortedAimsList(List<int> layerMaskForScan)
+    public List<IDistanceAimsComparable> GetVisibleSoortedAimsList(List<int> layerMaskForScanList)
     {
         _aimsList.Clear();
 
-        _layerMaskForScan = layerMaskForScan;
+        _bitMask = 0;
+        foreach (var item in layerMaskForScanList)
+        {
+            _bitMask |= (1 << item);
+        }
 
         return GetAimsList();
     }
@@ -73,17 +74,16 @@ public class CharacterScanningAims : MonoBehaviour
 
     private void GetRaycast(Vector3 dir)
     {
-        for (int i = 0; i < _layerMaskForScan.Count; i++)
-        {
-            if (Physics.Raycast(_scannerTransform.position, dir, out _hit, _maxScanDistance, _layerMaskForScan[i]))
-            {
-                _currentHitTransform = _hit.collider.transform;
+        RaycastHit hit;
 
-                if (_currentHitTransform.TryGetComponent(out IDistanceAimsComparable iDistceAimsComparable) && _currentHitTransform != transform)
-                    _aimsList.Add(iDistceAimsComparable);
-                else if (_currentHitTransform.parent.TryGetComponent(out IDistanceAimsComparable iDistceAimsComparabl))
-                    _aimsList.Add(iDistceAimsComparabl);
-            }
+        if (Physics.Raycast(_scannerTransform.position, dir, out hit, _maxScanDistance, _bitMask))
+        {
+            _currentHitTransform = hit.collider.transform;
+
+            if (_currentHitTransform.TryGetComponent(out IDistanceAimsComparable iDistceAimsComparable) && _currentHitTransform != transform)
+                _aimsList.Add(iDistceAimsComparable);
+            else if (_currentHitTransform.parent.TryGetComponent(out IDistanceAimsComparable iDistceAimsComparabl))
+                _aimsList.Add(iDistceAimsComparabl);
         }
     }
 

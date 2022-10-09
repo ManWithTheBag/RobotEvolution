@@ -8,7 +8,6 @@ public class PlayersShield : AbsShield
     private ShieldProgressBarAndButtonFields _shieldProgressBarAndButtonFields;
     private float _currentEnergyInShield;
     private float _smoothLearpValue = 0;
-    private bool _isLearpingShieldEnergyValue;
 
     public override void Awake()
     {
@@ -32,6 +31,9 @@ public class PlayersShield : AbsShield
         base.OnSetupShielForCurrentStateModel(characterModelStatsDataSO);
 
         SetupShieldsProgressBar();
+
+        if (GlobalGameStatus.t_FirstStartGame)
+            SetupShieldsProgressBar();
     }
 
     private void SetupShieldsProgressBar()
@@ -41,10 +43,10 @@ public class PlayersShield : AbsShield
         _shieldProgressBarAndButtonFields.TextLowerLimitEnergy.text = 0.ToString();
     }
 
-    public override void Start()
+    private void SetDefoliValue()
     {
-        base.Start();
-        StartCoroutine(LearpingShieldEnergyValue());
+        _shieldProgressBarAndButtonFields.TestCurrentEnergyValue.text = _newEnergyInShield.ToString();
+        _shieldProgressBarAndButtonFields.ImegeFillable.fillAmount = (float)_newEnergyInShield / _maxCapasityEnergyInShield;
     }
 
     public override void SetFullEnergy()
@@ -70,6 +72,8 @@ public class PlayersShield : AbsShield
 
             yield return null;
         }
+
+        _shieldProgressBarAndButtonFields.TestCurrentEnergyValue.text = _newEnergyInShield.ToString();
         _smoothLearpValue = _newEnergyInShield;
     }
 

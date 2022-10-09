@@ -19,6 +19,6 @@ MonoBehaviour:
   _scoreDamageCannon: 10
   _viewAngleTurretAndVeaponCannon: 60
   _maxDistanceBigBlaze: 30
-  _timeRechargeBigBlaze: 4
-  _scoreDamageBigBlaze: 15
+  _timeRechargeBigBlaze: 5
+  _scoreDamageBigBlaze: 80
   _viewAngleTurretAndVeaponBigBlaze: 120

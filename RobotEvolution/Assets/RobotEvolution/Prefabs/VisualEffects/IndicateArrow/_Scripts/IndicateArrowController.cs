@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class IndicateArrowController : MonoBehaviour
@@ -30,7 +31,6 @@ public class IndicateArrowController : MonoBehaviour
             }
         }
     }
-
 
     private void Update()
     {

@@ -1,20 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using System;
 
 [RequireComponent(typeof(CharacterModelStateCreater))]
 public class CharacterModelStateSwitcher : MonoBehaviour
 {
     [SerializeField] private CharacterRateEvolutionSO _characterRateEvolutionSO;
-    [SerializeField] private ScoreCalculation _scoreCalculation;
 
+    private ScoreCalculation _scoreCalculation;
+    private AbsCharacterDeath _absCharacterDeath;
     private AbsCharacterBaseModetState _currentCharacterModelState;
     private Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> _characterModelStateDictionary;
     private int _currentLevel;
 
     public event Action<CharacterModelStatsDataSO> EnterNewModelStateEvent;
     public event Action<int, int> ChangeModelScoreLimitEvent;
-    public event Action FinishFinalModelRateEvent; // TODO: Invoke this event in this script when will by right final level
+    public event Action FinishFinalModelRateEvent; // TODO: Invok this invent when create finish model
+
+    private void Awake()
+    {
+        _scoreCalculation = GetComponent<ScoreCalculation>();
+        _absCharacterDeath = GetComponent<AbsCharacterDeath>();
+    }
 
     private void OnEnable()
     {
@@ -26,21 +34,10 @@ public class CharacterModelStateSwitcher : MonoBehaviour
         _scoreCalculation.SwapScoreEvent -= OnModelStateSwitch;
     }
 
-    private void Start()
-    {
-        SetDefoltCharacterModelState();
-    }
-
     public void SetCharacterModelStateDictionary(Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> characterModelStateDictionary)
     {
         _characterModelStateDictionary = characterModelStateDictionary;
     } 
-
-    public void SetDefoltCharacterModelState()
-    {
-        _currentLevel = ((int)CharacterModelStatsEnum._1_1_WheeledBot);
-        SetLevel_1();
-    }
 
     private void SetNewCharacterState(CharacterModelStatsEnum characterStatsEnum)
     {
@@ -59,6 +56,9 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     {
         switch (_currentLevel)
         {
+            case 0:
+                CheckExitForLimitLevel_0(newScoreValue);
+                break;
             case ((int)CharacterModelStatsEnum._1_1_WheeledBot):
                 CheckExitForLimitLevel_1(newScoreValue);
                 break;
@@ -76,19 +76,27 @@ public class CharacterModelStateSwitcher : MonoBehaviour
         }
     }
 
+    private void CheckExitForLimitLevel_0(int newScoreVAlue)
+    {
+        if(newScoreVAlue >= _characterRateEvolutionSO.Level_1)
+            SetLevel_1();
+    }
+
     private void CheckExitForLimitLevel_1(int newScoreValue)
     {
         if (newScoreValue <= 0)
             Death();
-        else if (newScoreValue > _characterRateEvolutionSO.Level_2)
+        else if (newScoreValue >= _characterRateEvolutionSO.Level_2)
             SetLevel_2();
+        else if(newScoreValue > 0 && newScoreValue < _characterRateEvolutionSO.Level_2)
+            SetLevel_1();
     }
 
     private void CheckExitForLimitLevel_2(int newScoreValue)
     {
         if (newScoreValue < _characterRateEvolutionSO.Level_1)
             SetLevel_1();
-        else if (newScoreValue > _characterRateEvolutionSO.Level_3)
+        else if (newScoreValue >= _characterRateEvolutionSO.Level_3)
             SetLevel_3();
     }
 
@@ -96,7 +104,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     {
         if (newScoreValue < _characterRateEvolutionSO.Level_2)
             SetLevel_2();
-        else if (newScoreValue > _characterRateEvolutionSO.Level_4)
+        else if (newScoreValue >= _characterRateEvolutionSO.Level_4)
             SetLevel_4();
     }
 
@@ -104,7 +112,7 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     {
         if (newScoreValue < _characterRateEvolutionSO.Level_3)
             SetLevel_3();
-        else if (newScoreValue > _characterRateEvolutionSO.Level_5)
+        else if (newScoreValue >= _characterRateEvolutionSO.Level_5)
             SetLevel_5();
     }
 
@@ -138,6 +146,6 @@ public class CharacterModelStateSwitcher : MonoBehaviour
 
     private void Death()
     {
-
+        _absCharacterDeath.StartDyingCharacter();
     }
 }

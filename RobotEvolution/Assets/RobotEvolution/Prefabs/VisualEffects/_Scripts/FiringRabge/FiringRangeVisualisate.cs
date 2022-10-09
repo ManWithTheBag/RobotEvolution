@@ -35,19 +35,10 @@ public class FiringRangeVisualisate : MonoBehaviour, IVisibleInvisible
         _pointsContainer.localPosition = Vector3.zero;
     }
 
-    public void SetMaxDistaceVisualisate(Array iShootable)
+    public void SetupVisualisateVarible(float maxDistanceShooting, float maxAngleShooting)
     {
-        _maxDistanceVisualisate = 0;
-        _maxAngleViewTurretAndVeapon = 0;
-
-        foreach (IShootable item in iShootable)
-        {
-            if (_maxDistanceVisualisate < item.MaxShootDistance )
-                _maxDistanceVisualisate = item.MaxShootDistance;
-
-            if (_maxAngleViewTurretAndVeapon < item.ViewAngleTurretAndVeapon)
-                _maxAngleViewTurretAndVeapon = item.ViewAngleTurretAndVeapon;
-        }
+        _maxDistanceVisualisate = maxDistanceShooting;
+        _maxAngleViewTurretAndVeapon = maxAngleShooting;
 
         SetupPointsPosition();
     }

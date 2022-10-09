@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
-public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceAimsComparable, IComparable<AbsCharacter>
+public abstract class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceAimsComparable, IComparable<AbsCharacter>
 {
     [Min(0)][SerializeField] private int _score;
     public int Score
@@ -57,11 +57,12 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceAi
 
     public float SortDistanceAimToCharacter { get; private set; }
     public Transform SortedTransform { get; private set; }
-    //public IFree IFree => null;
 
     private CharacterModelStateSwitcher _characterModelStateSwitcher;
     private RandomPosition _randomPosition;
     private Transform _thisTransform;
+
+    public event Action CharacterRefreshedEvent;
 
     private void Awake()
     {
@@ -74,7 +75,7 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceAi
     private void OnEnable()
     {
         _characterModelStateSwitcher.EnterNewModelStateEvent += SetCurrentLevel;
-        TotalReshreshing();
+        _thisTransform.position = _randomPosition.GetRandomPosition();
     }
     private void OnDisable()
     {
@@ -83,7 +84,14 @@ public class AbsCharacter : MonoBehaviour, ICharacter, IRefreshible, IDistanceAi
 
     public void TotalReshreshing()
     {
-        transform.position = _randomPosition.GetRandomPosition();
+
+        gameObject.SetActive(false);
+
+        _thisTransform.position = _randomPosition.GetRandomPosition();
+
+        gameObject.SetActive(true);
+
+        CharacterRefreshedEvent?.Invoke();
     }
 
     public int CompareTo(AbsCharacter other)

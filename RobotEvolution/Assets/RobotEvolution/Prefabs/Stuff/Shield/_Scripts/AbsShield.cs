@@ -38,7 +38,7 @@ public abstract class AbsShield : MonoBehaviour
         _newEnergyInShield = _maxCapasityEnergyInShield;
     }
 
-    public virtual void Start()
+    private void Start()
     {
         _shieldObj.SetActive(false);
     }

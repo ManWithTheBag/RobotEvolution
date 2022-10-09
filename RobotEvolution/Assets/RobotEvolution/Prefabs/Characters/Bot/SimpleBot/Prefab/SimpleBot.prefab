@@ -13,17 +13,17 @@ GameObject:
   - component: {fileID: -3413004825415077012}
   - component: {fileID: 7613716412638233947}
   - component: {fileID: 2187626206112190317}
+  - component: {fileID: 8118740121735162973}
+  - component: {fileID: 2914439559323647599}
+  - component: {fileID: -5988878918396371041}
   - component: {fileID: -1683161484521542419}
+  - component: {fileID: -5576744356767497796}
+  - component: {fileID: 7056893997870699827}
+  - component: {fileID: -6102036875814557576}
   - component: {fileID: 5063765212557210527}
   - component: {fileID: 4636207199022517546}
-  - component: {fileID: 2914439559323647599}
-  - component: {fileID: 7056893997870699827}
-  - component: {fileID: 8118740121735162973}
-  - component: {fileID: -6102036875814557576}
-  - component: {fileID: -5576744356767497796}
-  - component: {fileID: -4892259289629186698}
-  - component: {fileID: 2675265648991321270}
-  m_Layer: 8
+  - component: {fileID: 7262072459743179328}
+  m_Layer: 0
   m_Name: SimpleBot
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -212,6 +212,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36e50428c90b5246a007b906de9df86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8118740121735162973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c529600045751d41814f6b0468a8b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scannerTransform: {fileID: 1875587481292176108}
+  _maxScanDistance: 80
+  _scanningAngleY: 180
+  _countRayInScanY: 8
+  _rotationScanerX: f1ffffff4cffffff5bffffff
+--- !u!114 &2914439559323647599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bbac50ccc6cab4abf93346fbd606ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timerScanningAims: 1
+  _minDistanceRandomPoint: 80
+  _randomPoint: {fileID: 0}
+  _nearestEnemy: {fileID: 0}
+--- !u!114 &-5988878918396371041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9af256088767f4fa2594d9a13d4c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _veaponDataSO: {fileID: 11400000, guid: 4bc8666d52df2cb4883b575bcb8d3466, type: 2}
 --- !u!114 &-1683161484521542419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +272,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterRateEvolutionSO>k__BackingField: {fileID: 11400000, guid: 41a6d36f71b12294287d27c1646eeccc,
     type: 2}
+--- !u!114 &-5576744356767497796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4439fc130361e8b4faf4c4e6dc865c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _newEnergyInShield: 0
+  _shieldObj: {fileID: 3570315674145673281}
+  _timeAddOnePpintEnergy: 2
+  _percentRequestBattery: 10
+  _probablyActivationShield: 50
+  _progresingRate: 5
+--- !u!114 &7056893997870699827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733df815d245f20488f98dd8d94cb5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nicknameDataSO: {fileID: 11400000, guid: fef4b1da9f4344d46a5ec7e1092d98db, type: 2}
+--- !u!114 &-6102036875814557576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901429615237464457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7355b4851910a0d48b7456dab6838377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _positionY: 0.3
+  _vertexCount: 12
 --- !u!114 &5063765212557210527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterRateEvolutionSO: {fileID: 11400000, guid: 41a6d36f71b12294287d27c1646eeccc,
     type: 2}
-  _scoreCalculation: {fileID: -1683161484521542419}
---- !u!114 &2914439559323647599
+--- !u!114 &7262072459743179328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,103 +352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6901429615237464457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bbac50ccc6cab4abf93346fbd606ef, type: 3}
+  m_Script: {fileID: 11500000, guid: ae894f7250fac834589345fed004e838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timerScanningAims: 1
-  _minDistanceRandomPoint: 80
-  _randomPoint: {fileID: 0}
-  _nearestEnemy: {fileID: 0}
---- !u!114 &7056893997870699827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733df815d245f20488f98dd8d94cb5ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nicknameDataSO: {fileID: 11400000, guid: fef4b1da9f4344d46a5ec7e1092d98db, type: 2}
---- !u!114 &8118740121735162973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c529600045751d41814f6b0468a8b37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scannerTransform: {fileID: 1875587481292176108}
-  _maxScanDistance: 80
-  _scanningAngleY: 180
-  _countRayInScanY: 6
-  _rotationScanerX: f1ffffff4cffffff5bffffff
---- !u!114 &-6102036875814557576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7355b4851910a0d48b7456dab6838377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _positionY: 0.3
-  _vertexCount: 12
---- !u!114 &-5576744356767497796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4439fc130361e8b4faf4c4e6dc865c5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _newEnergyInShield: 0
-  _shieldObj: {fileID: 3570315674145673281}
-  _timeAddOnePpintEnergy: 2
-  _percentRequestBattery: 10
-  _probablyActivationShield: 50
-  _progresingRate: 5
---- !u!114 &-4892259289629186698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722603b089bc35141a852f552c93c1fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _veaponDataSO: {fileID: 11400000, guid: 4bc8666d52df2cb4883b575bcb8d3466, type: 2}
---- !u!114 &2675265648991321270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901429615237464457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30edef61fd999a346b05a7b5be61c195, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _veaponDataSO: {fileID: 11400000, guid: 4bc8666d52df2cb4883b575bcb8d3466, type: 2}
-  _countRayInRayCast: 3
-  _scanningAngle: 20
+  _timeDie: 2
 --- !u!1 &7611655490916883297
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1875587481292176108}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ScanerTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

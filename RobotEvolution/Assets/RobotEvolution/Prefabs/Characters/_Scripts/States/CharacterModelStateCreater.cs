@@ -5,7 +5,6 @@ using UnityEngine;
 public class CharacterModelStateCreater : MonoBehaviour
 {
     private Dictionary<CharacterModelStatsEnum, AbsCharacterBaseModetState> _characterModelStateDictionary;
-    private Transform _thisTransform;
 
     private void Start()
     {
@@ -13,18 +12,16 @@ public class CharacterModelStateCreater : MonoBehaviour
 
         TryGetComponent(out CharacterModelStateSwitcher characterModelStateSwitcher);
 
-        _thisTransform = transform;
-
         SpawnModelsInCharacter();
 
-        SetCCharacterModetStateDictionary(characterModelStateSwitcher);
+        SetCharacterModetStateDictionary(characterModelStateSwitcher);
     }
 
     private void SpawnModelsInCharacter()
     {
         foreach (var dictionaryItem in LoadCharacterModelStateDataSO.GetDictionaryCharacterStateDataSO())
         {
-            GameObject characterModel = Instantiate(dictionaryItem.Value.PrefabCharacterModel, _thisTransform);
+            GameObject characterModel = Instantiate(dictionaryItem.Value.PrefabCharacterModel, transform);
             CreateCharacterStateDictionary(dictionaryItem, characterModel);
             SetapapingModelState(dictionaryItem, characterModel);
         }
@@ -46,7 +43,7 @@ public class CharacterModelStateCreater : MonoBehaviour
             Debug.LogError($"LoogError: Havent CharacterState script on the model!!! Add Character script on the model:{characterModel.name}");
     }
 
-    private void SetCCharacterModetStateDictionary(CharacterModelStateSwitcher characterModelStateSwitcher)
+    private void SetCharacterModetStateDictionary(CharacterModelStateSwitcher characterModelStateSwitcher)
     {
         characterModelStateSwitcher.SetCharacterModelStateDictionary(_characterModelStateDictionary);
     }

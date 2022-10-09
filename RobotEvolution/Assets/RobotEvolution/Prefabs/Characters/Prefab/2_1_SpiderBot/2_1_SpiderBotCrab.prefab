@@ -1066,11 +1066,11 @@ GameObject:
   - component: {fileID: 1994095844942588266}
   - component: {fileID: 2690620031977153854}
   - component: {fileID: -6761814539092206212}
-  - component: {fileID: 6698283216720839217}
   - component: {fileID: -4248811827925280334}
+  - component: {fileID: 5747765666022472950}
+  - component: {fileID: 6698283216720839217}
   - component: {fileID: 6565907427686593988}
   - component: {fileID: 6276364475008192093}
-  - component: {fileID: 5747765666022472950}
   m_Layer: 7
   m_Name: 2_1_SpiderBotCrab
   m_TagString: Character
@@ -1244,18 +1244,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &6698283216720839217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712096197079855515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664396f8018e8494198b37cd15cb361d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-4248811827925280334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,8 +1257,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turret: {fileID: 4859577322849509073}
-  _probablyAttack: 50
   _currentCharactersAim: {fileID: 0}
+--- !u!114 &5747765666022472950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712096197079855515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0e9c34e205dff40ba73dd66638fbbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6698283216720839217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712096197079855515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664396f8018e8494198b37cd15cb361d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6565907427686593988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,21 +1306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974c4214bd127ad4982252095c7f6d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turret: {fileID: 4859577322849509073}
-  _positionsVeaponStartLineRenderList:
+  <Turret>k__BackingField: {fileID: 4859577322849509073}
+  <PositionsVeaponList>k__BackingField:
   - {fileID: 49628471327281608}
---- !u!114 &5747765666022472950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5712096197079855515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0e9c34e205dff40ba73dd66638fbbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6034676612932054147
 GameObject:
   m_ObjectHideFlags: 0

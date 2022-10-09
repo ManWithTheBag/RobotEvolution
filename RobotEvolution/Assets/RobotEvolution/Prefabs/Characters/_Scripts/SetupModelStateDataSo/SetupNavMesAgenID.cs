@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,13 +9,11 @@ public class SetupNavMesAgenID : MonoBehaviour
     private void Awake()
     {
         _loadCharacterModelStateDataSO = GetComponent<LoadCharacterModelStateDataSO>();
-
     }
 
     private void Start()
     {
         SetNavModelSetup();
-        
     }
 
     private void SetNavModelSetup()

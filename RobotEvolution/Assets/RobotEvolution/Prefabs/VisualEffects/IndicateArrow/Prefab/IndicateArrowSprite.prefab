@@ -89,5 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f9f8eb0adaafe40a2b4d046def1351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _imageIndicateArrow: {fileID: 8880180549399823783}
   _minDictanceColor: {r: 0.4528302, g: 0, b: 0, a: 1}
   _maxDistanceColor: {r: 1, g: 1, b: 1, a: 0}

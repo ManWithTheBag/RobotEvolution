@@ -1,7 +1,5 @@
 using UnityEngine;
 using Cinemachine;
-using System.Collections;
-using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {

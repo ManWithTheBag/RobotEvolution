@@ -24,10 +24,12 @@ public class PlayerMovement : AbsCharacterMovement
         else if (_inputJoystick.GetVerticalValue() < 0)
             _navMeshAgent.Move(-_thisTransform.forward * _characterModelStatsDataSO.NavSpeedMovement * Time.deltaTime);
     }
-    int i;
+
     private void PlayerRotation()
     {
-        _rotateAngle = _inputJoystick.GetHorisontalValue() * Time.deltaTime * _characterModelStatsDataSO.NavAngularSpeedBody;
+        if(_characterModelStatsDataSO != null)
+            _rotateAngle = _inputJoystick.GetHorisontalValue() * Time.deltaTime * _characterModelStatsDataSO.NavAngularSpeedBody;
+        
         _thisTransform.Rotate(0,_rotateAngle, 0);
     }
 }
