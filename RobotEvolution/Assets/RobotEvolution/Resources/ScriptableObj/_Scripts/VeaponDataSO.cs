@@ -13,40 +13,40 @@ public class VeaponDataSO : ScriptableObject
 
 
 
-    [Header("Cannon")]
-    [Min(0)] [SerializeField] private int _maxDistanceCannon;
-    public int MaxDistanceCannon
+    [Header("WheelBot Cannon")]
+    [Min(0)] [SerializeField] private int _maxDistanceWheelBotCannon;
+    public int MaxDistanceWheelBotCannon
     {
-        get { return _maxDistanceCannon; }
-        set { _maxDistanceCannon = value; }
+        get { return _maxDistanceWheelBotCannon; }
+        set { _maxDistanceWheelBotCannon = value; }
     }
 
-    [Min(0)] [SerializeField] private int _timeRechargeCannon;
-    public int TimeRechargeCannon
+    [Min(0)] [SerializeField] private int _timeRechargeWheelBotCannon;
+    public int TimeRechargeWheelBotCannon
     {
-        get { return _timeRechargeCannon; }
-        set { _timeRechargeCannon = value; }
+        get { return _timeRechargeWheelBotCannon; }
+        set { _timeRechargeWheelBotCannon = value; }
     }
     
-    [Min(0)] [SerializeField] private float _speedShellCannon;    
-    public float SpeedShellCannon
+    [Min(0)] [SerializeField] private float _speedShellWheelBotCannon;    
+    public float SpeedShellWheelBotCannon
     {
-        get { return _speedShellCannon; }
-        set { _speedShellCannon = value; }
+        get { return _speedShellWheelBotCannon; }
+        set { _speedShellWheelBotCannon = value; }
     }
 
-    [Min(0)] [SerializeField] private int _scoreDamageCannon;
-    public int ScoreDamageCannon
+    [Min(0)] [SerializeField] private int _scoreDamageWheelBotCannon;
+    public int ScoreDamageWheelBotCannon
     {
-        get { return _scoreDamageCannon; }
-        private set { _scoreDamageCannon = value; }
+        get { return _scoreDamageWheelBotCannon; }
+        private set { _scoreDamageWheelBotCannon = value; }
     }
 
-    [Range(0, 360)] [SerializeField] private float _viewAngleTurretAndVeaponCannon;
-    public float ViewAngleTurretAndVeaponCannon
+    [Range(0, 360)] [SerializeField] private float _viewAngleTurretWheelBotCannon;
+    public float ViewAngleTurretWheelBotCannon
     {
-        get { return _viewAngleTurretAndVeaponCannon; }
-        private set { _viewAngleTurretAndVeaponCannon = value; }
+        get { return _viewAngleTurretWheelBotCannon; }
+        private set { _viewAngleTurretWheelBotCannon = value; }
     }
 
 
@@ -81,4 +81,39 @@ public class VeaponDataSO : ScriptableObject
     }
 
 
+    [Header("Panzer Cannon")]
+    [Min(0)] [SerializeField] private int _maxDistancePanzerCannon;
+    public int MaxDistancePanzerCannon
+    {
+        get { return _maxDistancePanzerCannon; }
+        set { _maxDistancePanzerCannon = value; }
+    }
+
+    [Min(0)] [SerializeField] private int _timeRechargePanzerCannon;
+    public int TimeRechargePanzerCannon
+    {
+        get { return _timeRechargePanzerCannon; }
+        set { _timeRechargePanzerCannon = value; }
+    }
+
+    [Min(0)] [SerializeField] private float _speedShellPanzerCannon;
+    public float SpeedShellPanzerCannon
+    {
+        get { return _speedShellPanzerCannon; }
+        set { _speedShellPanzerCannon = value; }
+    }
+
+    [Min(0)] [SerializeField] private int _scoreDamagePanzerCannon;
+    public int ScoreDamagePanzerCannon
+    {
+        get { return _scoreDamagePanzerCannon; }
+        private set { _scoreDamagePanzerCannon = value; }
+    }
+
+    [Range(0, 360)] [SerializeField] private float _viewAngleTurretPanzerCannon;
+    public float ViewAngleTurretPanzerCannon
+    {
+        get { return _viewAngleTurretPanzerCannon; }
+        private set { _viewAngleTurretPanzerCannon = value; }
+    }
 }

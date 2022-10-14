@@ -10,7 +10,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     [SerializeField] private Transform _currentCharactersAim;
     private AbsCharacterMovement _absCharacterMovement;
     private CharactersAims _charactersAims;
-    private AbsCharacterModelAnimator _absCharacterModelAnimator;
+    private CharacterModelAnimator _characterModelAnimator;
     private VeaponUpdater _veaponUpdater;
     private BotShield _botShield;
 
@@ -28,7 +28,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
         _charactersAims = GetComponentInParent<CharactersAims>();
         _veaponUpdater = GetComponent<VeaponUpdater>();
 
-        TryGetComponent(out AbsCharacterModelAnimator absCharacterModelAnimator); _absCharacterModelAnimator = absCharacterModelAnimator;
+        TryGetComponent(out CharacterModelAnimator absCharacterModelAnimator); _characterModelAnimator = absCharacterModelAnimator;
     }
 
     private void OnEnable()
@@ -55,7 +55,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        _absCharacterModelAnimator.PlayRun();
+        _characterModelAnimator.PlayRun();
 
         _veaponUpdater.EnableModelVeapons();
 
@@ -165,7 +165,7 @@ public abstract class AbsCharacterBaseModetState : MonoBehaviour
 
     private void SetupCharacterMove()
     {
-        _absCharacterMovement.SetupMoveCharacterOneTime(CharacterModelStatsDataSO, _turret);
+        _absCharacterMovement.SetupMoveCharacter(CharacterModelStatsDataSO, _turret, _characterModelAnimator);
     }
     private void SetCurrentMovePosition()
     {

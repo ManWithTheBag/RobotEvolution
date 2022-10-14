@@ -4,27 +4,29 @@ public class VeaponTypeBotController : AbsVeaponTypeController
 {
     public override void AddVeaponComponents()
     {
-        _veaponCannon = gameObject.AddComponent<VeaponCannon>();
+        _veaponWheelBotCannon = gameObject.AddComponent<VeaponWheelBotCannon>();
         _veaponBigBlaze = gameObject.AddComponent<VeaponBigBlaze>();
+        _veaponPanzerCannon = gameObject.AddComponent<VeaponPanzerCannon>();
 
         DisableAllVeapons();
     }
     public override void DisableAllVeapons()
     {
-        _veaponCannon.enabled = false;
+        _veaponWheelBotCannon.enabled = false;
         _veaponBigBlaze.enabled = false;
+        _veaponPanzerCannon.enabled = false;
 
         SetDefoltMaxValue();
     }
 
-    public override void CreateCannonVeapon(IVeaponSetuper iVeaponSetuper)
+    public override void CreateWheelBotCannonVeapon(IVeaponSetuper iVeaponSetuper)
     {
-        _veaponCannon.enabled = true;
+        _veaponWheelBotCannon.enabled = true;
 
-        _veaponCannon.SetFildsVeapon(_veaponDataSO);
-        _veaponCannon.SetSetupVeaponForModelState(iVeaponSetuper);
+        _veaponWheelBotCannon.SetFildsVeapon(_veaponDataSO);
+        _veaponWheelBotCannon.SetSetupVeaponForModelState(iVeaponSetuper);
 
-        base.CreateCannonVeapon(iVeaponSetuper);
+        base.CreateWheelBotCannonVeapon(iVeaponSetuper);
     }
 
     public override void CreateBigBlazeVeapon(IVeaponSetuper iVeaponSetuper, LineRenderer lineRenderer)
@@ -35,5 +37,15 @@ public class VeaponTypeBotController : AbsVeaponTypeController
         _veaponBigBlaze.SetSetupVeaponForModelState(iVeaponSetuper, lineRenderer);
 
         base.CreateBigBlazeVeapon(iVeaponSetuper, lineRenderer);
+    }
+
+    public override void CreatePanzerCannonVeapon(IVeaponSetuper iVeaponSetuper)
+    {
+        _veaponPanzerCannon.enabled = true;
+
+        _veaponPanzerCannon.SetFildsVeapon(_veaponDataSO);
+        _veaponPanzerCannon.SetSetupVeaponForModelState(iVeaponSetuper);
+
+        base.CreateWheelBotCannonVeapon(iVeaponSetuper);
     }
 }

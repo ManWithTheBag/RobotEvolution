@@ -3,9 +3,10 @@ using UnityEngine;
 public abstract class AbsVeaponTypeController : MonoBehaviour
 {
     [SerializeField] protected VeaponDataSO _veaponDataSO;
-    
-    protected VeaponCannon _veaponCannon;
+
+    protected VeaponWheelBotCannon _veaponWheelBotCannon;
     protected VeaponBigBlaze _veaponBigBlaze;
+    protected VeaponPanzerCannon _veaponPanzerCannon;
     protected float _maxAngleShooting;
     protected float _maxDistanceShooting;
 
@@ -30,10 +31,10 @@ public abstract class AbsVeaponTypeController : MonoBehaviour
         _maxAngleShooting = 0;
     }
 
-    public virtual void CreateCannonVeapon(IVeaponSetuper iVeaponSetuper)
+    public virtual void CreateWheelBotCannonVeapon(IVeaponSetuper iVeaponSetuper)
     {
-        SetMaxDistanceSooting(_veaponDataSO.MaxDistanceCannon);
-        SetMaxAngleShooting(_veaponDataSO.ViewAngleTurretAndVeaponCannon);
+        SetMaxDistanceSooting(_veaponDataSO.MaxDistanceWheelBotCannon);
+        SetMaxAngleShooting(_veaponDataSO.ViewAngleTurretWheelBotCannon);
     }
 
     public virtual void CreateBigBlazeVeapon(IVeaponSetuper iVeaponSetuper, LineRenderer lineRenderer)
@@ -42,6 +43,11 @@ public abstract class AbsVeaponTypeController : MonoBehaviour
         SetMaxAngleShooting(_veaponDataSO.ViewAngleTurretAndVeaponBigBlaze);
     }
 
+    public virtual void CreatePanzerCannonVeapon(IVeaponSetuper iVeaponSetuper)
+    {
+        SetMaxDistanceSooting(_veaponDataSO.MaxDistancePanzerCannon);
+        SetMaxAngleShooting(_veaponDataSO.ViewAngleTurretPanzerCannon);
+    }
 
 
     #region Look for max value from earch model

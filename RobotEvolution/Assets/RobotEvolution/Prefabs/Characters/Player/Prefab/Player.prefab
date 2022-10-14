@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2061f3f4ea84a3f4b879b9972257d8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forvardViewCharacter: {fileID: 0}
 --- !u!114 &682740527393192865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af55ca4a093744dbe80089bf6f1747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timerScanningAims: 2
+  _timerScanningAims: 1
   _minDistanceRandomPoint: 50
   _randomPoint: {fileID: 0}
   _nearestEnemy: {fileID: 0}

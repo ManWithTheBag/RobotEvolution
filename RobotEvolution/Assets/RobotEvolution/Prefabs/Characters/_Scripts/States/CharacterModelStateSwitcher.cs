@@ -65,10 +65,10 @@ public class CharacterModelStateSwitcher : MonoBehaviour
             case ((int)CharacterModelStatsEnum._2_1_SpiderBotCrab):
                 CheckExitForLimitLevel_2(newScoreValue);
                 break;
-            case ((int)CharacterModelStatsEnum._2_2_SpiderBotCyclop):
+            case ((int)CharacterModelStatsEnum._2_3_SpiderBotPanzer):
                 CheckExitForLimitLevel_3(newScoreValue);
                 break;
-            case ((int)CharacterModelStatsEnum._2_3_SpiderBotElefant):
+            case ((int)CharacterModelStatsEnum._3_1_HumanDestroyer):
                 CheckExitForLimitLevel_4(newScoreValue);
                 break;
             default:
@@ -128,18 +128,18 @@ public class CharacterModelStateSwitcher : MonoBehaviour
     }
     private void SetLevel_3()
     {
-        SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
+        SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotPanzer);
         ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_2, _characterRateEvolutionSO.Level_4);
     }
 
     private void SetLevel_4()
     {
-        SetNewCharacterState(CharacterModelStatsEnum._2_3_SpiderBotElefant);
+        SetNewCharacterState(CharacterModelStatsEnum._3_1_HumanDestroyer);
         ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_3, _characterRateEvolutionSO.Level_5);
     }
     private void SetLevel_5()
     {
-        SetNewCharacterState(CharacterModelStatsEnum._3_1_Human_1);
+        SetNewCharacterState(CharacterModelStatsEnum._EmptyCharacter);
         ChangeModelScoreLimitEvent?.Invoke(_characterRateEvolutionSO.Level_4, _characterRateEvolutionSO.Level_6);
     }
 

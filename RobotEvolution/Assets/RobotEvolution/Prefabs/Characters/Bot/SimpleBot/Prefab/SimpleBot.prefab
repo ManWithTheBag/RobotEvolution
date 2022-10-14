@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36e50428c90b5246a007b906de9df86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forvardViewCharacter: {fileID: 0}
 --- !u!114 &8118740121735162973
 MonoBehaviour:
   m_ObjectHideFlags: 0

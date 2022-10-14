@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: VeaponDataSO
   m_EditorClassIdentifier: 
   _reductionGetScireFactor: 1.5
-  _maxDistanceCannon: 20
-  _timeRechargeCannon: 4
-  _speedShellCannon: 6
-  _scoreDamageCannon: 10
-  _viewAngleTurretAndVeaponCannon: 60
+  _maxDistanceWheelBotCannon: 40
+  _timeRechargeWheelBotCannon: 3
+  _speedShellWheelBotCannon: 35
+  _scoreDamageWheelBotCannon: 25
+  _viewAngleTurretWheelBotCannon: 60
   _maxDistanceBigBlaze: 30
   _timeRechargeBigBlaze: 5
-  _scoreDamageBigBlaze: 80
+  _scoreDamageBigBlaze: 50
   _viewAngleTurretAndVeaponBigBlaze: 120
+  _maxDistancePanzerCannon: 50
+  _timeRechargePanzerCannon: 8
+  _speedShellPanzerCannon: 50
+  _scoreDamagePanzerCannon: 90
+  _viewAngleTurretPanzerCannon: 100

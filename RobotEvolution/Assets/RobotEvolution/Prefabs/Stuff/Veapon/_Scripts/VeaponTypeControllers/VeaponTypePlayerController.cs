@@ -2,33 +2,36 @@ using UnityEngine;
 
 public class VeaponTypePlayerController : AbsVeaponTypeController
 {
-    private PlayerVeaponCannon _playerVeaponCannon;
+    private PlayerVeaponWheeledBotCannon _playerVeaponWheeledBotCannon;
     private PlayerVeaponBigBlaze _playerVeaponBigBlaze;
+    private PlayerVeaponPanzerCannon _playerVeaponPanzerCannon;
 
     public override void AddVeaponComponents()
     {
-        _playerVeaponCannon = gameObject.AddComponent<PlayerVeaponCannon>();
+        _playerVeaponWheeledBotCannon = gameObject.AddComponent<PlayerVeaponWheeledBotCannon>();
         _playerVeaponBigBlaze = gameObject.AddComponent<PlayerVeaponBigBlaze>();
+        _playerVeaponPanzerCannon = gameObject.AddComponent<PlayerVeaponPanzerCannon>();
 
         DisableAllVeapons();
     }
 
     public override void DisableAllVeapons()
     {
-        _playerVeaponCannon.enabled = false;
+        _playerVeaponWheeledBotCannon.enabled = false;
         _playerVeaponBigBlaze.enabled = false;
+        _playerVeaponPanzerCannon.enabled = false;
 
         SetDefoltMaxValue();
     }
 
-    public override void CreateCannonVeapon(IVeaponSetuper iVeaponSetuper)
+    public override void CreateWheelBotCannonVeapon(IVeaponSetuper iVeaponSetuper)
     {
-        _playerVeaponCannon.enabled = true;
+        _playerVeaponWheeledBotCannon.enabled = true;
 
-        _playerVeaponCannon.SetFildsVeapon(_veaponDataSO);
-        _playerVeaponCannon.SetSetupVeaponForModelState(iVeaponSetuper);
+        _playerVeaponWheeledBotCannon.SetFildsVeapon(_veaponDataSO);
+        _playerVeaponWheeledBotCannon.SetSetupVeaponForModelState(iVeaponSetuper);
 
-        base.CreateCannonVeapon(iVeaponSetuper);
+        base.CreateWheelBotCannonVeapon(iVeaponSetuper);
     }
 
 
@@ -40,5 +43,15 @@ public class VeaponTypePlayerController : AbsVeaponTypeController
         _playerVeaponBigBlaze.SetSetupVeaponForModelState(iVeaponSetuper, lineRenderer);
 
         base.CreateBigBlazeVeapon(iVeaponSetuper, lineRenderer);
+    }
+
+    public override void CreatePanzerCannonVeapon(IVeaponSetuper iVeaponSetuper)
+    {
+        _playerVeaponPanzerCannon.enabled = true;
+
+        _playerVeaponPanzerCannon.SetFildsVeapon(_veaponDataSO);
+        _playerVeaponPanzerCannon.SetSetupVeaponForModelState(iVeaponSetuper);
+
+        base.CreatePanzerCannonVeapon(iVeaponSetuper);
     }
 }

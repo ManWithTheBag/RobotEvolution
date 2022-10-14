@@ -4,6 +4,8 @@ public class PlayerMovement : AbsCharacterMovement
 {
     private InputJoystick _inputJoystick;
     private float _rotateAngle;
+    private bool _isAnimMoved;
+    private bool _isFinishedPanzerAnimStartRun = true;
 
     public override void Awake()
     {
@@ -11,10 +13,46 @@ public class PlayerMovement : AbsCharacterMovement
         base.Awake();
     }
 
+    public override void SetupMoveCharacter(CharacterModelStatsDataSO characterModelStatsDataSO, Transform turret, CharacterModelAnimator characterModelAnimator)
+    {
+        if (_characterModelAnimator != null)
+            _characterModelAnimator.FinishedPanzerAnimStartRunEvent -= OnFinishedPanserAnimStartRun;
+
+        base.SetupMoveCharacter(characterModelStatsDataSO, turret, characterModelAnimator);
+
+        _characterModelAnimator.FinishedPanzerAnimStartRunEvent += OnFinishedPanserAnimStartRun;
+    }
+
+    private void OnFinishedPanserAnimStartRun(bool isValue)
+    {
+        _isFinishedPanzerAnimStartRun = isValue;
+    }
+
     public override void SetCharacterMovePosition(Vector3 targetPosition)
     {
-        PlayerMove();
-        PlayerRotation();
+        SetMoveAnimation();
+
+        if (_isFinishedPanzerAnimStartRun)
+        {
+            PlayerMove();
+            PlayerRotation();
+        }
+    }
+
+    private void SetMoveAnimation()
+    {
+        if (_inputJoystick.GetVerticalValue() == 0 && _isAnimMoved == true)
+        {
+            _isAnimMoved = false;
+
+            _characterModelAnimator.PlayIdle();
+        }
+        else if (_inputJoystick.GetVerticalValue() != 0 && _isAnimMoved == false)
+        {
+            _isAnimMoved = true;
+
+            _characterModelAnimator.PlayRun();
+        }
     }
 
     private void PlayerMove()

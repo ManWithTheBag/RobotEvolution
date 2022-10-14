@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: _1_1_WheeledBotData
   m_EditorClassIdentifier: 
   <TypeModelStateCharacter>k__BackingField: 1
-  <PrefabCharacterModel>k__BackingField: {fileID: 6524014649858311632, guid: 5766321d7ee024d438776e69fb67cc10,
+  <PrefabCharacterModel>k__BackingField: {fileID: 5630234151529778143, guid: 5ca8dfd2b6199fd418ce4f34abbe2d7b,
     type: 3}
   <ThirdtVierCameraPosition>k__BackingField: {x: 0, y: 20, z: -20}
   <NicknamePosition>k__BackingField: {x: 0, y: 4, z: 0}
   navMeshModelStateID: 0
-  _navSpeedMovement: 5
+  _navSpeedMovement: 10
   _navAngularspeedBody: 100
   _navAnguAcceleration: 80
-  _speedTurretRotation: 1
+  _speedTurretRotation: 4
   _maxAmountCrowdEnemy: 2
   _timeBattle: 15
   _timeNotBattle: 30

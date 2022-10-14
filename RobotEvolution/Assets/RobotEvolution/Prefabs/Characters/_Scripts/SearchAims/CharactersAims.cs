@@ -110,6 +110,14 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
     private IEnumerator UpdateNavMeshAgentInEndFrame()
     {
         yield return new WaitForEndOfFrame();
+
+        //if (Physics.Raycast(new Ray(transform.position, Vector3.down), out var hit))
+        //{
+        //    _currentNavMeshAgent.Warp(hit.point);
+
+        //    Debug.Log(_currentNavMeshAgent.Warp(hit.point));
+        //}
+
         _currentNavMeshAgent = GetComponent<NavMeshAgent>();
     }
     #endregion
@@ -232,6 +240,14 @@ public class CharactersAims : MonoBehaviour, IAimsSelectable
 
         for (int i = 0; i < checkedList.Count; i++)
         {
+
+            //if (Physics.Raycast(new Ray(transform.position, Vector3.down), out var hit))
+            //{
+            //    _currentNavMeshAgent.Warp(hit.point);
+
+            //    Debug.Log(_currentNavMeshAgent.Warp(hit.point));
+            //}
+
             _currentNavMeshAgent.CalculatePath(checkedList[i].SortedTransform.position, _navMeshPath);
 
             if (_navMeshPath.status == NavMeshPathStatus.PathComplete)

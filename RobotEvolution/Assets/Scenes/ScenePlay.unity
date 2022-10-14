@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 128968949}
   - component: {fileID: 128968948}
   - component: {fileID: 128968954}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1572,9 +1572,10 @@ GameObject:
   - component: {fileID: 296699081}
   - component: {fileID: 296699083}
   - component: {fileID: 296699082}
+  - component: {fileID: 296699086}
   - component: {fileID: 296699084}
   - component: {fileID: 296699085}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NavMeshLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1619,7 +1620,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 8
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -1648,7 +1649,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 8
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -1691,6 +1692,35 @@ MonoBehaviour:
   m_Center: {x: -117.1069, y: -14, z: -19.873901}
   m_Area: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &296699086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296699080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -902729914
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.4
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: 794a06a81d3459e4ba2bc3c79c50f216, type: 2}
 --- !u!43 &306464680
 Mesh:
   m_ObjectHideFlags: 0
@@ -2242,6 +2272,7 @@ Transform:
   - {fileID: 1389110092}
   - {fileID: 1541124973}
   - {fileID: 575233567}
+  - {fileID: 1131055292}
   m_Father: {fileID: 594600503}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2260,7 +2291,7 @@ GameObject:
   - component: {fileID: 496165240}
   - component: {fileID: 496165239}
   - component: {fileID: 496165245}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3291,7 +3322,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25556
+  m_Name: pb_Mesh25564
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3610,7 +3641,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25662
+  m_Name: pb_Mesh25668
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4080,7 +4111,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25896
+  m_Name: pb_Mesh25902
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4470,6 +4501,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1131055291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1131055292}
+  - component: {fileID: 1131055293}
+  m_Layer: 0
+  m_Name: PoolPanzerShell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1131055292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131055291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 494806101}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1131055293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131055291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ce0a39d34d8ff4f8bd9e3983a18146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolCapacity: 10
+  _panzerShellPrefab: {fileID: -7573204294149956625, guid: 050d0433b0e88ce41a49e59829dbe32c,
+    type: 3}
+  _isActiveByDefolt: 0
+  _isAutoExpand: 1
 --- !u!1 &1132599523
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,7 +4560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1132599524}
   - component: {fileID: 1132599525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LinkPandusGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5404,7 +5484,7 @@ GameObject:
   - component: {fileID: 1541124973}
   - component: {fileID: 1541124974}
   m_Layer: 0
-  m_Name: PoolShell
+  m_Name: PoolWheelBotShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5517,7 +5597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e772117325535ea4c9098d632d1852d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolCapasity: 2
+  _poolCapasity: 6
   _prifabSimpleBot: {fileID: 7613716412638233947, guid: e47ef5c53ead5f64bb41d67519b0dc0e,
     type: 3}
   _isActiveByDefolt: 1
@@ -5585,7 +5665,7 @@ GameObject:
   - component: {fileID: 1649674080}
   - component: {fileID: 1649674079}
   - component: {fileID: 1649674078}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16311,7 +16391,7 @@ GameObject:
   - component: {fileID: 1860627871}
   - component: {fileID: 1860627870}
   - component: {fileID: 1860627869}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pandus
   m_TagString: Untagged
   m_Icon: {fileID: 0}

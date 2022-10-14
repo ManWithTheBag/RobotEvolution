@@ -39,13 +39,13 @@ public class IndicateArrowSetuper : MonoBehaviour
             case ((int)CharacterModelStatsEnum._2_1_SpiderBotCrab):
                 SetDistancModelToArrow(_distanceModelToArrowLivel_2);
                 break;
-            case ((int)CharacterModelStatsEnum._2_2_SpiderBotCyclop):
+            case ((int)CharacterModelStatsEnum._2_3_SpiderBotPanzer):
                 SetDistancModelToArrow(_distanceModelToArrowLivel_3);
                 break;
-            case ((int)CharacterModelStatsEnum._2_3_SpiderBotElefant):
+            case ((int)CharacterModelStatsEnum._3_1_HumanDestroyer):
                 SetDistancModelToArrow(_distanceModelToArrowLivel_4);
                 break;
-            case ((int)CharacterModelStatsEnum._3_1_Human_1):
+            case ((int)CharacterModelStatsEnum._EmptyCharacter):
                 SetDistancModelToArrow(_distanceModelToArrowLivel_5);
                 break;
         }

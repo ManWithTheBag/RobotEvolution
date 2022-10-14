@@ -1,23 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(VeaponUpdater)) ,RequireComponent(typeof(LineRenderer))]
-public class SetupVeaponBigBlaze : MonoBehaviour, IVeaponSetuper
+[RequireComponent(typeof(LineRenderer))]
+public class SetupVeaponBigBlaze : AbsVeaponSetuper
 {
-    [field: SerializeField]public Transform Turret { get; private set; }
-    [field: SerializeField]public List<Transform> PositionsVeaponList { get; private set; }
-
     private LineRenderer _lineRenderer;
-    private AbsVeaponTypeController _absVeaponTypeController;
 
-    private void Awake()
+    public override void Awake()
     {
-        transform.parent.TryGetComponent(out AbsVeaponTypeController absVeaponTypeController); _absVeaponTypeController = absVeaponTypeController;
         _lineRenderer = GetComponent<LineRenderer>();
-
+        base.Awake();
     }
 
-    public void SetupVeaponForModelState()
+    public override void SetupVeaponForModelState()
     {
         _absVeaponTypeController.CreateBigBlazeVeapon(this, _lineRenderer);
     }
