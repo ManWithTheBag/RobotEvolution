@@ -1,0 +1,518 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.4f1 (cb45f9cae8b7) revision 13321721'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19042) 64bit Enterprise' Language: 'en' Physical Memory: 14188 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.3.4f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+D:/Unity_game_prodgects/RobotEvolutionProject/Unity_RobotEvolution_2/RobotEvolution_2/RobotEvolution_2
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+59829
+Successfully changed project path to: D:/Unity_game_prodgects/RobotEvolutionProject/Unity_RobotEvolution_2/RobotEvolution_2/RobotEvolution_2
+D:/Unity_game_prodgects/RobotEvolutionProject/Unity_RobotEvolution_2/RobotEvolution_2/RobotEvolution_2
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 92.95 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.4f1 (cb45f9cae8b7)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Unity_game_prodgects/RobotEvolutionProject/Unity_RobotEvolution_2/RobotEvolution_2/RobotEvolution_2/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3050 Laptop GPU (ID=0x25a2)
+    Vendor:   NVIDIA
+    VRAM:     3993 MB
+    Driver:   31.0.15.1640
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56448
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.010385 seconds.
+Native extension for WindowsStandalone target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 87.80 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.611 seconds
+Domain Reload Profiling:
+	ReloadAssembly (612ms)
+		BeginReloadAssembly (76ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (434ms)
+			LoadAssemblies (73ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (94ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (22ms)
+			SetupLoadedEditorAssemblies (272ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (59ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (88ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (85ms)
+				ProcessInitializeOnLoadMethodAttributes (38ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004486 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Unity_game_prodgects\RobotEvolutionProject\Unity_RobotEvolution_2\RobotEvolution_2\RobotEvolution_2\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Unity_game_prodgects\RobotEvolutionProject\Unity_RobotEvolution_2\RobotEvolution_2\RobotEvolution_2\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 1.02 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+Package Manager log level set to [2]
+- Completed reload, in  1.144 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1145ms)
+		BeginReloadAssembly (220ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (130ms)
+		EndReloadAssembly (820ms)
+			LoadAssemblies (96ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (216ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (55ms)
+			SetupLoadedEditorAssemblies (425ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (23ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (107ms)
+				ProcessInitializeOnLoadAttributes (249ms)
+				ProcessInitializeOnLoadMethodAttributes (32ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.09 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4481 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 70 unused Assets / (1.4 MB). Loaded Objects now: 4939.
+Memory consumption went from 186.8 MB to 185.3 MB.
+Total: 4.794400 ms (FindLiveObjects: 0.374200 ms CreateObjectMapping: 0.321000 ms MarkObjects: 3.646200 ms  DeleteObjects: 0.451700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 219029.912672 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/_Scripts/CharacterScanningAims.cs
+  artifactKey: Guid(4c529600045751d41814f6b0468a8b37) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/_Scripts/CharacterScanningAims.cs using Guid(4c529600045751d41814f6b0468a8b37) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '33400ea6a56790351f23e65a80a20cab') in 0.112208 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Pacage/Characters/1_1_WheeledBot/1_1_WheelBot.fbx
+  artifactKey: Guid(e1a0ebe6843fb044582dedff468183d9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Pacage/Characters/1_1_WheeledBot/1_1_WheelBot.fbx using Guid(e1a0ebe6843fb044582dedff468183d9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'bef93a798d49403030a8ea2fa02ee707') in 0.325696 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/Bot
+  artifactKey: Guid(74b8ad8f62f7cb046bf2a5b8268395db) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/Bot using Guid(74b8ad8f62f7cb046bf2a5b8268395db) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1f32c268b49f441ec843f28df73db3fa') in 0.006340 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponTypeControllers/VeaponTypeBotController.cs
+  artifactKey: Guid(ab9af256088767f4fa2594d9a13d4c74) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponTypeControllers/VeaponTypeBotController.cs using Guid(ab9af256088767f4fa2594d9a13d4c74) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b26597bfcad100ca03c02a7c21f4d278') in 0.006598 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Gear/Prefab/Gear.prefab
+  artifactKey: Guid(b4a316ef88ab6484980ea9bd28e631ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Gear/Prefab/Gear.prefab using Guid(b4a316ef88ab6484980ea9bd28e631ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e57b26d769bda8050ba411717a9d73a7') in 0.127114 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/RobotEvolution/Prefabs/UI/_Scripts/PlayerUI/PlayerApprovalWorlds.cs
+  artifactKey: Guid(70ccb6cc547eb1947a238e30ebabd04b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/UI/_Scripts/PlayerUI/PlayerApprovalWorlds.cs using Guid(70ccb6cc547eb1947a238e30ebabd04b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd3859389430655da4673303353492095') in 0.006733 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Prefab/2_1_SpiderBotCrab
+  artifactKey: Guid(f83790a507b21f64d8a8e0a15265058a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Prefab/2_1_SpiderBotCrab using Guid(f83790a507b21f64d8a8e0a15265058a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3f4724ad13490a63a974e7d7dbaa6aac') in 0.004695 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/_Pacage/Characters/2_3_SpiderBot_Panzer/2_3_SpiderBot.blend_2.fbx
+  artifactKey: Guid(a06d8b62ba9385049a2f903fc961ed84) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Pacage/Characters/2_3_SpiderBot_Panzer/2_3_SpiderBot.blend_2.fbx using Guid(a06d8b62ba9385049a2f903fc961ed84) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b470b58c47898d09c4da14545d95f421') in 0.057891 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsSetuper/VeaponUpdater.cs
+  artifactKey: Guid(3f292bbd9d97f9e409f2141952e7d841) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsSetuper/VeaponUpdater.cs using Guid(3f292bbd9d97f9e409f2141952e7d841) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0facddcb9207a9a94130548581ba0eaa') in 0.007377 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/Cannon/WheelrdBotCannon/_Scripts
+  artifactKey: Guid(2474b4744f3f71142828dd8416a32a69) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/Cannon/WheelrdBotCannon/_Scripts using Guid(2474b4744f3f71142828dd8416a32a69) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f42a4294b065c0be3c333525e908ceab') in 0.004441 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/RobotEvolution/Prefabs/_Scripts/AimsListsContainer.cs
+  artifactKey: Guid(89061a3e85628df49b7eeb3bcb6b3c5c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/_Scripts/AimsListsContainer.cs using Guid(89061a3e85628df49b7eeb3bcb6b3c5c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '065944a4013fcd9b267c88557b60b218') in 0.007902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Battery/_Scripts/Battery.cs
+  artifactKey: Guid(af3903f9636f8f5479f00e47f383f26e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Battery/_Scripts/Battery.cs using Guid(af3903f9636f8f5479f00e47f383f26e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '269141b8d0c29abdf9d619fbc632ab23') in 0.006288 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/_Scripts/CharacterModelStatsEnum.cs
+  artifactKey: Guid(118face15a67f5644a72ec2ef05540b2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/_Scripts/CharacterModelStatsEnum.cs using Guid(118face15a67f5644a72ec2ef05540b2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f6913b75e286fd60c33ce82e84e38c25') in 0.013178 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/_Scripts/CharacterDetected.cs
+  artifactKey: Guid(aa0e9c34e205dff40ba73dd66638fbbd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/_Scripts/CharacterDetected.cs using Guid(aa0e9c34e205dff40ba73dd66638fbbd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '249532d858b55ea674ab4ea536f08072') in 0.007516 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Prefab/3_3_HumanBotDestroyer
+  artifactKey: Guid(cf13284cf4606a4448d78bed09f7eca0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Prefab/3_3_HumanBotDestroyer using Guid(cf13284cf4606a4448d78bed09f7eca0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2539c51972450d3234c82d26303f75e9') in 0.007418 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/RobotEvolution/Resources/ScriptableObj/CharactersModelStatsDataSO/_2_3_SpiderBotPanzerData.asset
+  artifactKey: Guid(fa7c7656936862b4aafe2add439b6702) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Resources/ScriptableObj/CharactersModelStatsDataSO/_2_3_SpiderBotPanzerData.asset using Guid(fa7c7656936862b4aafe2add439b6702) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'bee57bcc928207b42c01e3a51f978001') in 0.035234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RobotEvolution/Prefabs/UI/_Scripts/PlayerUI/PlayerNickname.cs
+  artifactKey: Guid(ccb2048e5d7aee14bbadbd8ec3dbfea6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/UI/_Scripts/PlayerUI/PlayerNickname.cs using Guid(ccb2048e5d7aee14bbadbd8ec3dbfea6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '859f33258bfa9c9ed9880ff42703e8e8') in 0.008999 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Scenes/ScenePlay/NavMesh-NavMeshLevel 6.asset
+  artifactKey: Guid(3f97a1cb036c3574d91b27faafcdb815) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scenes/ScenePlay/NavMesh-NavMeshLevel 6.asset using Guid(3f97a1cb036c3574d91b27faafcdb815) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c8e337fddd5b75cd2446d7156413f43a') in 0.014746 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/Cannon/SpiderBotPanzer/Prefabs/ShellTestPanzer.prefab
+  artifactKey: Guid(050d0433b0e88ce41a49e59829dbe32c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/Cannon/SpiderBotPanzer/Prefabs/ShellTestPanzer.prefab using Guid(050d0433b0e88ce41a49e59829dbe32c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c62f09ad3640391defa14e55b9eb44c2') in 0.023306 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/RobotEvolution/Anim/AvatarsMask/2_3_SpidrBotPanze_TurretrMask.mask
+  artifactKey: Guid(657b6e0d28b76884f956de0e3abbc1f8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Anim/AvatarsMask/2_3_SpidrBotPanze_TurretrMask.mask using Guid(657b6e0d28b76884f956de0e3abbc1f8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '827026657bce48375914ffc916df9f6e') in 0.009111 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/RobotEvolution/Resources/ScriptableObj/CharactersModelStatsDataSO/_1_1_WheeledBotData.asset
+  artifactKey: Guid(fa201ddc3705b6048b0386604aa7dcbb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Resources/ScriptableObj/CharactersModelStatsDataSO/_1_1_WheeledBotData.asset using Guid(fa201ddc3705b6048b0386604aa7dcbb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dea44e1e2c10bab6ee3f1dca552c380c') in 0.015005 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType
+  artifactKey: Guid(454f1906f22b3ff42841b3fede7ab6d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType using Guid(454f1906f22b3ff42841b3fede7ab6d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'edbea6fd65f2a7fc17dfc734a1d4cc3f') in 0.005929 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/_Common/AbsVeapon.cs
+  artifactKey: Guid(aa119ca97b66b13458582f1082ef7257) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/_Common/AbsVeapon.cs using Guid(aa119ca97b66b13458582f1082ef7257) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b53396227c32170dc0ada9253ddb039d') in 0.007630 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/RobotEvolution/Anim/Animations/2_3_SpiderBotPanzer/2_3_SpiderBotPanzer_Idle.anim
+  artifactKey: Guid(d080d6303948acd4ca4a1a9bbf0a1789) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Anim/Animations/2_3_SpiderBotPanzer/2_3_SpiderBotPanzer_Idle.anim using Guid(d080d6303948acd4ca4a1a9bbf0a1789) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8ec6ccc553ecf6b69aa582287cc4f9a8') in 0.025642 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Player/_Scripts/PlayerMovement.cs
+  artifactKey: Guid(2061f3f4ea84a3f4b879b9972257d8b1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Player/_Scripts/PlayerMovement.cs using Guid(2061f3f4ea84a3f4b879b9972257d8b1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b00ca8210a4efcd1df27520bd0183412') in 0.012297 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/_Common/AbsVeaponRayCast.cs
+  artifactKey: Guid(ec2abe25b7b470c4cb21e426ce0dc136) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/_Common/AbsVeaponRayCast.cs using Guid(ec2abe25b7b470c4cb21e426ce0dc136) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e3c01f2678c09076a38f6189d3edbe2d') in 0.009354 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/RobotEvolution/Resources/ScriptableObj/CommonCharacterData/VeaponDataSO.asset
+  artifactKey: Guid(4bc8666d52df2cb4883b575bcb8d3466) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Resources/ScriptableObj/CommonCharacterData/VeaponDataSO.asset using Guid(4bc8666d52df2cb4883b575bcb8d3466) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9de2ff3936bbc3991921d1aa779dea5d') in 0.016221 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/_Scripts/SearchAims/DistanceToAimComparer.cs
+  artifactKey: Guid(fe4fbf9718ec62b46bb8cc3f31a29dae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RobotEvolution/Prefabs/Characters/_Scripts/SearchAims/DistanceToAimComparer.cs using Guid(fe4fbf9718ec62b46bb8cc3f31a29dae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e8e0472c65a4b97b7b7cde705155dd4') in 0.002395 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000125 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/_Scripts/SearchAims/DistanceToAimComparer.cs
+  artifactKey: Guid(fe4fbf9718ec62b46bb8cc3f31a29dae) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/_Scripts/SearchAims/DistanceToAimComparer.cs using Guid(fe4fbf9718ec62b46bb8cc3f31a29dae) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '89baba9656e872918940c3171df79b34') in 0.010711 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/RobotEvolution/Anim/AvatarsMask/1_1_WheeledBot_TurretMask.mask
+  artifactKey: Guid(086fff501c81e2d4285bbc82f70835c7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Anim/AvatarsMask/1_1_WheeledBot_TurretMask.mask using Guid(086fff501c81e2d4285bbc82f70835c7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd290a6e2ab840d0e84bc9c68ea689075') in 0.012787 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/_Pacage/Stuff/Battery.blend
+  artifactKey: Guid(0b94585a63737874483bc143bdc02403) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Pacage/Stuff/Battery.blend using Guid(0b94585a63737874483bc143bdc02403) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5ae61605122692871e616d4efa6c98db') in 0.051064 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Prefab/2_1_SpiderBotCrab/Material_2_1_SpiderBotCrab.mat
+  artifactKey: Guid(b6d534a1fd84cc24f8c9b53dd9336b77) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Prefab/2_1_SpiderBotCrab/Material_2_1_SpiderBotCrab.mat using Guid(b6d534a1fd84cc24f8c9b53dd9336b77) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'cdc4c77110fb27ed3317bd34b3799b48') in 0.028824 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/_Pacage/Characters/2_1_SpiderBot_Crab/2_1_SpiderBot_Idle_Run_Shot.fbx
+  artifactKey: Guid(bb3aca4c713fc8644989f7a82bfd0feb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Pacage/Characters/2_1_SpiderBot_Crab/2_1_SpiderBot_Idle_Run_Shot.fbx using Guid(bb3aca4c713fc8644989f7a82bfd0feb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dce24cb3eccc5b7a9129f1e548df9eaf') in 0.070062 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/_Pacage/Characters/2_3_SpiderBot_Panzer
+  artifactKey: Guid(f655e3a8eb6a3634d98abf08e18dc340) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Pacage/Characters/2_3_SpiderBot_Panzer using Guid(f655e3a8eb6a3634d98abf08e18dc340) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2494bf8897e730686512ef23d3116b9f') in 0.007603 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Prefab/3_3_HumanBotDestroyer/3_3_HumanBotDestroyer.prefab
+  artifactKey: Guid(ac0bbc881d0b61948bc3d7cfb0fca088) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Prefab/3_3_HumanBotDestroyer/3_3_HumanBotDestroyer.prefab using Guid(ac0bbc881d0b61948bc3d7cfb0fca088) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f7658259feb06d1f7a63273498de3835') in 0.037378 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/RobotEvolution/Prefabs/UI/LiserBoard/Prefab/LiderBoardTemplate.prefab
+  artifactKey: Guid(736a927681da80c49aaa262b1af0a073) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/UI/LiserBoard/Prefab/LiderBoardTemplate.prefab using Guid(736a927681da80c49aaa262b1af0a073) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c9561029d3b04f6fb24774a2efe6f730') in 0.065676 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Prefab/2_1_SpiderBotCrab/Texture_2_1_SpiderBot.png
+  artifactKey: Guid(dc2a4dcb23b377042b4f16c3d1ceb9d4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Prefab/2_1_SpiderBotCrab/Texture_2_1_SpiderBot.png using Guid(dc2a4dcb23b377042b4f16c3d1ceb9d4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ccbe449947177ed390747f41ecb75459') in 0.047869 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/Player/PlayerVeaponWheeledBotCannon.cs
+  artifactKey: Guid(18376045dd07725428b854116fea76fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/Player/PlayerVeaponWheeledBotCannon.cs using Guid(18376045dd07725428b854116fea76fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'fbe36a9aeffc18768f5755c1a98c1a4a') in 0.004886 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/RobotEvolution/Resources/ScriptableObj/CommonCharacterData/CharacterRateEvolutionSO.asset
+  artifactKey: Guid(41a6d36f71b12294287d27c1646eeccc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Resources/ScriptableObj/CommonCharacterData/CharacterRateEvolutionSO.asset using Guid(41a6d36f71b12294287d27c1646eeccc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1b0c956534479514f84f9d5841b8a253') in 0.010184 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/Player/PlayerVeaponPanzerCannon.cs
+  artifactKey: Guid(8b475194f8d0a424a891b0714c142c9d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsType/Player/PlayerVeaponPanzerCannon.cs using Guid(8b475194f8d0a424a891b0714c142c9d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6ab3793014d8cd738e9b645a1bea5993') in 0.005408 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsSetuper/SetupVeaponBigBlaze.cs
+  artifactKey: Guid(974c4214bd127ad4982252095c7f6d9c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/_Scripts/VeaponsSetuper/SetupVeaponBigBlaze.cs using Guid(974c4214bd127ad4982252095c7f6d9c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6b3eae57621e1e9cc23f6414fdbcb294') in 0.004503 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Pacage/Stuff
+  artifactKey: Guid(2377372df7f184544a767ac100b88daa) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Pacage/Stuff using Guid(2377372df7f184544a767ac100b88daa) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5aadc29348b7e099de82dc6a1a9be94a') in 0.004544 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/RobotEvolution/Prefabs/Stuff/Veapon/Cannon/SpiderBotPanzer/Prefabs
+  artifactKey: Guid(74f00e6dfb8c2d442af806a2af574b9e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/RobotEvolution/Prefabs/Stuff/Veapon/Cannon/SpiderBotPanzer/Prefabs using Guid(74f00e6dfb8c2d442af806a2af574b9e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '88a8c2d143cdc96ae87581dba0cc8f4a') in 0.004453 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.036193 seconds.
+  path: Assets/RobotEvolution/Prefabs/Characters/Prefab/3_3_HumanBotDestroyer/3_3_HumanBotDestroyer.prefab
+  artifactKey: Guid(ac0bbc881d0b61948bc3d7cfb0fca088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RobotEvolution/Prefabs/Characters/Prefab/3_3_HumanBotDestroyer/3_3_HumanBotDestroyer.prefab using Guid(ac0bbc881d0b61948bc3d7cfb0fca088) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Tried select unknown importer for id '-2' '00000000000000000000000000000000'
+ -> (artifact id: 'ffe6b87e939d9474a7cafef74bb052d8') in 0.095280 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.205780 seconds.
+  path: Assets/RobotEvolution/Materials/PanzerShell.mat
+  artifactKey: Guid(935e085d7a07d3f4fbaca5e8726d8b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RobotEvolution/Materials/PanzerShell.mat using Guid(935e085d7a07d3f4fbaca5e8726d8b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d006d4b88d41756e16883b696c6c0e6') in 0.036851 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.436298 seconds.
+  path: Assets/_Pacage/Characters/1_1_WheeledBot
+  artifactKey: Guid(18a704399717a07429df88a4f924d4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Pacage/Characters/1_1_WheeledBot using Guid(18a704399717a07429df88a4f924d4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d0086ce2378db4736f5c9a73f1f436e') in 0.010120 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.007504 seconds.
+  path: Assets/_Pacage/Characters/2_1_SpiderBot_Crab
+  artifactKey: Guid(902355a6741e43a4ba831683b24ce190) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Pacage/Characters/2_1_SpiderBot_Crab using Guid(902355a6741e43a4ba831683b24ce190) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53105a876ae29ccded6edb782d147d59') in 0.001095 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.529946 seconds.
+  path: Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs
+  artifactKey: Guid(45977bbae16431c46a013576a1aea384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs using Guid(45977bbae16431c46a013576a1aea384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90952c9c865eeb26b04878c47ed7ee25') in 0.001531 seconds 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 8.09 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 52 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 53 unused Assets / (1.4 MB). Loaded Objects now: 4981.
+Memory consumption went from 97.7 MB to 96.3 MB.
+Total: 5.313400 ms (FindLiveObjects: 0.477000 ms CreateObjectMapping: 0.317300 ms MarkObjects: 4.111700 ms  DeleteObjects: 0.406500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 

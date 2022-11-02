@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 3_3_HumanBotDestroyer_TurretMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Bone.013
+    m_Weight: 1
+  - m_Path: Bone.013/Bone.013_end
+    m_Weight: 1
+  - m_Path: Bone.014
+    m_Weight: 1
+  - m_Path: Bone.014/Bone.014_end
+    m_Weight: 1
+  - m_Path: Bone.016
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.002
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.002/Bone
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.002/Bone/Bone_end
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.002/Bone/foot.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.002/footJoint.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004/ankle.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004/Bone.005
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004/Bone.005/Bone.006
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004/Bone.005/Bone.006/Bone.006_end
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004/Bone.005/Bone.006/heel.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/Bone.004/Bone.005/heelJoint.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/Bone.003/leg.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/Bone.007/knee.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/Bone.010/Bone.009/thigh.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.015/Bone.008/hipJoint.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.019
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.019/Bone.020
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.019/Bone.020/Bone.020_end
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.019/Bone.020/gun.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.019/wingUpper.L
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.031
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.031/Bone.032
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.031/Bone.032/Bone.032_end
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.031/Bone.032/gun.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/Bone.031/wingUpper.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/Bone.018/torso
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/torsoTwist
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.017/waist
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.027
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.027/Bone.001
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.027/Bone.001/Bone.001_end
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.027/Bone.001/foot.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.027/footJoint.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028/ankle.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028/Bone.029
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028/Bone.029/Bone.030
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028/Bone.029/Bone.030/Bone.030_end
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028/Bone.029/Bone.030/heel.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/Bone.028/Bone.029/heelJoint.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/Bone.026/leg.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/Bone.025/knee.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/Bone.012/Bone.024/thigh.R
+    m_Weight: 1
+  - m_Path: Bone.016/Bone.023/Bone.011/hipJoint.R
+    m_Weight: 1
+  - m_Path: Bone.016/hips
+    m_Weight: 1
+  - m_Path: Bone.021
+    m_Weight: 1
+  - m_Path: Bone.021/Bone.021_end
+    m_Weight: 1
+  - m_Path: Bone.022
+    m_Weight: 1
+  - m_Path: Bone.022/Bone.022_end
+    m_Weight: 1
+  - m_Path: sag.pole
+    m_Weight: 1
+  - m_Path: sag.pole/sag.pole_end
+    m_Weight: 1
+  - m_Path: SAGayak.ctrl.001
+    m_Weight: 1
+  - m_Path: SAGayak.ctrl.001/SAGayak.ctrl.001_end
+    m_Weight: 1
+  - m_Path: sol.pole
+    m_Weight: 1
+  - m_Path: sol.pole/sol.pole_end
+    m_Weight: 1
+  - m_Path: sol_arka_ctrl
+    m_Weight: 1
+  - m_Path: sol_arka_ctrl/sol_arka_ctrl_end
+    m_Weight: 1
+  - m_Path: sol_arka_ctrl.001
+    m_Weight: 1
+  - m_Path: sol_arka_ctrl.001/sol_arka_ctrl.001_end
+    m_Weight: 1
+  - m_Path: sol_ik_1
+    m_Weight: 1
+  - m_Path: sol_ik_1/sol_ik_1_end
+    m_Weight: 1
+  - m_Path: sol_ik_1.001
+    m_Weight: 1
+  - m_Path: sol_ik_1.001/sol_ik_1.001_end
+    m_Weight: 1
+  - m_Path: Solayak.ctrl
+    m_Weight: 1
+  - m_Path: Solayak.ctrl/Solayak.ctrl_end
+    m_Weight: 1

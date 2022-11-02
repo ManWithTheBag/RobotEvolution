@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 2_1_SpiderBotCrab_TurretMask
+  m_Mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Quadrubot
+    m_Weight: 0
+  - m_Path: Quadrubot.001
+    m_Weight: 0
+  - m_Path: Quadrubot_rig
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK.L/Back_IK.L_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK.R/Back_IK.R_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK_Target.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK_Target.L/Back_IK_Target.L_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK_Target.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Back_IK_Target.R/Back_IK_Target.R_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Body
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Body/Gun_IK
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Gun_IK/Gun_IK_end
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Tail.1
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Tail.1/Tail.2
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Tail.1/Tail.2/Tail.3
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Tail.1/Tail.2/Tail.3/Tail.4
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Tail.1/Tail.2/Tail.3/Tail.4/Gun
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Body/Tail.1/Tail.2/Tail.3/Tail.4/Gun/Gun_end
+    m_Weight: 1
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.L/Leg_back.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.L/Leg_back.L/Foot_back.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.L/Leg_back.L/Foot_back.L/Foot_back.L_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.R/Leg_back.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.R/Leg_back.R/Foot_back.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_back_o.R/Leg_back.R/Foot_back.R/Foot_back.R_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.L/Leg_front.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.L/Leg_front.L/Foot_front.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.L/Leg_front.L/Foot_front.L/Foot_front.L_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.R/Leg_front.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.R/Leg_front.R/Foot_front.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Center/Leg_front_o.R/Leg_front.R/Foot_front.R/Foot_front.R_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK.L/Front_IK.L_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK.R/Front_IK.R_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK__Target.L
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK__Target.L/Front_IK__Target.L_end
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK_Target.R
+    m_Weight: 0
+  - m_Path: Quadrubot_rig/Root/Front_IK_Target.R/Front_IK_Target.R_end
+    m_Weight: 0

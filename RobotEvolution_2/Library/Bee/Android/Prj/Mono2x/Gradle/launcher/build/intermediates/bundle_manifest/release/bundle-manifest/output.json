@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "com.DefaultCompany.RobotEvolution",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "BUNDLE_MANIFEST"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "1.0.2",
+        "outputFile": "launcher-release.apk",
+        "fullName": "release",
+        "baseName": "release",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.DefaultCompany.RobotEvolution",
+        "split": "",
+        "minSdkVersion": "22"
+      }
+    }
+  ]
+}
